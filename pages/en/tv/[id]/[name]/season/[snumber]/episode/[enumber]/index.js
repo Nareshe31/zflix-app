@@ -8,7 +8,6 @@ function TvEpisodePage({data,seasondata,base_url}) {
 
 export async function getServerSideProps(context) {
     try {
-        axios.post("https://zflix-backend.herokuapp.com/api/v2/add-page-request",{url:context.resolvedUrl})
         const res = await fetch(
             `https://api.themoviedb.org/3/tv/${context.query.id}?api_key=${process.env.TMDB_API_KEY}&language=en-US&append_to_response=videos,credits,recommendations,similar`
         );

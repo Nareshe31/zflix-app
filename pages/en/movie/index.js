@@ -1,8 +1,11 @@
 import axios from "axios"
-import TorrentSearch from "../../../components/Torrent"
 
-function TorrentPage({base_url}) {
-    return <TorrentSearch base_url={base_url} />
+function MoviePage(params) {
+    return(
+        <div>
+            Movie Page
+        </div>
+    )    
 }
 
 export async function getServerSideProps(context) {
@@ -20,4 +23,4 @@ export async function getServerSideProps(context) {
     }
 }
 
-export default TorrentPage
+export default MoviePage

@@ -12,7 +12,7 @@ export async function getServerSideProps(context) {
     try {
         let page=context.query.page?context.query.page:1
         let q=context.query.q?context.query.q:''
-        axios.post("https://zflix-backend.herokuapp.com/api/v2/add-page-request",{url:context.resolvedUrl})
+        
         if (context.query.q) {
             const res = await fetch(
                 `https://api.themoviedb.org/3/search/multi?api_key=${process.env.TMDB_API_KEY}&language=en-US&query=${q}&page=${page}&include_adult=false`

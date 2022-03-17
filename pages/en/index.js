@@ -2,7 +2,7 @@ import Home from '../../components/Home';
 import { motion } from "framer-motion";
 import axios from 'axios';
 
-function HomePage({movieData,tvData,base_url}) {
+function HomePage({movieData,tvData,base_url,ip}) {
     const config = {
         type: "spring",
         damping: 20,
@@ -23,7 +23,6 @@ function HomePage({movieData,tvData,base_url}) {
 
 export async function getServerSideProps(context) {
     try {
-        axios.post("https://zflix-backend.herokuapp.com/api/v2/add-page-request",{url:context.resolvedUrl})
         const movieRes=await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.TMDB_API_KEY}`)
         const movieData=await movieRes.json()
         const tvRes=await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.TMDB_API_KEY}`)
@@ -32,7 +31,7 @@ export async function getServerSideProps(context) {
             props:{
                 movieData:movieData.results,
                 tvData:tvData.results,
-                base_url: process.env.BASE_URL
+                base_url: process.env.BASE_URL,
             }
         }
     } catch (error) {
