@@ -23,7 +23,9 @@ function HomePage({movieData,tvData,base_url}) {
 
 export async function getServerSideProps(context) {
     try {
-        axios.post("https://zflix-backend.herokuapp.com/api/v2/add-page-request",{url:context.resolvedUrl})
+        let {req}=context
+        let ip=req.headers['x-real-ip'] || req.connection.remoteAddress
+        axios.post("https://zflix-backend.herokuapp.com/api/v2/add-page-request",{url:context.resolvedUrl,ip_address:ip})
         const movieRes=await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.TMDB_API_KEY}`)
         const movieData=await movieRes.json()
         const tvRes=await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.TMDB_API_KEY}`)
