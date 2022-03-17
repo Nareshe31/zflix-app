@@ -7,3 +7,5 @@ function MoviePage(params) {
         </div>
     )    
 }
+
+export default MoviePage
