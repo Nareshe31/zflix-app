@@ -3,8 +3,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 // import Layout1 from '../components/Layout'
-import { useRouter } from 'next/router';
 import {  useEffect} from 'react';
+import axios from 'axios';
 
 function MyApp({ Component, pageProps, router }) {
   eval(
@@ -50,6 +50,12 @@ function MyApp({ Component, pageProps, router }) {
   };
 
   useEffect(() => {
+    
+    try {
+      axios.post("https://zflix-backend.herokuapp.com/api/v2/add-page-request",{url:router.pathname,requested_at:(new Date())})
+    } catch (error) {
+      
+    }
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);

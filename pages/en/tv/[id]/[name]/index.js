@@ -8,9 +8,7 @@ function TvPage({data,base_url}) {
 
 export async function getServerSideProps(context) {
     try {
-        let {req}=context
-        let ip=req.headers['x-real-ip'] || req.connection.remoteAddress
-        axios.post("https://zflix-backend.herokuapp.com/api/v2/add-page-request",{url:context.resolvedUrl,ip_address:ip})
+        
         const res = await fetch(
             `https://api.themoviedb.org/3/tv/${context.query.id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=images,videos,credits,recommendations,similar`
         );
