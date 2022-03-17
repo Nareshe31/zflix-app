@@ -1,0 +1,35 @@
+@use  "../abstracts/colors" as *;
+@use  "../abstracts/fonts" as *;
+
+.poster_link{
+    margin: 0 6px 8px;
+}
+.poster_container{
+    width: $p-lg-w;
+    height: $p-lg-h;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    background-color: $p-bg;
+}
+.i_poster_container{
+    width: 220px;
+    height: 150px;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    background-color: $p-bg;
+    margin: 0 8px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:600px) {
+    .poster_container{
+        width: $p-sm-w;
+        height: $p-sm-h;
+    }
+    .i_poster_container{
+        width: 160px;
+        height: 120px;
+    }
+}

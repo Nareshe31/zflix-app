@@ -1,0 +1,54 @@
+@use  "../abstracts/colors" as *;
+@use  "../abstracts/fonts" as *;
+
+.watch_section {
+    width: 100%;
+    color: $text-color;
+    iframe {
+        margin-top: 70px;
+        width: 100%;
+        height: calc(90vh - 80px);
+        box-sizing: border-box;
+    }
+
+    .w_details {
+        padding: 10px 40px 20px;
+        h2{
+            flex-wrap: nowrap;
+        }
+        .title{
+            display: inline-block;
+        }
+        p {
+            font-size: 0.9rem;
+            text-align: justify;
+        }
+        
+        .w_info{
+            font-size: 0.8rem;
+            color: $text-light-color;
+            margin: 4px 0px 7px;
+        }
+        .overview{
+            color: $text-light-color;
+        }
+    }
+}
+
+@media screen and (max-width:600px) {
+    .watch_section {
+        iframe {
+            margin-top: 60px;
+            width: 100%;
+            height: calc(35vh - 60px);
+            box-sizing: border-box;
+        }
+        .w_details {
+            padding: 20px 15px;
+            h2{
+                font-size: 1.25rem;
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,182 @@
+@use  "../abstracts/colors" as *;
+@use  "../abstracts/fonts" as *;
+
+.w_container{
+    padding-top: 100px;
+    color: $text-color;
+    min-height: calc(100vh - 131px);
+    .search_input_container {
+        width: 100%;
+        position: relative;
+        display: flex;
+        margin: 0 auto;
+        background: #222;
+        width: max-content;
+        border-radius: 20px;
+
+        form{
+            width: 70vw;
+        }
+        .search_input {
+            border: none;
+            color: $text-lighter-color;
+            outline: none;
+            padding: 10px 20px;
+            background: transparent;
+            border-right: 1px solid #333;
+            width: 100%;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+    }
+    .result_container{
+        padding: 20px;
+        margin: 0 auto;
+        width: 80%;
+        position: relative;
+        .torrent_results{
+            .torrent_box{
+                color: $text-lighter-color;
+                padding: 14px 16px;
+                background-color: $nav-color;
+                border-radius: 5px;
+                margin: 0px 0 14px;
+                color: $text-light-color;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .torrent_box_r_1{
+                    .torrent_box_r_c_1{
+                        font-weight: 600;
+                        word-break: break-all;
+                    }
+                    .torrent_box_r_c_2{
+                        display: flex;
+                        margin-top: 5px;
+                        align-items: center;
+                        .torrent_detail_container{
+                            font-size: 0.9rem;
+                            margin-right: 18px;
+                            .torrent_detail_icon{
+                                margin-right: 4px;
+                                i{
+                                    color: #aaa;
+                                }
+                            }
+                            .torrent_detail_content{
+                                color: #ccc;
+                            }
+                        }
+                    }
+                }
+                .torrent_box_r_2{
+                    height: max-content;
+                    .torrent_magnet{
+                        padding: 12px;
+                        i{
+                            font-size: 1.6rem;
+                            color: #ccc;
+                        }
+                    }
+                }
+            }
+        }
+        .torrent_header{
+            color: $text-light-color;
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+    }
+}
+
+.dropdown_container{
+    position: relative;
+    min-width: 140px;
+    cursor: pointer;
+    background-color: #333;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    .selected_value{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 14px;
+    }
+    .option_container{
+        display: none;
+        position: absolute;
+        width: max-content;
+        background-color: #333;
+        left: 0%;
+        top: 105%;
+        z-index: 100;
+        width: 100%;
+        .option{
+            padding: 8px 20px;
+
+            &:hover{
+                background-color: #444;
+            }
+        }
+    }
+    .option_container.active{
+        display: block;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    .w_container{
+        .result_container{
+            width: 90%;
+        }
+    }
+}
+
+@media screen and (max-width:700px) {
+
+    .w_container{
+        .search_input_container{
+            .search_input {
+                font-size: 0.9rem;
+            }
+        }
+        .result_container{
+            width: calc(100% - 20px);
+            padding: 20px 0;
+            font-size: 0.9rem;
+            margin: 0 10px;
+            .torrent_results{
+                .torrent_box{
+                    padding: 10px 12px;
+                    .torrent_box_r_1{
+                        .torrent_box_r_c_1{
+                            font-size: 0.9rem;
+                        }
+                        .torrent_box_r_c_2{
+                            margin-top: 10px;
+                            .torrent_detail_container{
+                                font-size: 0.8rem;
+                                margin-right: 12px;
+                            }
+                        }
+                    }
+                }
+            }
+            .torrent_header{
+                font-size: 1rem;
+            }
+        }
+    }
+    .dropdown_container{
+        min-width: 110px;
+        position: relative;
+        font-size: 0.9rem;
+        .selected_value{
+            width: 100%;
+            padding: 10px 8px;
+            position: relative;
+        }
+        .option_container{
+            width: max-content;
+        }
+    }
+}

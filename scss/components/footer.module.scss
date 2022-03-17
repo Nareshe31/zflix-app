@@ -1,0 +1,39 @@
+@use  "../abstracts/colors" as *;
+@use  "../abstracts/fonts" as *;
+
+.footer{
+    color: $text-lighter-color;
+    padding: 1.5rem 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .copyrights_container{
+        padding: 6px;
+        .copyrights{
+            font-size: 0.8rem;
+        }
+    }
+    .contact_us{
+        padding: 4px;
+        .contact_us_list{
+            display: flex;
+        .c_container{
+            padding: 6px 8.5px;
+            margin: 6px;
+            border-radius: 50%;
+            background: $nav-color;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &:hover{
+                background: $image-bg;
+            }
+            i{
+                color: $text-lighter-color;
+            }
+        }
+    }
+    }
+}

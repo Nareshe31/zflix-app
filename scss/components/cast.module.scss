@@ -1,0 +1,110 @@
+@use  "../abstracts/colors" as *;
+@use  "../abstracts/fonts" as *;
+
+
+.content_c {
+    max-width: 85%;
+    margin: 0px auto;
+    padding: 15px 0px;
+
+    .c_container {
+        display: flex;
+        .c_parent {
+            padding: 10px 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 5px 0px 5px 0px;
+            border-radius: 10px;
+            width: max-content;
+            position: relative;
+
+            // background-color: #151515;
+            .c_image {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                object-fit: cover;
+                object-position: center;
+                background-color: $p-bg;
+                margin: 0px;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .no-image-container {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                background-color: $p-bg;
+                display: grid;
+                place-items: center;
+                // margin: 0px 18px;
+
+                .no-image {
+                    width: 60px;
+                    height: 60px;
+                    margin-top: 5px;
+                    margin-left: 5px;
+                    object-fit: contain;
+                }
+
+            }
+            .c_image.no_image img{
+                padding: 20px !important;
+            }
+            .c_detail {
+                max-width: 130px;
+                min-width: 140px;
+                width: max-content;
+                position: relative;
+                margin: 0px 5px;
+
+                .c_name {
+                    text-align: center;
+                    font-size: 0.8rem;
+                    margin-top: 5px;
+                    width: 100%;
+                }
+
+                .c_job {
+                    text-align: center;
+                    font-size: 0.75rem;
+                    width: 100%;
+
+                    em {
+                        color: #aaa;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width:600px) {
+    .content_c {
+        width: 100%;
+        padding: 0px 20px 10px;
+        max-width: 100%;
+        .c_container{
+            &::-webkit-scrollbar {
+                width: 0px;
+                height: 0px;
+              }
+            .c_parent{
+                margin-right: 5px;
+                .c_image {
+                    width: 85px;
+                    height: 85px;
+                }
+                .c_detail{
+                    width: max-content;
+                    min-width: 100px;
+
+                }
+            }
+        }
+       
+    }
+}
