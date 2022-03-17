@@ -2,7 +2,7 @@ import Home from '../../components/Home';
 import { motion } from "framer-motion";
 import axios from 'axios';
 
-function HomePage({movieData,tvData,base_url}) {
+function HomePage({movieData,tvData,base_url,ip}) {
     const config = {
         type: "spring",
         damping: 20,
@@ -16,7 +16,7 @@ function HomePage({movieData,tvData,base_url}) {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ x: 0, opacity: 0 }} 
         >
-            <Home movieData={movieData} tvData={tvData} base_url={base_url} />
+            <Home movieData={movieData} tvData={tvData} ip={ip} base_url={base_url} />
         </motion.main>
     );
 }
@@ -34,7 +34,8 @@ export async function getServerSideProps(context) {
             props:{
                 movieData:movieData.results,
                 tvData:tvData.results,
-                base_url: process.env.BASE_URL
+                base_url: process.env.BASE_URL,
+                ip
             }
         }
     } catch (error) {
