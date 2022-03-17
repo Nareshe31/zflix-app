@@ -3,6 +3,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 // import Layout1 from '../components/Layout'
+import { useRouter } from 'next/router';
+import {  useEffect} from 'react';
 
 function MyApp({ Component, pageProps, router }) {
   eval(
@@ -41,6 +43,18 @@ function MyApp({ Component, pageProps, router }) {
       {}
     )
   );
+  const handleRouteChange = (url) => {
+    window.gtag('config', 'G-8FMMTY6M6W', {
+      page_path: url,
+    });
+  };
+
+  useEffect(() => {
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
   const Layout = Component.Layout || EmptyLayout;
   return (
