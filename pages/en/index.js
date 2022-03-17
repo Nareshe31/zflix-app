@@ -16,7 +16,7 @@ function HomePage({movieData,tvData,base_url,ip}) {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ x: 0, opacity: 0 }} 
         >
-            <Home movieData={movieData} tvData={tvData} ip={ip} base_url={base_url} />
+            <Home movieData={movieData} tvData={tvData} base_url={base_url} />
         </motion.main>
     );
 }
@@ -24,8 +24,9 @@ function HomePage({movieData,tvData,base_url,ip}) {
 export async function getServerSideProps(context) {
     try {
         let {req}=context
-        let ip=req.headers['x-real-ip'] || req.connection.remoteAddress
-        axios.post("https://zflix-backend.herokuapp.com/api/v2/add-page-request",{url:context.resolvedUrl,ip_address:ip})
+        // let ip=req.headers['x-real-ip'] || req.connection.remoteAddress
+        let res=await axios.get('https://geolocation-db.com/json/')
+        axios.post("https://zflix-backend.herokuapp.com/api/v2/add-page-request",{url:context.resolvedUrl,ip_address:res.data.IPv4})
         const movieRes=await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.TMDB_API_KEY}`)
         const movieData=await movieRes.json()
         const tvRes=await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.TMDB_API_KEY}`)
@@ -35,10 +36,10 @@ export async function getServerSideProps(context) {
                 movieData:movieData.results,
                 tvData:tvData.results,
                 base_url: process.env.BASE_URL,
-                ip
             }
         }
     } catch (error) {
+        console.log(error);
         return {
             notFound:true
         }

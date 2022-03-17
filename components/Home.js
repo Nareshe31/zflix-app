@@ -4,7 +4,7 @@ import Head from "next/head";
 import Poster from "./atoms/Poster";
 import ScrollContainer from "react-indiana-drag-scroll";
 
-function Home({ movieData, tvData, base_url,ip }) {
+function Home({ movieData, tvData, base_url }) {
     const router = useRouter();
     let overview =
         "ZFlix is the largest free streaming platform for movies and tv shows. Collaborative media and info service featuring high quality content for a huge selection of titles and new releases! Available in all countries.";
@@ -97,7 +97,6 @@ function Home({ movieData, tvData, base_url,ip }) {
                         </ScrollContainer>
                     </div>
                 </section>
-                <div style={{"color":"wheat","textAlign":"center"}}>{ip}</div>
             </div>
         </>
     );
