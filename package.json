@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "axios": "^0.25.0",
+    "axios-progress-bar": "^1.2.0",
     "babel-plugin-macros": "^3.1.0",
     "bootstrap-icons": "^1.7.2",
     "framer-motion": "^6.2.3",
     "mongoose": "^6.1.7",
     "next": "12.0.8",
+    "nextjs-progressbar": "0.0.14",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-indiana-drag-scroll": "^2.1.0",

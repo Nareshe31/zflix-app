@@ -15,7 +15,7 @@
     }
 
     .w_details {
-        padding: 10px 40px 20px;
+        padding: 10px 40px 10px;
         h2{
             flex-wrap: nowrap;
         }
@@ -41,6 +41,118 @@
     }
 }
 
+.season_d_container {
+    display: flex;
+    padding: 10px 7.5% 20px;
+    .s_poster {
+        border-radius: 5px;
+        background-color: $p-bg;
+        width: 150px;
+        height: 220px;
+        overflow: hidden;
+        position: relative;
+        align-self: flex-end;
+    }
+
+    .s_detail {
+        max-width: 85%;
+        padding: 10px 15px 0px;
+        .title{
+            display: inline-block;
+            text-align: center;
+        }
+        p.overview {
+            font-size: 0.85rem;
+            color: $text-light-color;
+            text-align: justify;
+        }
+        .date{
+            font-size: 0.85rem;
+        }
+        p{
+            margin-top: 3px;
+        }
+    }
+}
+
+.episode_d_container {
+    // max-width: 85%;
+    padding: 10px 40px;
+    margin: 0 auto;
+    .e_container {
+        display: flex;
+
+        .episode {
+            margin: 10px 20px 15px 0px;
+
+            width: $e-lg-w;
+            height: $e-lg-h;
+            border-radius: 5px;
+            position: relative;
+            box-shadow: 0px 0px 5px -3px #aaa;
+            transition: all 0.3s ease-in-out;
+            .e_poster {
+                width: $e-lg-w;
+                height: $e-lg-h;
+                border-radius: 5px;
+                background-color: $p-bg;
+
+                img {
+                    width: $e-lg-w;
+                    height: $e-lg-h;
+                    object-fit: cover;
+                    border-radius: 5px;
+                }
+                .no_image{
+                    object-fit: contain;
+                }
+            }
+
+            .e_detail {
+                padding: 5px 10px 10px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                color: $text-light-color;
+                border-radius: 5px;
+                p {
+                    font-size: 0.75rem;
+                    color: inherit;
+                }
+                .e_name{
+                    font-size: 0.8rem;
+                    font-weight: bolder;
+                    color: $text-color;
+                }
+                .e_overview{
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;  
+                    overflow: hidden;
+                    display: none;
+                }
+            }
+
+            &:hover {
+                box-shadow: 0px 0px 10px -5px #aaa;
+                transform: scale(1.1);
+                z-index: 10;
+                
+                .e_detail {
+                    p{
+                        font-size: 0.7rem;
+                    }
+                    background: linear-gradient(transparent, $bg-color 50%);
+                    .e_overview{
+                        display: -webkit-box;
+                    }
+                }
+            }
+        }
+
+    }
+
+}
 @media screen and (max-width:600px) {
     .watch_section {
         iframe {
@@ -57,4 +169,20 @@
         }
     }
     
+}
+
+
+@media screen and (max-width:600px) {
+        .season_d_container{
+            flex-direction: column;
+            padding: 10px;
+            .s_poster{
+                align-self: center;
+                margin-bottom: 10px;
+            }
+        }
+        .episode_d_container{
+            max-width: 100%;
+            padding: 10px 20px;
+        }
 }

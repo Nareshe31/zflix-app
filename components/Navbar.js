@@ -187,84 +187,88 @@ function Navbar() {
                             </a>
                         </Link>
                         <ul className={styles.nav_list + " " + styles.nav_middle}>
-                            <Link href="/en/movie">
-                                <a>
-                                    <li
-                                        className={styles.nav_item + " " + styles.dropdown}
-                                        onMouseEnter={() => setmoviesDropdown(true)}
-                                        onMouseLeave={() => setmoviesDropdown(false)}
-                                    >
-                                        Movies
-                                        <span>
-                                            <i
-                                                className={
-                                                    moviesDropdown
-                                                        ? "bi bi-chevron-up"
-                                                        : "bi bi-chevron-down"
-                                                }
-                                            ></i>
-                                        </span>
-                                        <ul className={styles.nav_list_child + " " + styles.first}>
-                                            <Link href="/en/popular/movies">
-                                                <li
-                                                    className={styles.nav_item_child + " " + styles.first}
-                                                >
-                                                    Most Popular
-                                                </li>
-                                            </Link>
-                                            <Link href="/en/most-recent/movies">
-                                                <li className={styles.nav_item_child}>Most Recent</li>
-                                            </Link>
-                                            <Link href="/en/top-rated/movies">
-                                                <li
-                                                    className={styles.nav_item_child + " " + styles.last}
-                                                >
-                                                    Top Rated
-                                                </li>
-                                            </Link>
-                                        </ul>
-                                    </li>
-                                </a>
-                            </Link>
-                            <Link href="/en/tv">
-                                <a>
-                                    <li
-                                        className={styles.nav_item}
-                                        onMouseEnter={() => settvshowsDropdown(true)}
-                                        onMouseLeave={() => settvshowsDropdown(false)}
-                                    >
-                                        TV Shows
-                                        <span>
-                                            <i
-                                                className={
-                                                    tvshowsDropdown
-                                                        ? "bi bi-chevron-up"
-                                                        : "bi bi-chevron-down"
-                                                }
-                                            ></i>
-                                        </span>
-                                        <ul className={styles.nav_list_child + " " + styles.last}>
-                                            <Link href="/en/popular/tv-shows">
-                                                <li
-                                                    className={styles.nav_item_child + " " + styles.first}
-                                                >
-                                                    Most Popular
-                                                </li>
-                                            </Link>
-                                            <Link href="/en/most-recent/tv-shows">
-                                                <li className={styles.nav_item_child}>Most Recent</li>
-                                            </Link>
-                                            <Link href="/en/top-rated/tv-shows">
-                                                <li
-                                                    className={styles.nav_item_child + " " + styles.last}
-                                                >
-                                                    Top Rated
-                                                </li>
-                                            </Link>
-                                        </ul>
-                                    </li>
-                                </a>
-                            </Link>
+                            <li
+                                className={styles.nav_item + " " + styles.dropdown}
+                                onMouseEnter={() => setmoviesDropdown(true)}
+                                onMouseLeave={() => setmoviesDropdown(false)}
+                            >
+                                Movies
+                                <span>
+                                    <i
+                                        className={
+                                            moviesDropdown
+                                                ? "bi bi-chevron-up"
+                                                : "bi bi-chevron-down"
+                                        }
+                                    ></i>
+                                </span>
+                                <ul className={styles.nav_list_child + " " + styles.first}>
+                                    <Link href="/en/movie/popular">
+                                        <a>
+                                            <li
+                                                className={styles.nav_item_child + " " + styles.first}
+                                            >
+                                                Most Popular
+                                            </li>
+                                        </a>
+                                    </Link>
+                                    <Link href="/en/movie/most-recent">
+                                        <a>
+                                            <li className={styles.nav_item_child}>Most Recent</li>
+                                        </a>
+                                    </Link>
+                                    <Link href="/en/movie/top-rated">
+                                        <a>
+                                            <li
+                                                className={styles.nav_item_child + " " + styles.last}
+                                            >
+                                                Top Rated
+                                            </li>
+                                        </a>
+                                    </Link>
+                                </ul>
+                            </li>
+                            <li
+                                className={styles.nav_item}
+                                onMouseEnter={() => settvshowsDropdown(true)}
+                                onMouseLeave={() => settvshowsDropdown(false)}
+                            >
+                                TV Shows
+                                <span>
+                                    <i
+                                        className={
+                                            tvshowsDropdown
+                                                ? "bi bi-chevron-up"
+                                                : "bi bi-chevron-down"
+                                        }
+                                    ></i>
+                                </span>
+                                <ul className={styles.nav_list_child + " " + styles.last}>
+                                    <Link href="/en/tv/popular">
+                                        <a>
+                                            <li
+                                                className={styles.nav_item_child + " " + styles.first}
+                                            >
+                                                Most Popular
+                                            </li>
+                                        </a>
+                                    </Link>
+                                    <Link href="/en/tv/most-recent">
+                                        <a>
+                                            <li className={styles.nav_item_child}>Most Recent</li>
+                                        </a>
+                                    </Link>
+                                    <Link href="/en/tv/top-rated">
+                                        <a>
+                                            <li
+                                                className={styles.nav_item_child + " " + styles.last}
+                                            >
+                                                Top Rated
+                                            </li>
+                                        </a>
+                                    </Link>
+                                </ul>
+                            </li>
                             <Link href="/en/torrent">
                                 <a>
                                     <li className={styles.nav_item}>Torrents</li>
@@ -564,7 +568,7 @@ function Navbar() {
 
 function Movie({ item, active, index, onhover }) {
     return (
-        <a
+        <Link
             href={
                 "/en/movie/" +
                 item.id +
@@ -574,7 +578,7 @@ function Movie({ item, active, index, onhover }) {
                 getYear(item.release_date)
             }
         >
-            {/* <a> */}
+            <a>
                 <li
                     onMouseEnter={() => onhover(index)}
                     className={
@@ -598,14 +602,18 @@ function Movie({ item, active, index, onhover }) {
                     </div>
                     <div className={styles.r_right}>
                         <p className={styles.title}>{item.title}</p>
-                        <p>{getDate(item.release_date)}</p>
+                        <p>
+                            <span style={{ marginRight: "5px" }}>
+                                <i style={{ fontSize: "0.75rem" }} className="bi bi-calendar-day"></i>
+                            </span>
+                            {getDate(item.release_date)}</p>
                         {/* <p>{item?.genre_ids?.map((item1, i) => (
                             <span className="genre">{item1} </span>
                         ))}
                     </p> */}
                         <p>
                             <span style={{ marginRight: "5px" }}>
-                                <i style={{ fontSize: "0.8rem" }} className="fas fa-star"></i>
+                                <i style={{ fontSize: "0.75rem" }} className="bi bi-star-fill"></i>
                             </span>
                             {item.vote_average}
                         </p>
@@ -613,12 +621,12 @@ function Movie({ item, active, index, onhover }) {
                     </div>
                 </li>
             </a>
-        // </Link>
+        </Link>
     );
 }
 function Tv({ item, active, index, onhover }) {
     return (
-        <a
+        <Link
             href={
                 "/en/tv/" +
                 item.id +
@@ -628,7 +636,7 @@ function Tv({ item, active, index, onhover }) {
                 getYear(item.first_air_date)
             }
         >
-            {/* <a> */}
+            <a>
                 <li
                     onMouseEnter={() => onhover(index)}
                     className={
@@ -652,18 +660,22 @@ function Tv({ item, active, index, onhover }) {
                     </div>
                     <div className={styles.r_right}>
                         <p className={styles.title}>{item.name}</p>
-                        <p>{getDate(item.first_air_date)}</p>
                         <p>
                             <span style={{ marginRight: "5px" }}>
-                                <i style={{ fontSize: "0.8rem" }} className="fas fa-star"></i>
+                                <i style={{ fontSize: "0.75rem" }} className="bi bi-calendar-day"></i>
+                            </span>
+                            {getDate(item.first_air_date)}</p>
+                        <p>
+                            <span style={{ marginRight: "5px" }}>
+                                <i style={{ fontSize: "0.8rem" }} className="bi bi-star-fill"></i>
                             </span>
                             {item.vote_average}
                         </p>
                         <p className={styles.media_type}>TV</p>
                     </div>
                 </li>
-            {/* </a> */}
-        </a>
+            </a>
+        </Link>
     );
 }
 
