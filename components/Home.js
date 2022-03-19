@@ -29,6 +29,7 @@ function Home({ movieData, tvData, base_url }) {
         }
         };
 
+        console.log();
     return (
         <>
             <Head>

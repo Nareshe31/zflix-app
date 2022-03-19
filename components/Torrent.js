@@ -21,6 +21,7 @@ function TorrentSearch({ base_url }) {
         type: "Movies",
     });
     const [dropdownActive, setdropdownActive] = useState(false);
+    const cancelTokenSource=axios.CancelToken.source()
     let overview =
         "ZFlix is the largest free streaming platform for movies and tv shows. Collaborative media and info service featuring high quality content for a huge selection of titles and new releases! Available in all countries.";
 
@@ -43,8 +44,7 @@ function TorrentSearch({ base_url }) {
                 query,
                 providers: [searchType.value],
                 type: searchType.type,
-            });
-            console.log(data);
+            },{cancelToken:cancelTokenSource.token});
             settorrents(data);
             setloading(false);
         } catch (error) {
@@ -55,6 +55,7 @@ function TorrentSearch({ base_url }) {
     };
 
     const setDropValue = (value) => {
+        cancelTokenSource.cancel();
         setsearchType(value);
         setdropdownActive(false);
     };
@@ -261,7 +262,6 @@ function TorrentBox({ item }) {
                 magnet = null;
                 break;
         }
-        console.log(magnet);
         return magnet;
     };
     return (

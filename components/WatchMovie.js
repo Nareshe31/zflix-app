@@ -8,7 +8,6 @@ import styles2 from "../scss/components/movie.module.scss";
 function WatchMovie({ data, base_url }) {
     const router = useRouter();
     let { id, name, source } = router.query;
-    console.log(router);
     const getTitle = () => {
         let title = data.title ? data.title : "";
         let year = data.release_date ? " (" + getYear(data.release_date) + ")" : "";

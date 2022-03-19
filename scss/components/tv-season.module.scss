@@ -22,6 +22,7 @@
             padding: 10px 15px 0px;
             .title{
                 display: inline-block;
+                text-align: center;
             }
             p.overview {
                 font-size: 0.85rem;
@@ -127,6 +128,7 @@
             }
         }
         .episode_d_container{
+            max-width: 100%;
             padding: 10px 20px;
         }
     }

@@ -3,12 +3,12 @@ import SeasonPoster from "../atoms/SeasonPoster";
 import styles from "../../scss/components/tv.module.scss";
 import ScrollContainer from "react-indiana-drag-scroll";
 
-function SeasonContainer({ data,title,id,name}) {
+function SeasonContainer({ data,title,id,name,width}) {
     if (!data?.length) 
         return null
         
     return (
-        <div className={styles.season_container}>
+        <div className={width=="full"?styles.season_container+" "+styles.full:styles.season_container}>
             <ContainerHeader  title={title} />
             <div className={styles.season_dropdown}>
                 <ScrollContainer className="scroll-container" horizontal>

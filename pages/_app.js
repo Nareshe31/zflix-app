@@ -5,6 +5,10 @@ import Footer from "../components/Footer";
 // import Layout1 from '../components/Layout'
 import { useEffect } from "react";
 import axios from "axios";
+import NextNProgress from "nextjs-progressbar";
+import { loadProgressBar } from 'axios-progress-bar'
+
+loadProgressBar()
 
 function MyApp({ Component, pageProps, router }) {
   eval(
@@ -69,6 +73,7 @@ function MyApp({ Component, pageProps, router }) {
   const Layout = Component.Layout || EmptyLayout;
   return (
     <>
+      <NextNProgress color="#c50510" height={2} />
       <Navbar />
       <Layout>
         <Component {...pageProps} key={router.asPath} />

@@ -42,10 +42,9 @@ function Search({ results, total_pages,total_results, base_url }) {
             </Head>
             {results?.length?
                 <div className={styles.search_results}>
-                    <div className={styles.search_header}>
-                        <h3>Search Results</h3>
-                    </div>
-                    {/* <PageContainer total_pages={total_pages} page={page?page:1} link="/en/search" /> */}
+                    
+                    <PageContainer total_pages={total_pages} page={page?page:1} link="/en/search" />
+                    
                     <div className={styles.results_container}>
                         {results.map((item) =>
                             item.media_type === "movie" ? (

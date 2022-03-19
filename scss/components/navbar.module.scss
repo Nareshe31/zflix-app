@@ -28,12 +28,17 @@
         .nav_list {
             margin-left: 15px;
 
+            .nav_item{
+                margin-left: 45px;
+            }
             a {
                 margin-left: 45px;
-
+                .nav_item{
+                    margin-left: 0;
+                }
                 &:first-child,
                 &:nth-child(2) {
-                    .nav-item {
+                    .nav_item {
                         &:hover {
                             border-bottom: 1px solid transparent !important;
                         }
@@ -60,7 +65,6 @@
         display: flex;
         align-items: center;
         position: relative;
-
         a {
             margin-left: 25px;
 
