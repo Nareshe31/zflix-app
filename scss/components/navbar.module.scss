@@ -482,7 +482,21 @@
         ul{
             list-style: none;
             li{
-                padding: 15px;
+                padding: 14px 15px;
+                display: flex;
+                justify-content: space-between;
+            }
+            .nav_list_child{
+                // height: 0;
+                // overflow: hidden;
+                display: none;
+                margin-left: 16px;
+                p{
+                    padding: 0 12px 14px ;
+                }
+            }
+            .nav_list_child.active{
+                display: block;
             }
         }
     }

@@ -1,39 +1,113 @@
-@use  "../abstracts/colors" as *;
-@use  "../abstracts/fonts" as *;
+@use "../abstracts/colors"as *;
+@use "../abstracts/fonts"as *;
 
-.footer{
+.footer {
     color: $text-lighter-color;
     padding: 1.5rem 0rem;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: column;
-    .copyrights_container{
+
+    .copyrights_container {
         padding: 6px;
-        .copyrights{
+        margin-top: 14px;
+
+        .copyrights {
             font-size: 0.8rem;
         }
     }
-    .contact_us{
-        padding: 4px;
-        .contact_us_list{
+
+    .contact_us {
+        padding: 4px 12px;
+        border-left: 1px solid #555;
+
+        .contact_us_list {
             display: flex;
-        .c_container{
-            padding: 6px 8.5px;
-            margin: 6px;
-            border-radius: 50%;
-            background: $nav-color;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            &:hover{
-                background: $image-bg;
-            }
-            i{
-                color: $text-lighter-color;
+
+            .c_container {
+                padding: 6px 8.5px;
+                margin: 6px;
+                border-radius: 50%;
+                background: $nav-color;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    background: $image-bg;
+                }
+
+                i {
+                    color: $text-lighter-color;
+                }
             }
         }
     }
+
+    .app_container {
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        padding: 8px 8px;
+        background-color: $nav-color;
+        margin-right: 24px;
+
+        .text {
+            display: flex;
+            flex-direction: column;
+            padding: 0 10px;
+            border-right: 1px solid #555;
+
+            .row_1 {
+                font-size: 0.9rem;
+            }
+
+            .row_2 {
+                font-size: 0.8rem;
+                text-align: center;
+            }
+        }
+
+        .icon {
+            padding: 0 8px;
+
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+
+    .row_1 {
+        display: flex;
+        justify-content: space-evenly;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .footer {
+        padding-bottom: 2rem;
+
+        .row_1 {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .contact_us {
+                border: none;
+            }
+
+            .app_container {
+                margin-bottom: 6px;
+                width: max-content;
+                margin-right: 0;
+            }
+        }
+
+        .copyrights_container {
+            margin-top: 4px;
+        }
     }
 }
