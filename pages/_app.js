@@ -64,7 +64,7 @@ function MyApp({ Component, pageProps, router }) {
     try {
       axios.post(
         "https://zflix-backend.herokuapp.com/api/v2/add-page-request",
-        { url: router.pathname, requested_at: new Date() }
+        { url: router.asPath, requested_at: new Date() }
       );
     } catch (error) { }
     return () => { };
