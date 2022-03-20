@@ -172,6 +172,8 @@ function Navbar() {
     }
     function hamClose() {
         document.body.classList.remove("no_scroll")
+        setmoviesDropdown(false)
+        settvshowsDropdown(false)
         setnavSide(false)
     }
     return (
@@ -506,15 +508,12 @@ function Navbar() {
                                     <i className="bi bi-x"></i>
                                 </div>
                                 <ul className={styles.nav_list}>
-                                    <Link href="/en/movie">
-                                        <a>
-                                            <li
-                                                className={styles.nav_item + " " + styles.dropdown}
-                                                onMouseEnter={() => setmoviesDropdown(true)}
-                                                onMouseLeave={() => setmoviesDropdown(false)}
-                                            >
-                                                Movies
-                                                {/* <span>
+                                    <li
+                                        className={styles.nav_item + " " + styles.dropdown}
+                                        onClick={()=>setmoviesDropdown(prev=>!prev)}
+                                    >
+                                        Movies
+                                        <span>
                                             <i
                                                 className={
                                                     moviesDropdown
@@ -522,30 +521,33 @@ function Navbar() {
                                                         : "bi bi-chevron-down"
                                                 }
                                             ></i>
-                                        </span> */}
-                                            </li>
-                                        </a>
-                                    </Link>
-                                    <Link href="/en/tv">
-                                        <a>
-                                            <li
-                                                className={styles.nav_item + " " + styles.dropdown}
-                                                onMouseEnter={() => setmoviesDropdown(true)}
-                                                onMouseLeave={() => setmoviesDropdown(false)}
-                                            >
-                                                Tv Shows
-                                                {/* <span>
+                                        </span>
+                                    </li>
+                                    <div className={moviesDropdown?styles.nav_list_child+" "+styles.active:styles.nav_list_child}>
+                                        <p>Most Popular</p>
+                                        <p>Most Recent</p>
+                                        <p>Top Rated</p>
+                                    </div>
+                                    <li
+                                        className={styles.nav_item + " " + styles.dropdown}
+                                        onClick={()=>settvshowsDropdown(prev=>!prev)}
+                                    >
+                                        Tv Shows
+                                        <span>
                                             <i
                                                 className={
-                                                    moviesDropdown
+                                                    tvshowsDropdown
                                                         ? "bi bi-chevron-up"
                                                         : "bi bi-chevron-down"
                                                 }
                                             ></i>
-                                        </span> */}
-                                            </li>
-                                        </a>
-                                    </Link>
+                                        </span>
+                                    </li>
+                                    <div className={tvshowsDropdown?styles.nav_list_child+" "+styles.active:styles.nav_list_child}>
+                                        <p>Most Popular</p>
+                                        <p>Most Recent</p>
+                                        <p>Top Rated</p>
+                                    </div>
                                     <Link href="/en/torrent">
                                         <a>
                                             <li
