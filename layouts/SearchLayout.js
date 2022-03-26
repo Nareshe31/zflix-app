@@ -17,11 +17,16 @@ function SearchLayout({ children,total_results,active,link }) {
         setquery(e.target.value)
     }
 
+    const clearQuery=(e)=>{
+        setquery('')
+    }
+
     return (
         <div className={styles.search_container}>
             <SearchInput
                 link={link}
                 handleChangeQuery={handleChangeQuery}
+                clearQuery={clearQuery}
                 query={query}
             />
             <div className={styles.whole_results_container}>

@@ -62,15 +62,36 @@
         position: relative;
         form{
             margin: 0 auto;
-            width: 80%;
+            width: 70%;
+            display: flex;
+            align-items: center;
+            background: #222;
+            border-radius: 20px;
+            .search_icon{
+                padding: 10px 20px;
+                border-top-right-radius: 20px;
+                border-bottom-right-radius: 20px;
+                background: #333;
+                cursor: pointer;
+            }
+            .input_container{
+                display: flex;
+                width: 100%;
+                position: relative;
+                align-items: center;
+                span{
+                    padding: 10px;
+                    cursor: pointer;
+                }
+            }
         }
+
         .search_input {
             border: none;
             color: $text-lighter-color;
-            background: #222;
             outline: none;
-            padding: 10px 20px;
-            border-radius: 20px;
+            background: transparent;
+            padding: 10px 0px 10px 20px;
             width: 100%;
             font-weight: 600;
             font-size: 1.05rem;

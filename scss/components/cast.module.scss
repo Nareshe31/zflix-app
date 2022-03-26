@@ -3,9 +3,9 @@
 
 
 .content_c {
-    max-width: 85%;
+    // max-width: 85%;
     margin: 0px auto;
-    padding: 15px 0px;
+    padding: 15px $container-padding;
 
     .c_container {
         display: flex;

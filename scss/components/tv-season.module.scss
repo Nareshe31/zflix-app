@@ -4,9 +4,10 @@
 .seasons_container {
     margin-top: 84px;
     color: $text-color;
+}
     .season_d_container {
         display: flex;
-        padding: 10px 7.5% 20px;
+        padding: 10px $container-padding 20px;
         .s_poster {
             border-radius: 5px;
             background-color: $p-bg;
@@ -39,14 +40,16 @@
     }
 
     .episode_d_container {
-        max-width: 85%;
+        // max-width: 85%;
+        padding: 0 $container-padding;
         margin: 0 auto;
         .e_container {
             display: flex;
 
-            .episode {
+            .episode_link{
                 margin: 10px 20px 15px 0px;
-
+            }
+            .episode {
                 width: $e-lg-w;
                 height: $e-lg-h;
                 border-radius: 5px;
@@ -115,21 +118,18 @@
         }
 
     }
-}
 
 @media screen and (max-width:600px) {
-    .seasons_container{
-        .season_d_container{
-            flex-direction: column;
-            padding: 10px;
-            .s_poster{
-                align-self: center;
-                margin-bottom: 10px;
-            }
+    .season_d_container{
+        flex-direction: column;
+        padding: 10px;
+        .s_poster{
+            align-self: center;
+            margin-bottom: 10px;
         }
-        .episode_d_container{
-            max-width: 100%;
-            padding: 10px 20px;
-        }
+    }
+    .episode_d_container{
+        max-width: 100%;
+        padding: 10px 20px;
     }
 }
