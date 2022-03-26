@@ -102,7 +102,7 @@ function TvSeason({ data, seasondata, base_url }) {
                                         item.episode_number
                                     }
                                 >
-                                    <a>
+                                    <a className={styles.episode_link}>
                                         <div className={styles.episode}>
                                             <div className={styles.e_poster}>
                                                 <Image

@@ -159,8 +159,8 @@
                         .show_trailer {
                             padding: 8px 34px;
                             border-radius: 5px;
-                            border: 1px solid white;
-                            background-color: black;
+                            border: 0.5px solid #555;
+                            background-color: #090909;
                         }
 
                         .watch_now {
@@ -342,9 +342,9 @@
             }
 
             .recommendation_container{
-                max-width: 86%;
+                // max-width: 86%;
                 margin: 0px auto 10px;
-                padding: 15px 0px 0px;
+                padding: 15px $container-padding 0px;
                 position: relative;
                 overflow-y: hidden;
                 .r_poster_container{
@@ -367,9 +367,9 @@
 
             }
             .season_container {
-                max-width: 85%;
+                // max-width: 85%;
                 margin: 0px auto;
-                padding: 15px 0px;
+                padding: 15px $container-padding;
                 position: relative;
 
                 .season_dropdown {
@@ -651,6 +651,7 @@
                     width: calc(100% - 40px);
                     margin: 0px 20px 5px;
                     max-width: 100%;
+                    padding: 0px 0 20px;
                     .r_poster_container{
                         &::-webkit-scrollbar {
                             width: 0px;

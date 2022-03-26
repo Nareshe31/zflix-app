@@ -84,7 +84,7 @@ function Navbar() {
             document.removeEventListener('click', (e) => { console.log("click removed"); })
             setsearchBarActive(false);
         };
-    }, [isDesktopOrLaptop, isMobile]);
+    }, [isDesktopOrLaptop, isMobile,router]);
 
     useEffect(() => {
         if (pathname !== "/en/search" && isDesktopOrLaptop) {
@@ -394,7 +394,7 @@ function Navbar() {
             ) : null}
             {isMobile ? (
                 <>
-                    <nav className={styles.navbar_sm} ref={navbarSmRef}>
+                    <nav className={styles.navbar_sm} id="navbar" ref={navbarSmRef}>
                         <div className={styles.nav_row_1}>
                             <div
                                 className={styles.nav_ham_container}

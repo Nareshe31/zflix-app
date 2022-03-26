@@ -121,9 +121,9 @@
     border-radius: 50%;
 }
 .season_container {
-    max-width: 85%;
+    // max-width: 85%;
     margin: 0px auto;
-    padding: 15px 0px;
+    padding: 15px $container-padding;
     position: relative;
     color: $text-color;
     .season_dropdown {
@@ -131,10 +131,12 @@
             display: flex;
             width: 100%;
 
+            .season_link{
+                margin: 14px 20px 10px 0px;
+            }
             .season {
                 width: 135px;
                 height: 175px;
-                margin: 14px 20px 10px 0px;
                 position: relative;
                 display: flex;
                 cursor: pointer;
@@ -197,10 +199,6 @@
     }
 }
 
-.season_container.full{
-    max-width: 100%;
-    padding: 10px 40px;
-}
 @media screen and (max-width:600px) {
 
     .season_container{

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../scss/components/tv-episode.module.scss";
+import styles1 from "../scss/components/tv-season.module.scss";
 import { getMinute, getYear, getHour, getMonth } from "../utils/functions";
 import styles2 from "../scss/components/movie.module.scss";
 import ScrollContainer from "react-indiana-drag-scroll";
@@ -96,14 +97,14 @@ function TvEpisode({ data, seasondata,seasonsdata, base_url }) {
                         }
                     <p className={styles.overview}>{data.overview}</p>
                 </div>
-                <div className={styles.episode_d_container}>
-                <div className={styles2.c_header}>
+                <div className={styles1.episode_d_container}>
+                    <div className={styles2.c_header}>
                         <div className={styles2.h_line} />
                         <h2>Episodes</h2>
                         <div className={styles2.h_line} />
                     </div>
                     <ScrollContainer className="scroll-container" horizontal>
-                        <div className={styles.e_container}>
+                        <div className={styles1.e_container}>
                             {seasonsdata?.episodes?.map((item, i) => (
                                 <Link
                                     href={
@@ -117,9 +118,9 @@ function TvEpisode({ data, seasondata,seasonsdata, base_url }) {
                                         item.episode_number
                                     }
                                 >
-                                    <a>
-                                        <div className={styles.episode}>
-                                            <div className={styles.e_poster}>
+                                    <a className={styles1.episode_link}>
+                                        <div className={styles1.episode}>
+                                            <div className={styles1.e_poster}>
                                                 <Image
                                                     src={
                                                         item.still_path
@@ -137,18 +138,18 @@ function TvEpisode({ data, seasondata,seasonsdata, base_url }) {
                                                     alt={data.title}
                                                 />
                                             </div>
-                                            <div className={styles.e_detail}>
-                                                <p className={styles.e_name}>{item.name}</p>
+                                            <div className={styles1.e_detail}>
+                                                <p className={styles1.e_name}>{item.name}</p>
 
-                                                <p className={styles.e_number}>
+                                                <p className={styles1.e_number}>
                                                     S{data.season_number} E{item.episode_number}{" "}
-                                                    <div className={styles.e_dot}></div>{" "}
+                                                    <div className={styles1.e_dot}></div>{" "}
                                                     {getMonth(item.air_date)}{" "}
                                                     {item?.air_date?.slice(8, 10)},{" "}
                                                     {getYear(item.air_date)}
                                                 </p>
-                                                <p className={styles.e_air_date}></p>
-                                                <p className={styles.e_overview}>{item.overview}</p>
+                                                <p className={styles1.e_air_date}></p>
+                                                <p className={styles1.e_overview}>{item.overview}</p>
                                             </div>
                                         </div>
                                     </a>
@@ -157,7 +158,7 @@ function TvEpisode({ data, seasondata,seasonsdata, base_url }) {
                         </div>
                     </ScrollContainer>
                 </div>
-                <SeasonContainer width="full" data={seasondata.seasons} id={id} name={name} title="Seasons"  />
+                <SeasonContainer data={seasondata.seasons} id={id} name={name} title="Seasons"  />
             </div>
         </>
     );

@@ -9,7 +9,7 @@ function SeasonPoster({item,id,name}) {
         <Link
             href={getLink}
         >
-            <a>
+            <a className={styles.season_link}>
                 <div className={styles.season}>
                     <img
                         src={"https://image.tmdb.org/t/p/w500" + item.poster_path}

@@ -316,6 +316,7 @@
     background-color: rgba($color: #181818, $alpha: 0.25);
     backdrop-filter: blur(3px);
     color: $text-color;
+    transition: all 0.2s ease-in-out;
     .nav_row_1{
         display: flex;
         padding: 0px 14px;
