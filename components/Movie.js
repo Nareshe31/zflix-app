@@ -15,9 +15,11 @@ import PosterListContainer from "./molecules/PosterListContainer";
 import CastContainer from "./molecules/CastContainer";
 import ImageListContainer from "./molecules/ImageListContainer";
 import ImagePreview from "./atoms/ImagePreview";
+import VideoContainer from "./molecules/VideoContainer";
 
 function Movie({ data, base_url }) {
     const router = useRouter();
+    let {id,name}=router.query
     const [torrents, settorrents] = useState({});
     const [selectedImage, setselectedImage] = useState(0);
     const [imagePreview, setimagePreview] = useState(false);
@@ -170,20 +172,26 @@ function Movie({ data, base_url }) {
                                         ))}
                                     </div>
                                     <p className={styles.content_overview}>{data.overview}</p>
-                                    <div className={styles.show}>
-                                        <Link href={router.asPath + "/watch"}>
-                                            <div className={styles.watch_now}>
-                                                <i className="bi bi-play-fill"></i>
-                                                Watch Now
+                                    {
+                                        (new Date())>(new Date(data.release_date))?
+                                            <div className={styles.show}>
+                                                <Link href={"/en/movie/"+id+"/"+name + "/watch"}>
+                                                    <a>
+                                                        <div className={styles.watch_now}>
+                                                            <i className="bi bi-play-fill"></i>
+                                                            Watch Now
+                                                        </div>
+                                                    </a>
+                                                </Link>
+                                                {/* <div
+                                                    className={styles.show_trailer}
+                                                    onClick={() => setwatch(true)}
+                                                >
+                                                    Trailer
+                                                </div> */}
                                             </div>
-                                        </Link>
-                                        <div
-                                            className={styles.show_trailer}
-                                            onClick={() => setwatch(true)}
-                                        >
-                                            Trailer
-                                        </div>
-                                    </div>
+                                        :null
+                                    }
                                 </div>
                                 <div className={styles.content_o_details}>
                                     <table>
@@ -291,6 +299,7 @@ function Movie({ data, base_url }) {
                             </div>
                         </div>
                         <ImageListContainer data={data.images.backdrops} imageSelect={imageSelect} title="Images" />
+                        <VideoContainer data={data?.videos?.results} title="Trailers & Clips" />
                         <CastContainer type="cast" data={data.credits.cast} title="Cast" />
                         <CastContainer type="crew" data={data.credits.crew} title="Crew" />
                         <PosterListContainer type="movie" data={data.recommendations.results} title="More Like This" />

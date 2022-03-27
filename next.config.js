@@ -18,6 +18,6 @@ module.exports = {
       }
     ],
     images: {
-      domains: ['image.tmdb.org','www.themoviedb.org','res.cloudinary.com'],
+      domains: ['image.tmdb.org','www.themoviedb.org','res.cloudinary.com','i.ytimg.com'],
     }
 }

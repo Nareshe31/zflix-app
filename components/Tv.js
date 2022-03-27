@@ -11,6 +11,7 @@ import PosterListContainer from "./molecules/PosterListContainer";
 import ImageListContainer from "./molecules/ImageListContainer";
 import ImagePreview from "./atoms/ImagePreview";
 import SeasonContainer from "./molecules/SeasonContainer";
+import VideoContainer from "./molecules/VideoContainer";
 
 function Tv({ data, base_url }) {
     const router = useRouter();
@@ -60,7 +61,7 @@ function Tv({ data, base_url }) {
                     content={"https://image.tmdb.org/t/p/w780" + data.poster_path}
                 ></meta>
             </Head>
-            <div className={styles2.w_content}>
+            <div className={styles2.w_content}> 
                 <div className={styles2.content}>
                     <div
                         className={styles2.content_bg}
@@ -114,18 +115,19 @@ function Tv({ data, base_url }) {
                                     <p className={styles2.content_overview}>{data.overview}</p>
                                     <div className={styles2.show}>
                                             
-                                        <div
+                                        {/* <div
                                             className={styles2.show_trailer}
                                             onClick={() => setwatch(true)}
                                         >
                                             Trailer
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <SeasonContainer data={data.seasons} id={id} name={name} title="Seasons"  />
                         <ImageListContainer data={data.images.backdrops} imageSelect={imageSelect} title="Images" />
+                        <VideoContainer data={data?.videos?.results} title="Trailers & Clips" />
                         <CastContainer type="cast" data={data.credits.cast} title="Cast" />
                         <CastContainer type="crew" data={data.credits.crew} title="Crew" />
                         <PosterListContainer type="tv" data={data.recommendations.results} title="More like this" />
