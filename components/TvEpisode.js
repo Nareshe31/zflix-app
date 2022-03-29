@@ -8,6 +8,7 @@ import { getMinute, getYear, getHour, getMonth } from "../utils/functions";
 import styles2 from "../scss/components/movie.module.scss";
 import ScrollContainer from "react-indiana-drag-scroll";
 import SeasonContainer from "./molecules/SeasonContainer";
+import EpisodeContainer from "./molecules/EpisodeContainer";
 
 function TvEpisode({ data, seasondata,seasonsdata, base_url }) {
     const router = useRouter();
@@ -52,7 +53,7 @@ function TvEpisode({ data, seasondata,seasonsdata, base_url }) {
                     frameBorder={0}
                     webkitallowfullscreen=""
                     mozallowfullscreen=""
-                    allowfullscreen=""
+                    allowFullScreen=""
                     src={`https://www.2embed.ru/embed/tmdb/tv?id=${id}&s=${snumber}&e=${enumber}`}
                     title={id}
                 ></iframe>
@@ -97,67 +98,7 @@ function TvEpisode({ data, seasondata,seasonsdata, base_url }) {
                         }
                     <p className={styles.overview}>{data.overview}</p>
                 </div>
-                <div className={styles1.episode_d_container}>
-                    <div className={styles2.c_header}>
-                        <div className={styles2.h_line} />
-                        <h2>Episodes</h2>
-                        <div className={styles2.h_line} />
-                    </div>
-                    <ScrollContainer className="scroll-container" horizontal>
-                        <div className={styles1.e_container}>
-                            {seasonsdata?.episodes?.map((item, i) => (
-                                <Link
-                                    href={
-                                        "/en/tv/" +
-                                        id +
-                                        "/" +
-                                        name +
-                                        "/season/" +
-                                        snumber +
-                                        "/episode/" +
-                                        item.episode_number
-                                    }
-                                >
-                                    <a className={styles1.episode_link}>
-                                        <div className={styles1.episode}>
-                                            <div className={styles1.e_poster}>
-                                                <Image
-                                                    src={
-                                                        item.still_path
-                                                            ? "https://image.tmdb.org/t/p/w780" +
-                                                            item.still_path
-                                                            : "/assets/image-not-found.png"
-                                                    }
-                                                    layout="fill"
-                                                    placeholder="blur"
-                                                    objectFit={item.still_path ? "cover" : "contain"}
-                                                    objectPosition={item.still_path ? "top" : "center"}
-                                                    blurDataURL={
-                                                        "https://image.tmdb.org/t/p/w780" + item.still_path
-                                                    }
-                                                    alt={data.title}
-                                                />
-                                            </div>
-                                            <div className={styles1.e_detail}>
-                                                <p className={styles1.e_name}>{item.name}</p>
-
-                                                <p className={styles1.e_number}>
-                                                    S{data.season_number} E{item.episode_number}{" "}
-                                                    <div className={styles1.e_dot}></div>{" "}
-                                                    {getMonth(item.air_date)}{" "}
-                                                    {item?.air_date?.slice(8, 10)},{" "}
-                                                    {getYear(item.air_date)}
-                                                </p>
-                                                <p className={styles1.e_air_date}></p>
-                                                <p className={styles1.e_overview}>{item.overview}</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </Link>
-                            ))}
-                        </div>
-                    </ScrollContainer>
-                </div>
+                <EpisodeContainer data={seasonsdata} title="Episodes" id={id} name={name} snumber={snumber} />
                 <SeasonContainer data={seasondata.seasons} id={id} name={name} title="Seasons"  />
             </div>
         </>

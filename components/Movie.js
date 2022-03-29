@@ -193,6 +193,8 @@ function Movie({ data, base_url }) {
                                         :null
                                     }
                                 </div>
+                            </div>
+
                                 <div className={styles.content_o_details}>
                                     <table>
                                         <tbody>
@@ -296,7 +298,6 @@ function Movie({ data, base_url }) {
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
                         </div>
                         <ImageListContainer data={data.images.backdrops} imageSelect={imageSelect} title="Images" />
                         <VideoContainer data={data?.videos?.results} title="Trailers & Clips" />
