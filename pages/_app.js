@@ -67,7 +67,9 @@ function MyApp({ Component, pageProps, router }) {
         "https://zflix-backend.herokuapp.com/api/v2/add-page-request",
         { url: router.asPath, requested_at: new Date() }
       );
-    } catch (error) { }
+    } catch (error) { 
+      console.log(error);
+    }
     return () => { };
   }, [router.asPath,router.events]);
 
