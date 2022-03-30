@@ -47,6 +47,7 @@ function MyApp({ Component, pageProps, router }) {
       {}
     )
   );
+ 
   const handleRouteChange = (url) => {
     window.gtag("config", "G-8FMMTY6M6W", {
       page_path: url,
