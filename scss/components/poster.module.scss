@@ -12,6 +12,11 @@
     position: relative;
     background-color: $p-bg;
 }
+.i_parent{
+    &:nth-child(1){
+        margin-left: 18px;
+    }
+}
 .i_poster_container{
     width: 220px;
     height: 150px;
@@ -20,6 +25,7 @@
     position: relative;
     background-color: $p-bg;
     margin-right: 18px;
+   
     cursor: pointer;
 }
 
@@ -75,7 +81,12 @@
         height: $p-sm-h;
     }
     .i_poster_container{
-        width: 180px;
+        width: 200px;
         height: 120px;
+    }
+    .poster_link{
+        &:nth-child(1){
+            margin-left: 12px;
+        }
     }
 }

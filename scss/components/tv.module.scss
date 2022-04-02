@@ -202,7 +202,21 @@
 @media screen and (max-width:600px) {
 
     .season_container{
-        padding: 10px 20px;
+        padding: 10px 0px;
         max-width: 100%;
+        .season_dropdown{
+            .seasons{
+                .season_link{
+                    margin: 14px 15px 10px 0px;
+                    &:nth-child(1){
+                        margin-left: 15px;
+                    }
+                }
+                .season {
+                    width: $s-sm-w;
+                    height: $s-sm-h;
+                }
+            }
+        }
     }
 }

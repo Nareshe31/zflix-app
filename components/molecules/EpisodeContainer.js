@@ -44,7 +44,7 @@ function EpisodeContainer({ data, title, id, name, snumber }) {
                     </div>
                 </ScrollContainer>
             ) : (
-                <div className={styles.e_container} style={{ flexWrap: "wrap" }}>
+                <div className={styles.e_container+" "+styles.stack_view}>
                     {data.episodes.map((item, i) => (
                         <EpisodePoster
                             item={item}

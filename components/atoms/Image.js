@@ -3,7 +3,7 @@ import styles from "../../scss/components/poster.module.scss";
 
 function Images({ item,imageSelect,index }) {
     return (
-        <div>
+        <div className={styles.i_parent}>
             <div
                 className={styles.i_poster_container}
                 onClick={() => imageSelect(index)}
