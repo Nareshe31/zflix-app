@@ -13,7 +13,7 @@ function SmallDeviceNavbar({ }) {
     const [moviesDropdown, setmoviesDropdown] = useState(false);
     const [tvshowsDropdown, settvshowsDropdown] = useState(false);
     const [results, setresults] = useState({});
-    const [searchContainerVisible, setsearchContainerVisible] = useState(false);
+    // const [searchContainerVisible, setsearchContainerVisible] = useState(false);
     const [query, setquery] = useState("");
     const [suggestionLoading, setsuggestionLoading] = useState(false);
     const [searchBarActive, setsearchBarActive] = useState(false);
@@ -24,12 +24,11 @@ function SmallDeviceNavbar({ }) {
 
     useEffect(() => {
 
-        document.addEventListener("click", (e) => {
-            if (e.target.id !== "query" && e.target.id !== "search") {
-                setsearchContainerVisible(false);
-                setsearchBarActive(false);
-            }
-        });
+        // document.addEventListener("click", (e) => {
+        //     if (e.target.id !== "query" && e.target.id !== "search") {
+        //         closeSearchBar()
+        //     }
+        // });
         window.onscroll = (e) => {
 
             if (window.pageYOffset > 1) {
@@ -81,7 +80,6 @@ function SmallDeviceNavbar({ }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setsearchContainerVisible(false);
         router.push(`/en/search?q=${query}`);
     };
 
@@ -117,6 +115,19 @@ function SmallDeviceNavbar({ }) {
         setnavSide(false);
     }
 
+    function closeSearchBar() {
+        document.body.classList.remove("no_scroll");
+        setsearchBarActive(false);
+    }
+    function openSearchBar() {
+        document.body.classList.add("no_scroll");
+        setsearchBarActive(true);
+    }
+    function clearSearch() {
+        setquery('')
+        setresults({})
+        inputRef.current.focus()
+    }
     return (
         <nav className={styles.navbar_sm} id="navbar" ref={navbarRef}>
             <div className={styles.nav_row_1}>
@@ -137,66 +148,75 @@ function SmallDeviceNavbar({ }) {
                 <div
                     className={styles.nav_search}
                     id="search"
-                    onClick={() => {
-                        setsearchBarActive((prev) => !prev);
-                    }}
+                    onClick={openSearchBar}
                 >
                     <i id="search" className="bi bi-search"></i>
                 </div>
             </div>
-            <div
-                className={
-                    searchBarActive
-                        ? styles.nav_row_2 + " " + styles.active
-                        : styles.nav_row_2
-                }
-            >
-                <form onSubmit={handleSubmit}>
-                    <input
-                        ref={inputRef}
-                        autoComplete="false"
-                        autoCorrect="false"
-                        spellCheck={false}
-                        type="text"
-                        name="q"
-                        id="query"
-                        value={query}
-                        onFocus={() => setsearchContainerVisible(true)}
-                        onKeyUp={getResults}
-                        onKeyPress={handleKeyPress}
-                        onChange={(e) => setquery(e.target.value)}
-                        placeholder="What are you looking for?"
-                    />
-                </form>
-                <ul
-                    className={
-                        searchContainerVisible
-                            ? styles.search_results + " " + styles.active
-                            : styles.search_results
-                    }
+            <div className={searchBarActive? styles.search_container_full+" "+styles.active:styles.search_container_full}>
+                <div
+                    className={styles.nav_row_2}
                 >
-                    {results?.results
-                        ?.slice(0, 4)
-                        ?.map((item, i) =>
-                            item.media_type === "movie" ? (
-                                <NavSearchMovie key={item.id} item={item} />
-                            ) : item.media_type === "tv" ? (
-                                <NavSearchTv key={item.id} item={item} />
-                            ) : null
-                        )}
-                    {results?.results?.length > 4 ? (
-                        <li className={styles.more_results}>
-                            <span>See more results</span>
-                            <Link href={"/en/search?q=" + query}>
-                                <a>
-                                    <span>
-                                        <i className="bi bi-arrow-right"></i>
-                                    </span>
-                                </a>
-                            </Link>
-                        </li>
-                    ) : null}
-                </ul>
+                    <span className={styles.back_arrow} onClick={closeSearchBar}>
+                        <i class="bi bi-arrow-left"></i>
+                    </span>
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            ref={inputRef}
+                            autoComplete="false"
+                            autoCorrect="false"
+                            spellCheck={false}
+                            type="text"
+                            name="q"
+                            id="query"
+                            value={query}
+                            onKeyUp={getResults}
+                            onKeyPress={handleKeyPress}
+                            onChange={(e) => setquery(e.target.value)}
+                            placeholder="What are you looking for?"
+                        />
+                    </form>
+                    <span className={query!==''?styles.clear_search+" "+styles.active:styles.clear_search} onClick={clearSearch}>
+                        <i class="bi bi-x-lg"></i>
+                    </span>
+                </div>
+                {
+                    Object.keys(results).length?
+                    <ul
+                            className={styles.search_results}
+                        >
+                            {results?.results
+                                ?.slice(0,6)
+                                ?.map((item, i) =>
+                                    item.media_type === "movie" ? (
+                                        <NavSearchMovie key={item.id} item={item} />
+                                    ) : item.media_type === "tv" ? (
+                                        <NavSearchTv key={item.id} item={item} />
+                                    ) : null
+                                )}
+                            {results?.results?.length > 4 ? (
+                                <li className={styles.more_results}>
+                                    <span>See more results</span>
+                                    <Link href={"/en/search?q=" + query}>
+                                        <a>
+                                            <span>
+                                                <i className="bi bi-arrow-right"></i>
+                                            </span>
+                                        </a>
+                                    </Link>
+                                </li>
+                            ) :
+                                <div className={styles.start_search_container}>
+                                    No results found
+                                </div>
+                                    
+                            }
+                    </ul>
+                       :
+                    <div className={styles.start_search_container}>
+                        Search for movies and tv shows
+                    </div>
+                }
             </div>
             <div
                 className={

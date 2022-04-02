@@ -25,7 +25,7 @@ function LargeDeviceNavbar({ }) {
     useEffect(() => {
         document.addEventListener("keydown", (e) => {
             if (e.ctrlKey && e.keyCode === 191) {
-                handleSearchToggle(1);
+                handleSearchToggle();
             }
             if (e.ctrlKey && e.shiftKey && e.keyCode === 72) {
                 router.push("/en");
@@ -97,6 +97,10 @@ function LargeDeviceNavbar({ }) {
                 console.log("error ", error);
             }
         }, 250);
+    };
+
+    const handleSearchToggle = () => {
+        inputRef.current.focus();
     };
 
     return (

@@ -356,7 +356,7 @@
 
 @media screen and (max-width:600px) {
     .search_container{
-        padding: 80px 0 30px;
+        padding: 65px 0 30px;
         .first_result_container{
             .first_result_image{
                 height: 34vh;
@@ -382,13 +382,14 @@
             flex-direction: column;
             margin-top: 8px;
             .result_type_container{
-                margin-bottom: 26px;
+                margin-bottom: 4px;
                 .result_type{
                     border: none;
                     border-radius: 0;
                     .r_type_header{
                         border-radius: 0;
                         text-align: center;
+                        font-size: 1.1rem;
                     }
                     .r_types{
                         display: flex;
@@ -409,7 +410,7 @@
                             padding: 8px 16px;
                             border: 1px solid #1a1a1a;
                             .r_type_name{
-                                font-size: 0.95rem;
+                                font-size: 0.85rem;
                             }
                         }
                         .r_type.active{
@@ -428,7 +429,7 @@
                     width: calc(100% - 6px);
 
                     .result_box{
-                        max-height: 170px;
+                        max-height: 160px;
                         .result_image{
                             width: 120px;
                             img{
@@ -442,10 +443,15 @@
                             padding: 10px 12px;
                             width: calc(100% - 120px);
                             .result_title{
-                                font-size: 1rem;
+                                font-size: 0.95rem;
                             }
                             .result_overview{
+                                font-size: 0.78rem;
                                 -webkit-line-clamp: 2;
+                            }
+                            .result_date{
+                                margin-top: 6px;
+                                font-size: 0.75rem;
                             }
                         }
                     }
