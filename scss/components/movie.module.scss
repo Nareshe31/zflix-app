@@ -730,8 +730,8 @@
                 }
                 
                 .recommendation_container{
-                    width: calc(100% - 40px);
-                    margin: 0px 20px 5px;
+                    width: calc(100%);
+                    margin: 0px 0px 5px;
                     max-width: 100%;
                     padding: 0px 0 20px;
                     .r_poster_container{
@@ -753,6 +753,7 @@
         }
     }
     .c_header{
+        margin-left: 14px;
         h2{
             font-size: 1rem;
         }
@@ -767,13 +768,17 @@
         }
     }
     .videos_container{
-        padding: 18px 20px 18px;
+        padding: 18px 0px 18px;
         .videos{
             .video_container{
+                margin: 10px 15px 10px 0px;
                 width: 220px;
                 .video_thumbnail{
                     width: 220px;
                     height: 140px;
+                }
+                &:nth-child(1){
+                    margin-left: 15px;
                 }
             }
         }

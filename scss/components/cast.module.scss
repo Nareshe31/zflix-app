@@ -85,7 +85,7 @@
 @media screen and (max-width:800px) {
     .content_c {
         width: 100%;
-        padding: 0px 20px 10px;
+        padding: 0px 0px 10px;
         max-width: 100%;
         .c_container{
             &::-webkit-scrollbar {
@@ -94,6 +94,10 @@
               }
             .c_parent{
                 margin-right: 5px;
+
+                &:nth-child(1){
+                    margin-left: 5px;
+                }
                 .c_image {
                     width: 85px;
                     height: 85px;
