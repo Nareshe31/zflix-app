@@ -250,9 +250,9 @@ function SmallDeviceNavbar({ }) {
                                     : styles.nav_list_child
                             }
                         >
-                            <p>Most Popular</p>
-                            <p>Most Recent</p>
-                            <p>Top Rated</p>
+                            <Link href={"/en/movie/popular"}><p>Most Popular</p></Link>
+                            <Link href={"/en/movie/most-recent"}><p>Most Recent</p></Link>
+                            <Link href={"/en/movie/top-rated"}><p>Top Rated</p></Link>
                         </div>
                         <li
                             className={styles.nav_item + " " + styles.dropdown}
@@ -274,9 +274,9 @@ function SmallDeviceNavbar({ }) {
                                     : styles.nav_list_child
                             }
                         >
-                            <p>Most Popular</p>
-                            <p>Most Recent</p>
-                            <p>Top Rated</p>
+                            <Link href={"/en/tv/popular"}><p>Most Popular</p></Link>
+                            <Link href={"/en/tv/most-recent"}><p>Most Recent</p></Link>
+                            <Link href={"/en/tv/top-rated"}><p>Top Rated</p></Link>
                         </div>
                         <Link href="/en/torrent">
                             <a>
