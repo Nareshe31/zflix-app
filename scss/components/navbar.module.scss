@@ -511,7 +511,8 @@
         ul{
             list-style: none;
             li{
-                padding: 14px 15px;
+                padding: 18px 15px;
+                font-weight: 600;
                 display: flex;
                 justify-content: space-between;
             }
@@ -520,8 +521,9 @@
                 // overflow: hidden;
                 display: none;
                 margin-left: 16px;
+                font-size: 0.9rem;
                 p{
-                    padding: 0 12px 14px ;
+                    padding: 0 12px 18px ;
                 }
             }
             .nav_list_child.active{

@@ -66,7 +66,7 @@ function PosterWithDetails({ item, type }) {
               alt={item.title}
             />
           </div>
-          <MovieInfo item={item} />
+          {/* <MovieInfo item={item} /> */}
         </motion.div>
         </a>
       </Link>

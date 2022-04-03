@@ -31,13 +31,13 @@
 
 
 .d_poster_link{
-    margin: 0 12px 18px;
+    margin: 0 10px 20px;
     border-radius: 3px;
     // height: max-content;
 }
 .d_poster_container{
     width: $p-lg-w;
-    height: 160px;
+    height: 180px;
     overflow: hidden;
     position: relative;
     background-color: $p-bg;
@@ -88,5 +88,22 @@
         &:nth-child(1){
             margin-left: 12px;
         }
+    }
+    .d_poster_container{
+        width: 28vw;
+        height: 18vh;
+    }
+    .d_poster_detail{
+        width: 28vw;
+        padding: 4px 6px 8px;
+        .title{
+            font-size: 0.8rem;
+        }
+        .date{
+            font-size: 0.7rem;
+        }
+    }
+    .d_poster_link{
+        margin: 0 0 18px;
     }
 }
