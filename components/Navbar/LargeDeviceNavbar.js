@@ -24,8 +24,9 @@ function LargeDeviceNavbar({ }) {
 
     useEffect(() => {
         document.addEventListener("keydown", (e) => {
-            if (e.ctrlKey && e.keyCode === 191) {
-                handleSearchToggle();
+            if (e.keyCode === 191) {
+                e.preventDefault();
+                inputRef.current.focus();
             }
             if (e.ctrlKey && e.shiftKey && e.keyCode === 72) {
                 router.push("/en");
@@ -58,7 +59,7 @@ function LargeDeviceNavbar({ }) {
                 console.log("scroll removed");
             });
             document.removeEventListener('keydown',(e)=>{
-                console.log("keydown removed");
+                console.log("keypress removed");
             })
         };
     }, [router]);
@@ -97,10 +98,6 @@ function LargeDeviceNavbar({ }) {
                 console.log("error ", error);
             }
         }, 250);
-    };
-
-    const handleSearchToggle = () => {
-        inputRef.current.focus();
     };
 
     return (
@@ -220,22 +217,26 @@ function LargeDeviceNavbar({ }) {
                             <i className="bi bi-arrow-repeat"></i>
                         </li>
                     ) : (
-                        <li
-                            className={
-                                query && query.length
-                                    ? styles.nav_item +
-                                    " " +
-                                    styles.clear +
-                                    " " +
-                                    styles.s +
-                                    " " +
-                                    styles.active
-                                    : styles.nav_item + " " + styles.clear + " " + styles.s
-                            }
-                            onClick={clearSearch}
-                        >
-                            <i className="bi bi-x-lg"></i>
-                        </li>
+                        <>
+                        {
+                            query && query.length?
+                                <li
+                                    className={styles.nav_item + " " + styles.clear + " " + styles.s
+                                    }
+                                    onClick={clearSearch}
+                                >
+                                    <i className="bi bi-x-lg"></i>
+                                </li>
+                            :
+                                <li
+                                    className={ styles.nav_item + " " + styles.shortcut_icon + " " + styles.s
+                                    }
+                                >
+                                    <span>/</span>
+                                </li>
+                        }
+                        </>
+                        
                     )}
 
                     <li

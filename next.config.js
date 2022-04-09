@@ -1,5 +1,12 @@
-module.exports = {
+const withPWA = require('next-pwa');
+
+
+module.exports = withPWA({
   reactStrictMode: true,
+  pwa: {
+    dest: 'public',
+    disable: process.env.NODE_ENV === 'development',
+  },
   headers:[
       {
         "source": "/api/(.*)",
@@ -20,4 +27,4 @@ module.exports = {
     images: {
       domains: ['image.tmdb.org','www.themoviedb.org','res.cloudinary.com','i.ytimg.com'],
     }
-}
+})
