@@ -6,6 +6,7 @@ export default class MyDocument extends Document {
       // ...
       <Html>
         <Head>
+        <link rel='manifest' href='/manifest.json' />
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-8FMMTY6M6W"
