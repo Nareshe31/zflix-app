@@ -3,7 +3,8 @@ import styles from "../scss/components/home.module.scss";
 import Head from "next/head";
 import Poster from "./atoms/Poster";
 import ScrollContainer from "react-indiana-drag-scroll";
-
+import { useEffect } from "react";
+import Script from 'next/script'
 function Home({ movieData, tvData, base_url }) {
     const router = useRouter();
     let overview =
@@ -28,10 +29,54 @@ function Home({ movieData, tvData, base_url }) {
             );
         }
         };
+    // useEffect(() => {
+    //     window.webtor = window.webtor || [];
+    //     window.webtor.push({
+    //         id: 'player',
+    //         magnet: 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F',
+    //         on: function(e) {
+    //             if (e.name == window.webtor.TORRENT_FETCHED) {
+    //                 console.log('Torrent fetched!', e.data);
+    //             }
+    //             if (e.name == window.webtor.TORRENT_ERROR) {
+    //                 console.log('Torrent error!');
+    //             }
+    //         },
+    //         width:"100%",
+    //         poster: 'https://via.placeholder.com/150/0000FF/808080',
+    //         subtitles: [
+    //             {
+    //                 srclang: 'en',
+    //                 label: 'test',
+    //                 src: 'https://raw.githubusercontent.com/andreyvit/subtitle-tools/master/sample.srt',
+    //                 default: true,
+    //             }
+    //         ],
+    //         lang: 'en',
+    //         i18n: {
+    //             en: {
+    //                 common: {
+    //                     "prepare to play": "Preparing Video Stream... Please Wait...",
+    //                 },
+    //                 stat: {
+    //                     "seeding": "Seeding",
+    //                     "waiting": "Client initialization",
+    //                     "waiting for peers": "Waiting for peers",
+    //                     "from": "from",
+    //                 },
+    //             },
+    //         },
+    //     });
+    
+    //   return () => {
+        
+    //   }
+    // }, [])
+    
 
-        console.log();
     return (
         <>
+            {/* <Script src="https://cdn.jsdelivr.net/npm/@webtor/embed-sdk-js/dist/index.min.js" charset="utf-8" async></Script> */}
             <Head>
                 <title>ZFlix - Watch Movies & TV Shows</title>
                 <meta name="title" content={"ZFlix - Watch Movies & TV Shows"} />
@@ -79,7 +124,7 @@ function Home({ movieData, tvData, base_url }) {
                         </ScrollContainer>
                     </div>
                 </section>
-
+                {/* <div id="player" className="webtor"></div> */}
                 <section className={styles.section_main}>
                     <div className={styles.section_header}>
                         <h2 className={styles.heading}>Trending TV Shows</h2>

@@ -74,7 +74,7 @@ function PopularMovie({ data ,base_url,filter_type,media_type,title}) {
     return (
         <>
             <Head>
-                <title>{title} Movies - ZFlix</title>
+                <title>{title} {media_type=="movie"?"Movies":"Shows"} - ZFlix</title>
                 <meta name="title" content={"ZFlix - Watch Movies & TV Shows"} />
                 <meta name="description" content={overview} />
                 <meta
