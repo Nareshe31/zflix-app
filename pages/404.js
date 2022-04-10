@@ -1,9 +1,17 @@
-import Head from 'next/head';
-import styles from '../scss/components/error.module.scss';
+import Head from "next/head";
+import { useEffect } from "react";
+import styles from "../scss/components/error.module.scss";
 
 function ErrorPage() {
-    
-    return(
+    useEffect(() => {
+        document.getElementsByTagName("footer")[0].style.display = "none";
+
+        return () => {
+            document.getElementsByTagName("footer")[0].style.display = "flex";
+        };
+    }, []);
+
+    return (
         <>
             <Head>
                 <title>404: This page could not be found</title>
@@ -17,7 +25,7 @@ function ErrorPage() {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default ErrorPage;
