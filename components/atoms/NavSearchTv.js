@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { covertToLinkWords, getYear, getDate } from "../../utils/functions";
 import styles from "../../scss/components/navbar.module.scss";
 
-function NavSearchTv({ item }) {
+function NavSearchTv({ item,currentSearchResult,index,handleResultHover }) {
     return (
         <Link
             href={
@@ -16,7 +16,8 @@ function NavSearchTv({ item }) {
         >
             <a>
                 <li
-                    className={styles.result}
+                    className={currentSearchResult==index?styles.result+" "+styles.active:styles.result}
+                    onMouseEnter={()=>handleResultHover(index)}
                 >
                     <div className={styles.r_left}>
                         {item.poster_path ? (

@@ -113,15 +113,7 @@ function Tv({ data, base_url }) {
                                         ))}
                                     </div>
                                     <p className={styles2.content_overview}>{data.overview}</p>
-                                    <div className={styles2.show}>
-                                            
-                                        {/* <div
-                                            className={styles2.show_trailer}
-                                            onClick={() => setwatch(true)}
-                                        >
-                                            Trailer
-                                        </div> */}
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

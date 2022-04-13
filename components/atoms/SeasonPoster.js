@@ -16,13 +16,15 @@ function SeasonPoster({item,id,name}) {
                         alt=""
                     />
                     <div className={styles.s_content}>
-                        <div className={styles.s_no}>
-                            Season {item.season_number}
+                        <div >
+                            <div className={styles.s_no}>
+                                Season {item.season_number}
+                            </div>
+                            {/* <div className="s-overview">{item.overview}</div> */}
+                            <p className={styles.s_e_count}>
+                                {item.episode_count} Episodes
+                            </p>
                         </div>
-                        {/* <div className="s-overview">{item.overview}</div> */}
-                        <p className={styles.s_e_count}>
-                            {item.episode_count} Episodes
-                        </p>
                     </div>
                 </div>
             </a>

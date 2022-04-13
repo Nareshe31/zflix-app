@@ -142,12 +142,13 @@
                 cursor: pointer;
                 border-radius: 5px;
                 overflow: hidden;
-                transition: transform 0.3s ease-in-out;
                 &:hover {
-                    background-color: rgba($color: #000, $alpha: 0.25);
-                    transform: scale(1.15);
-                    transform-origin: center;
+                    img{
+                        transform-origin: center;
+                        transform: scale(1.15);
+                    }
                     .s_content {
+                        background: linear-gradient(to bottom,transparent,$nav-color);
                         .s_overview {
                             display: block;
 
@@ -164,18 +165,20 @@
                     border-radius: 5px;
                     z-index: 1;
                     background-color: #151515;
+                    transition: transform 0.2s ease-in-out;
                 }
 
                 .s_content {
                     padding: 5px 10px 5px;
-                    align-self: flex-end;
+                    // align-self: flex-end;
                     width: 100%;
-                    // background-color: rgba($color: #000, $alpha: 0.85);
+                    background: linear-gradient(to bottom,transparent,$nav-color 140%);
                     border-bottom-left-radius: 5px;
                     border-bottom-right-radius: 5px;
-                    background: linear-gradient(to bottom,transparent,$nav-color 60%);
                     z-index: 2;
                     font-weight: 600;
+                    display: flex;
+                    align-items: flex-end;
                     .s_overview {
                         display: none;
                         font-size: 0.8rem;

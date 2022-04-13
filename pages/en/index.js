@@ -1,6 +1,5 @@
 import Home from '../../components/Home';
 import { motion } from "framer-motion";
-import axios from 'axios';
 
 function HomePage({movieData,tvData,base_url,ip}) {
     const config = {

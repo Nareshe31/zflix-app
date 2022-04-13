@@ -135,7 +135,7 @@
                     text-transform: none;
 
                     &:hover {
-                        background-color: rgba($color: #060606, $alpha: 0.45);
+                        background-color: rgba($color: #222222, $alpha: 0.5);
                     }
                 }
 
@@ -267,17 +267,17 @@
                         border: 1px solid $text-lighter-color;
                     }
                 }
-                &:hover{
-                    background-color: #1a1a1a;
-                }
             }
             .result.active{
-                // background-color: #1a1a1a;
+                background-color: #1a1a1a;
             }
             .more_results{
                 padding: 10px;
                 display: flex;
                 justify-content: space-between;
+            }
+            .more_results.active{
+                background-color: #1a1a1a;
             }
         }
         .s_results.active{
