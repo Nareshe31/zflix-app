@@ -42,7 +42,7 @@ function EpisodePoster({item,id,name,snumber,data}) {
 
                         <p className={styles.e_number}>
                             S{data.season_number} E{item.episode_number}{" "}
-                            <div className={styles.e_dot}></div>{" "}
+                            <span className={styles.e_dot}></span>{" "}
                             {getMonth(item.air_date)}{" "}
                             {item?.air_date?.slice(8, 10)},{" "}
                             {getYear(item.air_date)}

@@ -16,6 +16,7 @@ function LargeDeviceNavbar({ }) {
     const [searchContainerVisible, setsearchContainerVisible] = useState(false);
     const [query, setquery] = useState("");
     const [suggestionLoading, setsuggestionLoading] = useState(false);
+    const [currentSearchResult, setcurrentSearchResult] = useState(0);
 
     const router = useRouter();
     const { pathname } = router;
@@ -23,10 +24,11 @@ function LargeDeviceNavbar({ }) {
     let timer;
 
     useEffect(() => {
+        inputRef.current.blur();
         document.addEventListener("keydown", (e) => {
             if (e.keyCode === 191) {
                 e.preventDefault();
-                inputRef.current.focus();
+                inputRef?.current?.focus();
             }
             if (e.ctrlKey && e.shiftKey && e.keyCode === 72) {
                 router.push("/en");
@@ -58,11 +60,32 @@ function LargeDeviceNavbar({ }) {
             window.removeEventListener("scroll", (e) => {
                 console.log("scroll removed");
             });
-            document.removeEventListener('keydown',(e)=>{
+            document.removeEventListener("keydown", (e) => {
                 console.log("keypress removed");
-            })
+            });
         };
     }, [router]);
+
+    useEffect(() => {
+        setcurrentSearchResult(0);
+        return () => { };
+    }, [results, searchContainerVisible]);
+
+    function handleKeyDown(e) {
+        // arrow up/down button should select next/previous list element
+        if (e.keyCode === 38 || e.keyCode === 38) {
+            e.preventDefault();
+        }
+        if (e.keyCode === 38 && currentSearchResult > 0) {
+            setcurrentSearchResult((prev) => prev - 1);
+        } else if (
+            e.keyCode === 40 &&
+            currentSearchResult <
+            document.querySelectorAll("#results-list>a").length - 1
+        ) {
+            setcurrentSearchResult((prev) => prev + 1);
+        }
+    }
 
     function handleKeyPress(e) {
         window.clearTimeout(timer);
@@ -75,8 +98,9 @@ function LargeDeviceNavbar({ }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setsearchContainerVisible(false);
-        router.push(`/en/search?q=${query}`);
+        document.querySelectorAll("#results-list>a")[currentSearchResult]?.click();
+        // router.push(`/en/search?q=${query}`);
+        // router.push(`/en/search?q=${query}`);
     };
 
     const getResults = async () => {
@@ -100,6 +124,9 @@ function LargeDeviceNavbar({ }) {
         }, 250);
     };
 
+    const handleResultHover = (value) => {
+        setcurrentSearchResult(value);
+    };
     return (
         <nav className={styles.navbar} ref={navbarRef} id="navbar">
             <div className={styles.nav_left_part}>
@@ -201,8 +228,13 @@ function LargeDeviceNavbar({ }) {
                             id="query"
                             value={query}
                             onFocus={() => setsearchContainerVisible(true)}
-                            onKeyUp={getResults}
+                            onKeyUp={(e) => {
+                                if (e.keyCode !== 38 && e.keyCode !== 40) {
+                                    getResults();
+                                }
+                            }}
                             onKeyPress={handleKeyPress}
+                            onKeyDown={handleKeyDown}
                             onChange={(e) => {
                                 setquery(e.target.value);
                             }}
@@ -218,25 +250,29 @@ function LargeDeviceNavbar({ }) {
                         </li>
                     ) : (
                         <>
-                        {
-                            query && query.length?
+                            {query && query.length ? (
                                 <li
-                                    className={styles.nav_item + " " + styles.clear + " " + styles.s
+                                    className={
+                                        styles.nav_item + " " + styles.clear + " " + styles.s
                                     }
                                     onClick={clearSearch}
                                 >
                                     <i className="bi bi-x-lg"></i>
                                 </li>
-                            :
+                            ) : (
                                 <li
-                                    className={ styles.nav_item + " " + styles.shortcut_icon + " " + styles.s
+                                    className={
+                                        styles.nav_item +
+                                        " " +
+                                        styles.shortcut_icon +
+                                        " " +
+                                        styles.s
                                     }
                                 >
                                     <span>/</span>
                                 </li>
-                        }
+                            )}
                         </>
-                        
                     )}
 
                     <li
@@ -246,6 +282,7 @@ function LargeDeviceNavbar({ }) {
                     </li>
 
                     <ul
+                        id="results-list"
                         className={
                             searchContainerVisible
                                 ? styles.s_results + " " + styles.active
@@ -256,22 +293,34 @@ function LargeDeviceNavbar({ }) {
                             ?.slice(0, 4)
                             ?.map((item, i) =>
                                 item.media_type === "movie" ? (
-                                    <NavSearchMovie key={item.id} item={item} />
+                                    <NavSearchMovie
+                                        handleResultHover={handleResultHover}
+                                        index={i}
+                                        currentSearchResult={currentSearchResult}
+                                        key={item.id}
+                                        item={item}
+                                    />
                                 ) : item.media_type === "tv" ? (
-                                    <NavSearchTv key={item.id} item={item} />
+                                    <NavSearchTv
+                                        handleResultHover={handleResultHover}
+                                        index={i}
+                                        currentSearchResult={currentSearchResult}
+                                        key={item.id}
+                                        item={item}
+                                    />
                                 ) : null
                             )}
                         {results?.results?.length > 4 ? (
-                            <li className={styles.more_results}>
-                                <span>See more results</span>
-                                <Link href={"/en/search?q=" + query}>
-                                    <a>
+                            <Link href={"/en/search?q=" + query}>
+                                <a>
+                                    <li className={ document.querySelectorAll("#results-list>a").length-1==currentSearchResult?styles.more_results+" "+styles.active:styles.more_results}>
+                                        <span>See more results</span>
                                         <span>
                                             <i className="bi bi-arrow-right"></i>
                                         </span>
-                                    </a>
-                                </Link>
-                            </li>
+                                    </li>
+                                </a>
+                            </Link>
                         ) : null}
                     </ul>
                 </div>
