@@ -46,12 +46,59 @@ function Poster({ item, type }) {
         getYear(item.first_air_date)
       );
   };
+  function MoviePosterInfo({item}) {
+    
+    return(
+      <div className={styles.poster_info}>
+          <p className={styles.title}>{item.title}</p>
+          <p className={styles.overview}>{getYear(item.release_date)}</p>
+          <p className={styles.overview}>{item.overview}</p>
+          {
+            (new Date())>(new Date(item.release_date))?          
+              <Link href={getLink()+"/watch"}>
+                <a>
+                  <div className={styles.watch_now}>
+                    <i className="bi bi-play-fill"></i>
+                    Watch Now
+                  </div>
+                </a>
+              </Link>
+            :
+            null
+          }
+      </div>
+    )
+  }
+  function TvPosterInfo({item}) {
+    
+    return(
+      <div className={styles.poster_info}>
+          <p className={styles.title}>{item.name}</p>
+          <p className={styles.overview}>{getYear(item.first_air_date)}</p>
+          <p className={styles.overview}>{item.overview}</p>
+          {
+            (new Date())>(new Date(item.first_air_date))?          
+              <Link href={getLink()+"/season/1/episode/1"}>
+                <a>
+                  <div className={styles.watch_now}>
+                    <i className="bi bi-play-fill"></i>
+                    Watch Now
+                  </div>
+                </a>
+              </Link>
+            :
+            null
+          }
+      </div>
+    )
+  }
   return (
     <>
       <Link href={getLink()} passHref> 
         <a className={styles.poster_link} >
         <motion.div 
-          whileTap={{ scale: 0.9 }}
+          // whileTap={{ scale: 0.9 }}
+          whileHover={{scale:1.05}}
         > 
           <div className={styles.poster_container}>
             <Image
@@ -62,6 +109,7 @@ function Poster({ item, type }) {
               blurDataURL={"https://image.tmdb.org/t/p/w780" + item.poster_path}
               alt={item.title}
             />
+            {type==="movie"?<MoviePosterInfo item={item} />:<TvPosterInfo item={item} />}
           </div>
         </motion.div>
         </a>
@@ -69,5 +117,6 @@ function Poster({ item, type }) {
     </>
   );
 }
+
 
 export default Poster;

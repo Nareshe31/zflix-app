@@ -24,11 +24,12 @@
         .whole_poster {
             width: 100%;
             overflow-y: hidden;
-            margin: 14px auto;
+            margin: 0 auto;
             position: relative;
             .poster_container {
                 display: flex;
                 scroll-behavior: smooth;
+                margin: 14px 0;
                 // width: 100%;
                 // margin: 0px 20px;
                 // overflow: hidden;
@@ -127,20 +128,6 @@
                 }
             }
         }
-        .whole_poster {
-            margin: 18px auto ;
-            .poster_container_m {
-                overflow-x: auto !important;
-                .poster {
-                    width: $p-sm-w;
-                    height: $p-sm-h;
-                }
-                &::-webkit-scrollbar {
-                    width: 0px;
-                    height: 0px;
-                  }
-            }
-        }
     }
 }
 
@@ -163,12 +150,6 @@
                 }
 
             }
-            .whole_poster {
-                margin: 18px auto ;
-                .poster_container_m {
-                    overflow-x: auto !important;
-                }
-            }            
         }
     }
 }

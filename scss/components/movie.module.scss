@@ -107,7 +107,7 @@
                     flex-direction: column;
                     justify-content: flex-end;
                     max-width: 450px;
-                    min-width: 380px;
+                    min-width: 450px;
 
                     .content_details {
                         font-size: 0.8rem;
@@ -169,7 +169,6 @@
                             background-color: hsla(255, 0%, 98%, 1);
                             color: #000;
                             border: 1px solid transparent;
-                            margin-right: 14px;
 
                             i {
                                 margin-right: 5px;
@@ -349,7 +348,7 @@
                 overflow-y: hidden;
                 .r_poster_container{
                     width: 100%;
-                    margin-top: 10px;
+                    margin: 10px 0;
                     position: relative;
                     // overflow-y: hidden;
                     display: flex;
@@ -694,6 +693,8 @@
                         .content_plot {
                             padding: 10px 10px;
                             width: 100%;
+                            min-width: 100%;
+                            max-width: 100%;
 
                             .content_title {
                                 font-size: 1.35rem;
