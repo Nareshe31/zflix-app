@@ -40,14 +40,23 @@ function LargeDeviceNavbar({ }) {
                 setsearchContainerVisible(false);
             }
         });
+        var prevScrollpos = window.pageYOffset;
         window.onscroll = (e) => {
             inputRef.current.blur();
             setsearchContainerVisible(false);
-            if (window.pageYOffset > 1) {
+            if (window.pageYOffset > 50) {
                 navbarRef.current.classList.add(styles.scroll);
             } else {
                 navbarRef.current.classList.remove(styles.scroll);
             }
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                navbarRef.current.classList.remove(styles.hide);
+
+            } else {
+                navbarRef.current.classList.add(styles.hide);
+            }
+            prevScrollpos = currentScrollPos;
         };
 
         if (pathname.match("/en/search")) {

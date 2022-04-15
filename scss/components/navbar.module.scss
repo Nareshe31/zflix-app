@@ -11,9 +11,11 @@
     position: fixed;
     width: 100%;
     z-index: 100;
-    background-color: rgba($color: $color-3, $alpha:0.3);
+    // background-color: rgba($color: $color-3, $alpha:0.6);
+    background: linear-gradient(360deg, transparent,$nav-color);
+    // background: transparent;
     transition: all 0.2s ease-in-out;
-    backdrop-filter: blur(3px);
+    // backdrop-filter: blur(3px);
     color: $text-color;
     &:hover {
         background-color: rgba($color: $color-3, $alpha:0.8);
