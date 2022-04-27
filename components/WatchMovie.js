@@ -26,6 +26,7 @@ function WatchMovie({ data, base_url }) {
             elem.msRequestFullscreen();
         }
     }
+    
 
     return (
         <>
@@ -61,9 +62,7 @@ function WatchMovie({ data, base_url }) {
                     mozallowfullscreen=""
                     allowfullscreen=""
                     src={
-                        "https://www.2embed.ru/embed/" +
-                        (source === "1" ? "imdb/movie?id=tt" : "tmdb/movie?id=") +
-                        id
+                        "https://www.2embed.ru/embed/tmdb/movie?id="+id
                     }
                     title={id}
                 ></iframe>

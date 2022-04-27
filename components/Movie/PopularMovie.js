@@ -87,7 +87,7 @@ function PopularMovie({ data ,base_url,filter_type,media_type,title}) {
                 <meta property="og:site_name" content="ZFlix" />
                 <meta property="og:title" content={"ZFlix - Watch Movies & TV Shows"} />
                 <meta property="og:description" content={overview} />
-                <meta property="og:image" content="/favicon.ico" />
+                <meta property="og:image" content="/icons/apple-touch-icon.pngico" />
 
                 <meta property="twitter:card" content="summary_large_image" />
                 <meta property="twitter:url" content={base_url + router.asPath} />
@@ -96,7 +96,7 @@ function PopularMovie({ data ,base_url,filter_type,media_type,title}) {
                     content={"ZFlix - Watch Movies & TV Shows"}
                 />
                 <meta property="twitter:description" content={overview} />
-                <meta property="twitter:image" content="/favicon.ico"></meta>
+                <meta property="twitter:image" content="/icons/apple-touch-icon.pngico"></meta>
             </Head>
             <div className={styles.w_container}>
                 <div className={styles.header_container}>

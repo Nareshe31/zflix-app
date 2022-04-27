@@ -5,6 +5,7 @@ import axios from "axios";
 import styles from "../../scss/components/navbar.module.scss";
 import NavSearchMovie from "../atoms/NavSearchMovie";
 import NavSearchTv from "../atoms/NavSearchTv";
+import NavSearchPerson from "../atoms/NavSearchPerson";
 
 function SmallDeviceNavbar({ }) {
     const navbarRef = useRef();
@@ -23,14 +24,19 @@ function SmallDeviceNavbar({ }) {
     const { pathname } = router;
 
     useEffect(() => {
-
         // document.addEventListener("click", (e) => {
         //     if (e.target.id !== "query" && e.target.id !== "search") {
         //         closeSearchBar()
         //     }
         // });
+        router.beforePopState(({ as }) => {
+            if (searchBarActive) {
+                alert("back button");
+                return false;
+            }
+            return true;
+        });
         window.onscroll = (e) => {
-
             if (window.pageYOffset > 1) {
                 navbarRef.current.classList.add(styles.scroll);
             } else {
@@ -49,6 +55,7 @@ function SmallDeviceNavbar({ }) {
                 console.log("scroll removed");
             });
             setsearchBarActive(false);
+            router.beforePopState(() => true);
         };
     }, [router]);
 
@@ -124,9 +131,9 @@ function SmallDeviceNavbar({ }) {
         setsearchBarActive(true);
     }
     function clearSearch() {
-        setquery('')
-        setresults({})
-        inputRef.current.focus()
+        setquery("");
+        setresults({});
+        inputRef.current.focus();
     }
     return (
         <nav className={styles.navbar_sm} id="navbar" ref={navbarRef}>
@@ -145,18 +152,18 @@ function SmallDeviceNavbar({ }) {
                         </a>
                     </Link>
                 </div>
-                <div
-                    className={styles.nav_search}
-                    id="search"
-                    onClick={openSearchBar}
-                >
+                <div className={styles.nav_search} id="search" onClick={openSearchBar}>
                     <i id="search" className="bi bi-search"></i>
                 </div>
             </div>
-            <div className={searchBarActive? styles.search_container_full+" "+styles.active:styles.search_container_full}>
-                <div
-                    className={styles.nav_row_2}
-                >
+            <div
+                className={
+                    searchBarActive
+                        ? styles.search_container_full + " " + styles.active
+                        : styles.search_container_full
+                }
+            >
+                <div className={styles.nav_row_2}>
                     <span className={styles.back_arrow} onClick={closeSearchBar}>
                         <i class="bi bi-arrow-left"></i>
                     </span>
@@ -176,47 +183,52 @@ function SmallDeviceNavbar({ }) {
                             placeholder="What are you looking for?"
                         />
                     </form>
-                    <span className={query!==''?styles.clear_search+" "+styles.active:styles.clear_search} onClick={clearSearch}>
+                    <span
+                        className={
+                            query !== ""
+                                ? styles.clear_search + " " + styles.active
+                                : styles.clear_search
+                        }
+                        onClick={clearSearch}
+                    >
                         <i class="bi bi-x-lg"></i>
                     </span>
                 </div>
-                {
-                    Object.keys(results).length?
-                    <ul
-                            className={styles.search_results}
-                        >
-                            {results?.results
-                                ?.slice(0,6)
-                                ?.map((item, i) =>
-                                    item.media_type === "movie" ? (
-                                        <NavSearchMovie key={item.id} item={item} />
-                                    ) : item.media_type === "tv" ? (
-                                        <NavSearchTv key={item.id} item={item} />
-                                    ) : null
-                                )}
-                            {results?.results?.length > 4 ? (
-                                <li className={styles.more_results}>
-                                    <span>See more results</span>
-                                    <Link href={"/en/search?q=" + query}>
-                                        <a>
-                                            <span>
-                                                <i className="bi bi-arrow-right"></i>
-                                            </span>
-                                        </a>
-                                    </Link>
-                                </li>
-                            ) :
-                                <div className={styles.start_search_container}>
-                                    No results found
-                                </div>
-                                    
-                            }
+                {Object.keys(results).length ? (
+                    <ul className={styles.search_results}>
+                        {results?.results
+                            ?.slice(0, 6)
+                            ?.map((item, i) =>
+                                item.media_type === "movie" ? (
+                                    <NavSearchMovie key={item.id} item={item} />
+                                ) : item.media_type === "tv" ? (
+                                    <NavSearchTv key={item.id} item={item} />
+                                ) : (
+                                    <NavSearchPerson key={item.id} item={item} />
+                                )
+                            )}
+                        {results?.results?.length > 4 ? (
+                            <li className={styles.more_results}>
+                                <span>See more results</span>
+                                <Link href={"/en/search?q=" + query}>
+                                    <a>
+                                        <span>
+                                            <i className="bi bi-arrow-right"></i>
+                                        </span>
+                                    </a>
+                                </Link>
+                            </li>
+                        ) : (
+                            <div className={styles.start_search_container}>
+                                No results found
+                            </div>
+                        )}
                     </ul>
-                       :
+                ) : (
                     <div className={styles.start_search_container}>
                         Search for movies and tv shows
                     </div>
-                }
+                )}
             </div>
             <div
                 className={
@@ -250,9 +262,15 @@ function SmallDeviceNavbar({ }) {
                                     : styles.nav_list_child
                             }
                         >
-                            <Link href={"/en/movie/popular"}><p>Most Popular</p></Link>
-                            <Link href={"/en/movie/most-recent"}><p>Most Recent</p></Link>
-                            <Link href={"/en/movie/top-rated"}><p>Top Rated</p></Link>
+                            <Link href={"/en/movie/popular"}>
+                                <p>Most Popular</p>
+                            </Link>
+                            <Link href={"/en/movie/most-recent"}>
+                                <p>Most Recent</p>
+                            </Link>
+                            <Link href={"/en/movie/top-rated"}>
+                                <p>Top Rated</p>
+                            </Link>
                         </div>
                         <li
                             className={styles.nav_item + " " + styles.dropdown}
@@ -274,9 +292,15 @@ function SmallDeviceNavbar({ }) {
                                     : styles.nav_list_child
                             }
                         >
-                            <Link href={"/en/tv/popular"}><p>Most Popular</p></Link>
-                            <Link href={"/en/tv/most-recent"}><p>Most Recent</p></Link>
-                            <Link href={"/en/tv/top-rated"}><p>Top Rated</p></Link>
+                            <Link href={"/en/tv/popular"}>
+                                <p>Most Popular</p>
+                            </Link>
+                            <Link href={"/en/tv/most-recent"}>
+                                <p>Most Recent</p>
+                            </Link>
+                            <Link href={"/en/tv/top-rated"}>
+                                <p>Top Rated</p>
+                            </Link>
                         </div>
                         <Link href="/en/torrent">
                             <a>

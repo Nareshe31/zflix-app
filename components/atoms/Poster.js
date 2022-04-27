@@ -32,19 +32,27 @@ function Poster({ item, type }) {
         "/en/movie/" +
         item.id +
         "/" +
-        covertToLinkWords(type === "movie" ? item.title : item.name) +
-        "-" +
-        getYear(item.release_date)
+        covertToLinkWords(item.title ) +
+       ( item.release_date?("-" +
+        getYear(item.release_date)):"")
       );
-    } else
+    } else if(type==="tv")
       return (
         "/en/tv/" +
         item.id +
         "/" +
-        covertToLinkWords(type === "movie" ? item.title : item.name) +
-        "-" +
-        getYear(item.first_air_date)
+        covertToLinkWords(item.name) +
+        ( item.first_air_date?("-" +
+        getYear(item.first_air_date)):"")
       );
+      else{
+        return (
+          "/en/person/" +
+          item.id +
+          "/" +
+          covertToLinkWords(item.name)
+        )
+      }
   };
   function MoviePosterInfo({item}) {
     
@@ -92,24 +100,46 @@ function Poster({ item, type }) {
       </div>
     )
   }
+  function PersonPosterInfo({item}) {
+    return(
+      <div className={styles.poster_info}>
+          <p className={styles.title}>{item.name}</p>
+          <p className={styles.overview}>{item.known_for_department}</p>
+          <p className={styles.overview}>{item.overview}</p>
+          {
+            (new Date())>(new Date(item.first_air_date))?          
+              <Link href={getLink()+"/season/1/episode/1"}>
+                <a>
+                  <div className={styles.watch_now}>
+                    <i className="bi bi-play-fill"></i>
+                    Watch Now
+                  </div>
+                </a>
+              </Link>
+            :
+            null
+          }
+      </div>
+    )
+  }
   return (
     <>
       <Link href={getLink()} passHref> 
         <a className={styles.poster_link} >
         <motion.div 
           // whileTap={{ scale: 0.9 }}
-          whileHover={{scale:1.05}}
+          whileHover={{scale:1.075}}
         > 
           <div className={styles.poster_container}>
             <Image
-              src={"https://image.tmdb.org/t/p/w780" + item.poster_path}
+              src={"https://image.tmdb.org/t/p/w780" + (type==="movie"|| type==="tv"?item.poster_path:item.profile_path)}
               layout="fill"
               placeholder="blur"
               objectFit="cover"
-              blurDataURL={"https://image.tmdb.org/t/p/w780" + item.poster_path}
-              alt={item.title}
+              blurDataURL={"https://image.tmdb.org/t/p/w780" + (type==="movie"|| type==="tv"?item.poster_path:item.profile_path)}
+              alt={(type==="movie"?item.title:item.name)}
             />
-            {type==="movie"?<MoviePosterInfo item={item} />:<TvPosterInfo item={item} />}
+            {type==="movie"?<MoviePosterInfo item={item} />:(type==="tv"?<TvPosterInfo item={item} />:<PersonPosterInfo item={item} />)}
           </div>
         </motion.div>
         </a>

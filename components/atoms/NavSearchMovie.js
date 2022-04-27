@@ -1,8 +1,14 @@
-import Link from 'next/link';
+import Link from "next/link";
+import Image from "next/image";
 import { covertToLinkWords, getYear, getDate } from "../../utils/functions";
 import styles from "../../scss/components/navbar.module.scss";
 
-function NavSearchMovie({ item,currentSearchResult,index,handleResultHover}) {
+function NavSearchMovie({
+    item,
+    currentSearchResult,
+    index,
+    handleResultHover,
+}) {
     return (
         <Link
             href={
@@ -10,27 +16,34 @@ function NavSearchMovie({ item,currentSearchResult,index,handleResultHover}) {
                 item.id +
                 "/" +
                 covertToLinkWords(item.title) +
-                "-" +
-                getYear(item.release_date)
+                (item.release_date ? "-" + getYear(item.release_date) : "")
             }
         >
-            <a>
+            <a id={"result_"+index}>
                 <li
-                    className={currentSearchResult==index?styles.result+" "+styles.active:styles.result}
-                    onMouseEnter={()=>handleResultHover(index)}
+                    className={styles.result}
+                    onMouseEnter={() => handleResultHover(index)}
                 >
                     <div className={styles.r_left}>
                         {item.poster_path ? (
-                            <img
-                                src={"https://image.tmdb.org/t/p/original" + item.poster_path}
+                            <Image
+                                src={"https://image.tmdb.org/t/p/w780" + item.poster_path}
+                                layout="fill"
+                                placeholder="blur"
+                                objectFit="cover"
+                                blurDataURL={
+                                    "https://image.tmdb.org/t/p/w780" + item.poster_path
+                                }
                                 alt={item.title}
-                                srcSet=""
                             />
                         ) : (
-                            <img
-                                className={styles.no_image}
-                                alt={item.title + "image not found"}
-                                src="/assets/image-not-found.png"
+                            <Image
+                                src={"/assets/image-not-found.png"}
+                                layout="fill"
+                                placeholder="blur"
+                                objectFit="contain"
+                                blurDataURL={"/assets/image-not-found.png"}
+                                alt={item.title + " image not found"}
                             />
                         )}
                     </div>
@@ -66,4 +79,4 @@ function NavSearchMovie({ item,currentSearchResult,index,handleResultHover}) {
     );
 }
 
-export default NavSearchMovie
+export default NavSearchMovie;

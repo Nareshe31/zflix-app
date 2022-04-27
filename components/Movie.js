@@ -117,11 +117,7 @@ function Movie({ data, base_url }) {
                             <div className={styles.content_info}>
                                 <div className={styles.content_poster}>
                                     <div
-                                        className={
-                                            data.poster_path
-                                                ? styles.content_poster_image
-                                                : styles.content_poster_image + " " + styles.no_image
-                                        }
+                                        className={styles.content_poster_image}
                                     >
                                         <Image
                                             src={
