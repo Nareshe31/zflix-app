@@ -28,7 +28,7 @@ function SearchMovie({ results, total_pages,total_results, base_url }) {
                 <meta property="og:site_name" content="ZFlix" />
                 <meta property="og:title" content={"ZFlix - Watch Movies & TV Shows"} />
                 <meta property="og:description" content={overview} />
-                <meta property="og:image" content="/favicon.ico" />
+                <meta property="og:image" content="/icons/apple-touch-icon.pngico" />
 
                 <meta property="twitter:card" content="summary_large_image" />
                 <meta property="twitter:url" content={base_url + router.asPath} />
@@ -37,7 +37,7 @@ function SearchMovie({ results, total_pages,total_results, base_url }) {
                     content={"ZFlix - Watch Movies & TV Shows"}
                 />
                 <meta property="twitter:description" content={overview} />
-                <meta property="twitter:image" content="/favicon.ico"></meta>
+                <meta property="twitter:image" content="/icons/apple-touch-icon.pngico"></meta>
             </Head>
             {results?.length?
                 <div className={styles.search_results}>

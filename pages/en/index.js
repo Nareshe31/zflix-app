@@ -1,7 +1,7 @@
 import Home from '../../components/Home';
 import { motion } from "framer-motion";
 
-function HomePage({movieData,tvData,base_url,ip}) {
+function HomePage({movieData,tvData,personData,base_url,ip}) {
     const config = {
         type: "spring",
         damping: 20,
@@ -15,7 +15,7 @@ function HomePage({movieData,tvData,base_url,ip}) {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ x: 0, opacity: 0 }} 
         >
-            <Home movieData={movieData} tvData={tvData} base_url={base_url} />
+            <Home movieData={movieData} tvData={tvData} personData={personData} base_url={base_url} />
         </motion.main>
     );
 }
@@ -26,10 +26,14 @@ export async function getServerSideProps(context) {
         const movieData=await movieRes.json()
         const tvRes=await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.TMDB_API_KEY}`)
         const tvData=await tvRes.json()
+        const personRes=await fetch(`https://api.themoviedb.org/3/trending/person/day?api_key=${process.env.TMDB_API_KEY}`)
+        const personData=await personRes.json()
+        
         return {
             props:{
                 movieData:movieData.results,
                 tvData:tvData.results,
+                personData:personData.results,
                 base_url: process.env.BASE_URL,
             }
         }

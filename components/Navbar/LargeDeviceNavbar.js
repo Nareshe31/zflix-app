@@ -5,6 +5,7 @@ import axios from "axios";
 import styles from "../../scss/components/navbar.module.scss";
 import NavSearchTv from "../atoms/NavSearchTv";
 import NavSearchMovie from "../atoms/NavSearchMovie";
+import NavSearchPerson from "../atoms/NavSearchPerson";
 
 function LargeDeviceNavbar({ }) {
     const navbarRef = useRef();
@@ -16,7 +17,7 @@ function LargeDeviceNavbar({ }) {
     const [searchContainerVisible, setsearchContainerVisible] = useState(false);
     const [query, setquery] = useState("");
     const [suggestionLoading, setsuggestionLoading] = useState(false);
-    const [currentSearchResult, setcurrentSearchResult] = useState(0);
+    const [currentSearchResult, setcurrentSearchResult] = useState(-1);
 
     const router = useRouter();
     const { pathname } = router;
@@ -26,9 +27,10 @@ function LargeDeviceNavbar({ }) {
     useEffect(() => {
         inputRef.current.blur();
         document.addEventListener("keydown", (e) => {
-            if (e.keyCode === 191) {
+            if (e.keyCode === 191 && navbarRef && inputRef) {
                 e.preventDefault();
                 inputRef?.current?.focus();
+                navbarRef?.current?.classList?.remove(styles.hide);
             }
             if (e.ctrlKey && e.shiftKey && e.keyCode === 72) {
                 router.push("/en");
@@ -76,10 +78,23 @@ function LargeDeviceNavbar({ }) {
     }, [router]);
 
     useEffect(() => {
-        setcurrentSearchResult(0);
+        setcurrentSearchResult(-1);
         return () => { };
     }, [results, searchContainerVisible]);
 
+    useEffect(() => {
+        var child = document.querySelector('#result_'+currentSearchResult+'> li');
+        var allResults=document.querySelectorAll("#results-list>a li")
+        allResults.forEach(element => {
+            element.classList.remove(styles.active)
+        });
+        if (child) {
+            child.classList.add(styles.active)
+        }
+      return () => {
+      }
+    }, [currentSearchResult])
+    
     function handleKeyDown(e) {
         // arrow up/down button should select next/previous list element
         if (e.keyCode === 38 || e.keyCode === 38) {
@@ -134,7 +149,11 @@ function LargeDeviceNavbar({ }) {
     };
 
     const handleResultHover = (value) => {
-        setcurrentSearchResult(value);
+        var child = document.getElementById('result_'+value);
+        var parent = child.parentNode;
+        // The equivalent of parent.children.indexOf(child)
+        var index = Array.prototype.indexOf.call(parent.children, child);
+        setcurrentSearchResult(index);
     };
     return (
         <nav className={styles.navbar} ref={navbarRef} id="navbar">
@@ -317,12 +336,21 @@ function LargeDeviceNavbar({ }) {
                                         key={item.id}
                                         item={item}
                                     />
-                                ) : null
+                                ) : 
+                                (
+                                    <NavSearchPerson  
+                                        handleResultHover={handleResultHover}
+                                        index={i}
+                                        currentSearchResult={currentSearchResult}
+                                        key={item.id}
+                                        item={item}
+                                    />
+                                )
                             )}
                         {results?.results?.length > 4 ? (
                             <Link href={"/en/search?q=" + query}>
-                                <a>
-                                    <li className={ document.querySelectorAll("#results-list>a").length-1==currentSearchResult?styles.more_results+" "+styles.active:styles.more_results}>
+                                <a id={"result_4"}>
+                                    <li className={styles.more_results}>
                                         <span>See more results</span>
                                         <span>
                                             <i className="bi bi-arrow-right"></i>

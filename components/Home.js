@@ -5,7 +5,7 @@ import Poster from "./atoms/Poster";
 import ScrollContainer from "react-indiana-drag-scroll";
 import { useEffect } from "react";
 import Script from 'next/script'
-function Home({ movieData, tvData, base_url }) {
+function Home({ movieData, tvData,personData, base_url }) {
     const router = useRouter();
     let overview =
         "ZFlix is the largest free streaming platform for movies and tv shows. Collaborative media and info service featuring high quality content for a huge selection of titles and new releases! Available in all countries.";
@@ -91,7 +91,7 @@ function Home({ movieData, tvData, base_url }) {
                 <meta property="og:site_name" content="ZFlix" />
                 <meta property="og:title" content={"ZFlix - Watch Movies & TV Shows"} />
                 <meta property="og:description" content={overview} />
-                <meta property="og:image" content="/favicon.ico" />
+                <meta property="og:image" content="/icons/apple-touch-icon.png" />
 
                 <meta property="twitter:card" content="summary_large_image" />
                 <meta property="twitter:url" content={base_url + router.asPath} />
@@ -100,7 +100,7 @@ function Home({ movieData, tvData, base_url }) {
                     content={"ZFlix - Watch Movies & TV Shows"}
                 />
                 <meta property="twitter:description" content={overview} />
-                <meta property="twitter:image" content="/favicon.ico"></meta>
+                <meta property="twitter:image" content="/icons/apple-touch-icon.png"></meta>
             </Head>
             <div className={styles.main_content}>
                 <section className={styles.section_main}>
@@ -128,7 +128,8 @@ function Home({ movieData, tvData, base_url }) {
                 <section className={styles.section_main}>
                     <div className={styles.section_header}>
                         <h2 className={styles.heading}>Trending TV Shows</h2>
-                        <p>Check out what everyone is talking about</p>
+                        <p>Here are some of the most recent tv shows recommended by our
+                            community</p>
                     </div>
                     <div className={styles.whole_poster}>
                         <ScrollContainer className="scroll-container" horizontal>
@@ -138,6 +139,25 @@ function Home({ movieData, tvData, base_url }) {
                             >
                                 {tvData.map((item) => (
                                     <Poster type="tv" key={item.id} item={item} />
+                                ))}
+                            </div>
+                        </ScrollContainer>
+                    </div>
+                </section>
+
+                <section className={styles.section_main}>
+                    <div className={styles.section_header}>
+                        <h2 className={styles.heading}>Trending Persons</h2>
+                        <p>Check out what everyone is talking about</p>
+                    </div>
+                    <div className={styles.whole_poster}>
+                        <ScrollContainer className="scroll-container" horizontal>
+                            <div
+                                className={ styles.poster_container
+                                }
+                            >
+                                {personData?.map((item) => (
+                                    <Poster type="person" key={item.id} item={item} />
                                 ))}
                             </div>
                         </ScrollContainer>

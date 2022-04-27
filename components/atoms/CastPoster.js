@@ -1,10 +1,30 @@
 import styles from "../../scss/components/cast.module.scss";
 import Image from "next/image";
+import Link from "next/link";
 
 function CastPoster({ item,type }) {
+
+    const removeSpecialCharacters = (title) => {
+        return title.replace(/[&#,+()$~%'.":!*?<>{}]/g, "");
+      };
     
+      const covertToLinkWords = (title) => {
+        var s = removeSpecialCharacters(item.name);
+        return s.replace(/\s+/g, "-").toLowerCase();
+      };
+      const getLink=()=>{
+        return (
+            "/en/person/" +
+            item.id +
+            "/" +
+            covertToLinkWords(item.name)
+          )
+      }
     return (
+        
         <div className={styles.c_parent}>
+            <Link href={getLink()}>
+            <a>
             <div
                 className={
                     item.profile_path
@@ -25,13 +45,20 @@ function CastPoster({ item,type }) {
                     alt={item.title}
                 />
             </div>
+            </a>
+        </Link>
             <div className={styles.c_detail}>
-                <p className={styles.c_name}>{item.name}</p>
+                <Link href={getLink()}>
+                <a>
+                        <p className={styles.c_name}>{item.name}</p>
+                        </a>
+                </Link>
                 <p className={styles.c_job}>
                     <em>{type=="cast"?item.character:item.job}</em>
                 </p>
             </div>
         </div>
+           
     );
 }
 

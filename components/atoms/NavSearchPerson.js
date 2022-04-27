@@ -3,15 +3,20 @@ import Image from "next/image";
 import { covertToLinkWords, getYear, getDate } from "../../utils/functions";
 import styles from "../../scss/components/navbar.module.scss";
 
-function NavSearchTv({ item, currentSearchResult, index, handleResultHover }) {
+function NavSearchPerson({
+    item,
+    currentSearchResult,
+    index,
+    handleResultHover,
+}) {
+    console.log(item);
     return (
         <Link
             href={
-                "/en/tv/" +
+                "/en/person/" +
                 item.id +
                 "/" +
-                covertToLinkWords(item.name) +
-                (item.first_air_date ? "-" + getYear(item.first_air_date) : "")
+                covertToLinkWords(item.name)
             }
         >
             <a id={"result_"+index}>
@@ -20,14 +25,14 @@ function NavSearchTv({ item, currentSearchResult, index, handleResultHover }) {
                     onMouseEnter={() => handleResultHover(index)}
                 >
                     <div className={styles.r_left}>
-                        {item.poster_path ? (
+                        {item.profile_path ? (
                             <Image
-                                src={"https://image.tmdb.org/t/p/w780" + item.poster_path}
+                                src={"https://image.tmdb.org/t/p/w780" + item.profile_path}
                                 layout="fill"
                                 placeholder="blur"
                                 objectFit="cover"
                                 blurDataURL={
-                                    "https://image.tmdb.org/t/p/w780" + item.poster_path
+                                    "https://image.tmdb.org/t/p/w780" + item.profile_path
                                 }
                                 alt={item.name}
                             />
@@ -44,25 +49,30 @@ function NavSearchTv({ item, currentSearchResult, index, handleResultHover }) {
                     </div>
                     <div className={styles.r_right}>
                         <p className={styles.title}>{item.name}</p>
-                        <p>
+                        <p>{item.known_for_department}</p>
+                        {/* <p>
                             <span style={{ marginRight: "5px" }}>
                                 <i
                                     style={{ fontSize: "0.75rem" }}
                                     className="bi bi-calendar-day"
                                 ></i>
                             </span>
-                            {getDate(item.first_air_date)}
-                        </p>
-                        <p>
+                            {getDate(item.birthday)}
+                        </p> */}
+                        {/* <p>{item?.genre_ids?.map((item1, i) => (
+                            <span className="genre">{item1} </span>
+                        ))}
+                    </p> */}
+                        {/* <p>
                             <span style={{ marginRight: "5px" }}>
                                 <i
-                                    style={{ fontSize: "0.8rem" }}
+                                    style={{ fontSize: "0.75rem" }}
                                     className="bi bi-star-fill"
                                 ></i>
                             </span>
                             {item.vote_average}
-                        </p>
-                        <p className={styles.media_type}>TV</p>
+                        </p> */}
+                        <p className={styles.media_type}>Person</p>
                     </div>
                 </li>
             </a>
@@ -70,4 +80,4 @@ function NavSearchTv({ item, currentSearchResult, index, handleResultHover }) {
     );
 }
 
-export default NavSearchTv;
+export default NavSearchPerson;

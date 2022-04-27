@@ -1,7 +1,7 @@
-import Movie from "../../../../../components/Movie";
 import { motion } from "framer-motion";
+import Person from "../../../../../components/Person";
 
-function MoviePage({ data, base_url }) {
+function PersonPage({ data, base_url }) {
     const config = {
         type: "spring",
         damping: 20,
@@ -13,14 +13,14 @@ function MoviePage({ data, base_url }) {
     //   animate={{ scale: 1, opacity: 1 ,y:0}}
     //   exit={{ x: 0, opacity: 0 }}
 
-    return <Movie data={data} base_url={base_url} />;
+    return <Person data={data} base_url={base_url} />;
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({query}) {
     try {
         
         const res = await fetch(
-            `https://api.themoviedb.org/3/movie/${context.query.id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=images,videos,credits,recommendations,similar`
+            `https://api.themoviedb.org/3/person/${query.id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=images,videos,movie_credits,tv_credits`
         );
         const data = await res.json();
         if (!data.hasOwnProperty("success")) {
@@ -42,4 +42,4 @@ export async function getServerSideProps(context) {
     }
 }
 
-export default MoviePage;
+export default PersonPage;

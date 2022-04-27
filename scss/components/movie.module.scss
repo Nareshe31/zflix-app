@@ -65,7 +65,7 @@
                 // background-color: rgba($color: #000, $alpha: 0.55);
                 background: linear-gradient(360deg, #0d0d0d 30%, transparent);
                 display: flex;
-                justify-content: space-between;
+                // justify-content: space-between;
                 padding: 0px 50px 50px 50px;
                 align-items: flex-end;
                 backdrop-filter: blur(1px);
@@ -92,6 +92,7 @@
                             overflow: hidden;
                             position: relative;
                             border-radius: inherit;
+                            background-color: $p-bg;
                         }
                         .content_poster_image.no_image{
                             img{
@@ -129,7 +130,8 @@
                     .content_title {
                         font-weight: 600;
                         font-family: 'Ubuntu', sans-serif;
-                        font-size: 2rem;
+                        font-size: 1.85rem;
+                        margin-bottom: 4px;
                     }
 
                     .content_overview {
@@ -197,7 +199,7 @@
                 }
 
                 .content_o_details {
-                    align-self: flex-end;
+                    // align-self: flex-end;
                     padding: 10px 0px 0px 25px;
 
                     table {
@@ -340,31 +342,7 @@
                 }
             }
 
-            .recommendation_container{
-                // max-width: 86%;
-                margin: 0px auto 10px;
-                padding: 15px $container-padding 0px;
-                position: relative;
-                overflow-y: hidden;
-                .r_poster_container{
-                    width: 100%;
-                    margin: 10px 0;
-                    position: relative;
-                    // overflow-y: hidden;
-                    display: flex;
-                    .r_poster_inner_container{
-                        display: flex;
-                        width: 100%;
-                        position: relative;
-                        overflow-x: auto;
-                        &::-webkit-scrollbar {
-                            width: 0px;
-                            height: 0px;
-                          }
-                    }
-                }
-
-            }
+            
             .season_container {
                 // max-width: 85%;
                 margin: 0px auto;
@@ -454,50 +432,32 @@
         z-index: 101;
     }
 
-    .watch-container {
-        // position: absolute;
-        // left: 0;
-        // top: 0;
-        // width: 100%;
-        height: 100vh;
-        background-color: rgba($color: #000, $alpha: 0.8);
-        transition: all 0.3s ease-in-out;
+}
+
+.recommendation_container{
+    // max-width: 86%;
+    margin: 0px auto 10px;
+    padding: 15px $container-padding 0px;
+    position: relative;
+    overflow-y: hidden;
+    .r_poster_container{
+        width: 100%;
+        margin: 10px 0;
+        position: relative;
+        // overflow-y: hidden;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        .watch-details {
-            margin-bottom: 18px;
-        }
-
-        iframe {
-            width: 95%;
-            height: 85vh;
-        }
-
-        .close-btn {
-            width: max-content;
-            cursor: pointer;
-            padding: 15px 20px;
-            position: absolute;
-            right: 0;
-            top: 0;
-
-            &:hover {
-                background-color: rgba($color: #000, $alpha: 0.45);
-            }
-
-            i {
-                font-size: 1.8rem;
-            }
+        .r_poster_inner_container{
+            display: flex;
+            width: 100%;
+            position: relative;
+            overflow-x: auto;
+            &::-webkit-scrollbar {
+                width: 0px;
+                height: 0px;
+              }
         }
     }
 
-    .watch-container.active {
-        opacity: 1;
-        visibility: visible;
-    }
 }
 
 .c_header {
@@ -666,10 +626,14 @@
 @media screen and (max-width:650px) {
     .w_content {
         .content {
+            .content_bg{
+                height: 80vh;
+            }
             .content_parent {
                 .content_hero {
                     width: 100%;
-                    padding: 32vh 10px 40px !important;
+                    min-height: 80vh;
+                    padding: 22vh 10px 40px !important;
                     align-items: flex-end;
                     position: relative;
                     flex-direction: column;
@@ -729,20 +693,10 @@
                    
                 }
                 
-                .recommendation_container{
-                    width: calc(100%);
-                    margin: 0px 0px 5px;
-                    max-width: 100%;
-                    padding: 0px 0 20px;
-                    .r_poster_container{
-                        &::-webkit-scrollbar {
-                            width: 0px;
-                            height: 0px;
-                          }
-                    }
-                }
+                
             }
         }
+       
 
         .watch_container {
             height: 43vh;
@@ -750,6 +704,18 @@
             iframe {
                 height: 30vh;
             }
+        }
+    }
+    .recommendation_container{
+        width: calc(100%);
+        margin: 0px 0px 5px;
+        max-width: 100%;
+        padding: 0px 0 20px;
+        .r_poster_container{
+            &::-webkit-scrollbar {
+                width: 0px;
+                height: 0px;
+              }
         }
     }
     .c_header{

@@ -75,13 +75,13 @@ function TorrentSearch({ base_url }) {
                 <meta property="og:site_name" content="ZFlix" />
                 <meta property="og:title" content={"Torrent Search - ZFlix"} />
                 <meta property="og:description" content={overview} />
-                <meta property="og:image" content="/favicon.ico" />
+                <meta property="og:image" content="/icons/apple-touch-icon.pngico" />
 
                 <meta property="twitter:card" content="summary_large_image" />
                 <meta property="twitter:url" content={base_url + router.asPath} />
                 <meta property="twitter:title" content={"Torrent Search - ZFlix"} />
                 <meta property="twitter:description" content={overview} />
-                <meta property="twitter:image" content="/favicon.ico"></meta>
+                <meta property="twitter:image" content="/icons/apple-touch-icon.pngico"></meta>
                 <link
                     rel="stylesheet"
                     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
