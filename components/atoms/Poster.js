@@ -64,12 +64,10 @@ function Poster({ item, type }) {
           {
             (new Date())>(new Date(item.release_date))?          
               <Link href={getLink()+"/watch"}>
-                <a>
-                  <div className={styles.watch_now}>
-                    <i className="bi bi-play-fill"></i>
-                    Watch Now
-                  </div>
-                </a>
+                <div className={styles.watch_now}>
+                  <i className="bi bi-play-fill"></i>
+                  Watch Now
+                </div>
               </Link>
             :
             null
@@ -87,12 +85,10 @@ function Poster({ item, type }) {
           {
             (new Date())>(new Date(item.first_air_date))?          
               <Link href={getLink()+"/season/1/episode/1"}>
-                <a>
-                  <div className={styles.watch_now}>
-                    <i className="bi bi-play-fill"></i>
-                    Watch Now
-                  </div>
-                </a>
+                <div className={styles.watch_now}>
+                  <i className="bi bi-play-fill"></i>
+                  Watch Now
+                </div>
               </Link>
             :
             null

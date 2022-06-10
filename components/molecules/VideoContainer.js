@@ -25,7 +25,7 @@ function VideoContainer({ data,title }) {
                                     />
                                     <div className={styles.yt_logo}>
                                         <span>
-                                            <i class="bi bi-youtube"></i>
+                                            <i className="bi bi-youtube"></i>
                                         </span>
                                     </div>
                                     <span className={styles.yt_bg}>

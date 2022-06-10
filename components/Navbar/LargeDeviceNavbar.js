@@ -6,10 +6,14 @@ import styles from "../../scss/components/navbar.module.scss";
 import NavSearchTv from "../atoms/NavSearchTv";
 import NavSearchMovie from "../atoms/NavSearchMovie";
 import NavSearchPerson from "../atoms/NavSearchPerson";
+import { useSelector } from "react-redux";
 
 function LargeDeviceNavbar({ }) {
     const navbarRef = useRef();
     const inputRef = useRef();
+
+    const {user}=useSelector(state=>state)
+    // console.log(state);
 
     const [moviesDropdown, setmoviesDropdown] = useState(false);
     const [tvshowsDropdown, settvshowsDropdown] = useState(false);
@@ -361,16 +365,22 @@ function LargeDeviceNavbar({ }) {
                         ) : null}
                     </ul>
                 </div>
-                {/* <Link href="/en/login">
-                        <a>
-                            <li className={styles.nav_item}>Login</li>
-                        </a>
-                    </Link>
-                    <Link href="/en/login">
-                        <a>
-                            <li className={styles.nav_item}>Sign Up</li>
-                        </a>
-                    </Link> */}
+                    {user && user.userData!==null?
+                        
+                        <Link href="/en/profile">
+                            <a>
+                                <li className={styles.nav_item}>Profile</li>
+                            </a>
+                        </Link>
+                        :<Link href="/en/login">
+                            <a>
+                                <li className={styles.nav_item}>Login</li>
+                            </a>
+                        </Link>
+                    
+                    }
+                
+                    
             </ul>
         </nav>
     );

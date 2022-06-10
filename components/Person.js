@@ -6,7 +6,7 @@ import styles from "../scss/components/person.module.scss";
 import ScrollContainer from "react-indiana-drag-scroll";
 
 function Person({ data, base_url }) {
-    console.log(data);
+    
     const router = useRouter();
 
     function getTitle() {
