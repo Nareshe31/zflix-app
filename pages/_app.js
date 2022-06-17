@@ -1,10 +1,7 @@
 import "../styles/globals.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import Layout1 from '../components/Layout'
 import { useEffect, useState } from "react";
-import axios from "axios";
 import NextNProgress from "nextjs-progressbar";
 import { loadProgressBar } from 'axios-progress-bar'
 
@@ -13,7 +10,7 @@ import {store,wrapper} from '../store/index';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { dataLoaded, loginUser } from "../store/actions";
 import LoadingScreen from "../components/screens/LoadingScreen";
-import { getCookie } from "cookies-next";
+import API from "../services/api";
 
 loadProgressBar()
 
@@ -62,13 +59,9 @@ function MyApp({ Component, pageProps, router }) {
 
   if(!mounted){
     if (typeof(window)!== "undefined") {
-      const token=getCookie('token')
-      // const token=window.localStorage.getItem('token') ? localStorage.getItem('token'): null
-      if(token!==undefined){
-        axios.get("https://zflix-backend.herokuapp.com/api/v2/user-details/"+token).then((res)=>{
-          dispatch(loginUser(res.data.user))
-          dispatch(dataLoaded())
-        }) 
+      const token=window.localStorage.getItem('token') ? localStorage.getItem('token'): null
+      if(token!==null){
+        getUserDetails(token)
       }
       else{
         dispatch(dataLoaded())
@@ -76,6 +69,17 @@ function MyApp({ Component, pageProps, router }) {
     }
   }
 
+  async function getUserDetails(token){
+    try {
+      const data=await API.makeGetRequestWithAuthorization('/user-details',token)
+      data.user["token"]=token
+      dispatch(loginUser(data.user))
+      dispatch(dataLoaded())
+    } catch (error) {
+      localStorage.removeItem('token')
+      dispatch(dataLoaded())
+    }
+  }
   const handleRouteChange = (url) => {
     window.gtag("config", "G-8FMMTY6M6W", {
       page_path: url,

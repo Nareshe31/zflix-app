@@ -1,15 +1,7 @@
 import Head from "next/head";
-import { useEffect } from "react";
 import styles from "../scss/components/error.module.scss";
 
 function ErrorPage() {
-    useEffect(() => {
-        document.getElementsByTagName("footer")[0].style.display = "none";
-
-        return () => {
-            document.getElementsByTagName("footer")[0].style.display = "flex";
-        };
-    }, []);
 
     return (
         <>

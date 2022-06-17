@@ -165,7 +165,7 @@ function LargeDeviceNavbar({ }) {
                 <Link href="/en" passHref>
                     <a>
                         <div className={styles.nav_header}>
-                            <img src="/assets/apple-touch-icon.png" alt="" srcSet="" />
+                            <img src="/assets/zflix-logo.png" alt="" srcSet="" />
                         </div>
                     </a>
                 </Link>
@@ -367,14 +367,14 @@ function LargeDeviceNavbar({ }) {
                 </div>
                     {user && user.userData!==null?
                         
-                        <Link href="/en/profile">
+                        <Link href="/en/watchlist">
                             <a>
                                 <li className={styles.nav_item}>Profile</li>
                             </a>
                         </Link>
-                        :<Link href="/en/login">
+                        :<Link href={"/en/login?redirect_url="+encodeURIComponent(router.asPath)}>
                             <a>
-                                <li className={styles.nav_item}>Login</li>
+                                <li className={styles.nav_item}>Sign In</li>
                             </a>
                         </Link>
                     

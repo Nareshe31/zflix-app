@@ -22,6 +22,9 @@ const reducer = (state = {}, action) => {
         case actionTypes.DATA_LOADED:
             return {...state,userDataLoaded:true};
 
+        case actionTypes.UPDATE_WATCHLIST:
+            return {...state,userData:{...state.userData,watchlist:[...action.payload]}};
+
         default: return state;
     }
 };

@@ -1,4 +1,3 @@
-import { removeCookies } from 'cookies-next'
 import { useDispatch } from 'react-redux'
 import { logoutUser } from '../store/actions'
 
@@ -9,7 +8,6 @@ function Profile() {
     const logout=()=>{
         dispatch(logoutUser())
           localStorage.removeItem('token')
-          removeCookies('token')
           window.location.reload()
       }
     

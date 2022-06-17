@@ -21,7 +21,7 @@
     .contact_us {
         padding: 4px 12px;
         border-left: 1px solid #555;
-
+        margin-left: 24px;
         .contact_us_list {
             display: flex;
 
@@ -52,8 +52,10 @@
         border-radius: 10px;
         padding: 8px 8px;
         background-color: $nav-color;
-        margin-right: 24px;
-
+        border: none;
+        outline: none;
+        color: $text-lighter-color;
+        cursor: pointer;
         .text {
             display: flex;
             flex-direction: column;

@@ -2,19 +2,21 @@ import styles from "../scss/components/login.module.scss";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../store/actions";
 import HeaderLayout from "../layouts/HeaderLayout";
 import Link from "next/link";
 import API from "../services/api";
 
-function Login({ }) {
+function Register({ }) {
     const { userData } = useSelector((state) => state.user);
     const [loginForm, setloginForm] = useState({
+        name:"",
         email: "",
         password: "",
         errorMessage: "",
         submitError: false,
         success:false,
-        showPassword:false
+        showPassword:false,
     });
     const [submitLoading, setsubmitLoading] = useState(false);
     const router = useRouter();
@@ -25,14 +27,14 @@ function Login({ }) {
             e.preventDefault();
             setsubmitLoading(true);
             const body={
+                name:loginForm.name,
                 email:loginForm.email,
                 password:loginForm.password
             }
-            const data = await API.makePostRequest("/login", body);
-            localStorage.setItem("token", data.token);
+            const data = await API.makePostRequest("/signup", body);
             setsubmitLoading(false);
-            handleRedirect();
-            setloginForm(prev=>({...prev,success:true,submitError:false,errorMessage:""}))
+            // handleRedirect();
+            setloginForm(prev=>({...prev,name:"",email:"",password:"",success:true,submitError:false,errorMessage:""}))
         } catch (error) {
             setloginForm((prev) => ({
                 ...prev,
@@ -63,6 +65,10 @@ function Login({ }) {
         window.location.href = window.location.origin + "/en";
     };
 
+    const closePopup=()=>{
+        setloginForm(prev=>({...prev,success:false}))
+    }
+
     if (userData) {
         // router.push("/en");
         setTimeout(() => {
@@ -86,10 +92,26 @@ function Login({ }) {
             <section className={styles.login_section}>
                 <div className={styles.login_container}>
                     <div className={styles.login_header}>
-                        <h3>Sign In via email</h3>
+                        <h3>Sign Up</h3>
                     </div>
                     <div className={styles.login_form}>
                         <form onSubmit={handleSubmit} action="">
+                            <div className={styles.input_group}>
+                                <label htmlFor="name">Name</label>
+                                <div className={styles.input}>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        required={true}
+                                        minLength={4}
+                                        value={loginForm.name}
+                                        onChange={handleChange}
+                                        id="name"
+                                        placeholder="John Doe"
+                                        autoComplete="off"
+                                    />
+                                </div>
+                            </div>
                             <div className={styles.input_group}>
                                 <label htmlFor="email">Email</label>
                                 <div className={styles.input}>
@@ -112,10 +134,12 @@ function Login({ }) {
                                         type={loginForm.showPassword?"text":"password"}
                                         name="password"
                                         required={true}
+                                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$"
                                         value={loginForm.password}
                                         onChange={handleChange}
                                         id="password"
                                         placeholder="********"
+                                        title="1. A lowercase letter 2. A uppercase letter 3.Minimum 8 characters 4. Maximum 16 characters"
                                     />
                                     <span title={loginForm.showPassword?"Hide password":"Show password"} onClick={()=>setloginForm(prev=>({...prev,showPassword:!prev.showPassword}))}>
                                         <i className={loginForm.showPassword?"bi bi-eye-slash":"bi bi-eye"}></i>
@@ -135,30 +159,45 @@ function Login({ }) {
                             </div>
                             <div className={styles.submit_button}>
                                 <button disabled={submitLoading} type="submit">
-                                    {submitLoading ? "loading..." : "Sign In"}
+                                    {submitLoading ? "loading..." : "Sign Up"}
                                 </button>
                             </div>
                         </form>
                     </div>
                     <div className={styles.login_info}>
-                        <Link href={"/en/forgot-password"}>
+                        {/* <Link href={"/en/forgot-password"}>
                             <a>
                                 <p>Forgot password?</p>
                             </a>
-                        </Link>
+                        </Link> */}
                         <p>
-                            Don't have an account?{" "}
-                            <Link href={redirect_url?`/en/register?redirect_url=${encodeURIComponent(redirect_url)}`:'/en/signup'}>
+                            Already have an account?{" "}
+                            <Link href={redirect_url?`/en/login?redirect_url=${encodeURIComponent(redirect_url)}`:'/en/login'}>
                                 <a>
-                                    <span className={styles.bold_text}>Register</span>
+                                    <span className={styles.bold_text}>Login</span>
                                 </a>
                             </Link>
                         </p>
                     </div>
                 </div>
             </section>
+            {loginForm.success?
+            <div className={styles.success_container}>
+                <div className={styles.s_container}>
+                    <div className={styles.close}>
+                        <button onClick={closePopup}>
+                            <i className="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                    <div className={styles.success_message}>
+                        <h2>Thanks! Your account has been successfully created.</h2>
+                        <p>Please check your inbox, verification link is sent on your email. Verify your account and log in to enjoy all the features of ZFlix.</p>
+                    </div>
+                </div>
+            </div>
+            :null}
         </>
     );
 }
 
-export default Login;
+export default Register;

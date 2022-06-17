@@ -1,6 +1,6 @@
 import Home from '../../components/Home';
 
-function HomePage({movieData,tvData,personData,base_url,ip}) {
+function HomePage({movieData,tvData,personData,base_url}) {
 
     return (
         <Home movieData={movieData} tvData={tvData} personData={personData} base_url={base_url} />

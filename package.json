@@ -8,11 +8,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^1.9.0",
     "axios": "^0.25.0",
     "axios-progress-bar": "^1.2.0",
     "babel-plugin-macros": "^3.1.0",
     "bootstrap-icons": "^1.7.2",
-    "cookies-next": "^2.0.4",
     "framer-motion": "^6.2.3",
     "mongoose": "^6.1.7",
     "next": "12.0.8",

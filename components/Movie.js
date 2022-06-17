@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
     getMonth,
     getMinute,
@@ -16,14 +16,22 @@ import CastContainer from "./molecules/CastContainer";
 import ImageListContainer from "./molecules/ImageListContainer";
 import ImagePreview from "./atoms/ImagePreview";
 import VideoContainer from "./molecules/VideoContainer";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import API from '../services/api';
+import { updateWatchlist } from "../store/actions";
 
 function Movie({ data, base_url }) {
+    console.log(data);
     const router = useRouter();
     let {id,name}=router.query
     const [torrents, settorrents] = useState({});
     const [selectedImage, setselectedImage] = useState(0);
     const [imagePreview, setimagePreview] = useState(false);
     const [loading, setloading] = useState(false);
+
+    const {userData}=useSelector(state=>state.user)
+    const dispatch=useDispatch()
 
     useEffect(() => {
         setloading(false);
@@ -60,10 +68,12 @@ function Movie({ data, base_url }) {
         setselectedImage(index);
         document.body.classList.add("no_scroll");
     };
+
     const previewClose = () => {
         document.body.classList.remove("no_scroll");
         setimagePreview(false);
     };
+
     const config = {
         type: "spring",
         damping: 20,
@@ -78,6 +88,36 @@ function Movie({ data, base_url }) {
         return <div></div>;
     }
 
+    const isAddedToWatchlist= userData && userData.watchlist.filter((item)=>item.data.id==id)
+    
+    const addToWatchlist=async()=>{
+        try {
+            const body={
+                id,
+                type:"movie",
+                year:data.release_date,
+                name:data.title,
+                poster_path:data.poster_path,
+                overview:data.overview
+            }
+            const resdata=await API.makePostRequestWithAuthorization("/add-to-watchlist",body,userData.token)
+            dispatch(updateWatchlist(resdata.watchlist))
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const removeFromWatchlist=async()=>{
+        try {
+            const body={
+                watchlistId:isAddedToWatchlist[0]._id
+            }
+            const data=await API.makePostRequestWithAuthorization("/remove-from-watchlist",body,userData.token)
+            dispatch(updateWatchlist(data.watchlist))
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <>
             <Head>
@@ -173,18 +213,35 @@ function Movie({ data, base_url }) {
                                             <div className={styles.show}>
                                                 <Link href={"/en/movie/"+id+"/"+name + "/watch"}>
                                                     <a>
-                                                        <div className={styles.watch_now}>
+                                                        <button className={styles.watch_now}>
                                                             <i className="bi bi-play-fill"></i>
                                                             Watch Now
-                                                        </div>
+                                                        </button>
                                                     </a>
                                                 </Link>
-                                                {/* <div
-                                                    className={styles.show_trailer}
-                                                    onClick={() => setwatch(true)}
-                                                >
-                                                    Trailer
-                                                </div> */}
+                                                {
+                                                    userData!==null?
+                                                    <>
+                                                    {isAddedToWatchlist.length?
+                                                        <button
+                                                            className={styles.watchlist}
+                                                            onClick={removeFromWatchlist}
+                                                        >
+                                                            <i className="bi bi-x-lg"></i>
+                                                            Remove from watchlist
+                                                        </button>
+                                                        :
+                                                        <button
+                                                        className={styles.watchlist}
+                                                        onClick={addToWatchlist}
+                                                    >
+                                                        <i className="bi bi-plus-lg"></i>
+                                                        Add to watchlist
+                                                    </button>
+                                                    }
+                                                    </>
+                                                    :null
+                                                }
                                             </div>
                                         :null
                                     }

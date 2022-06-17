@@ -5,6 +5,7 @@ import Poster from "./atoms/Poster";
 import ScrollContainer from "react-indiana-drag-scroll";
 import { useEffect } from "react";
 import Script from 'next/script'
+
 function Home({ movieData, tvData,personData, base_url }) {
     const router = useRouter();
     let overview =

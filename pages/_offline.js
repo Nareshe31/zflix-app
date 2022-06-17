@@ -1,13 +1,6 @@
 import { useEffect } from "react";
 
 export default function OfflinePage({ }) {
-    useEffect(() => {
-        document.getElementsByTagName("footer")[0].style.display = "none";
-
-        return () => {
-            document.getElementsByTagName("footer")[0].style.display = "flex";
-         };
-    }, []);
 
     return (
         <div

@@ -4,7 +4,7 @@ import styles from '../../scss/components/poster.module.scss';
 import { motion } from "framer-motion";
 import { getDate } from '../../utils/functions';
 
-function PosterWithDetails({ item, type }) {
+function WatchlistPoster({ item, type }) {
   const getYear = (date) => {
     return date?.slice(0, 4);
   };
@@ -33,18 +33,18 @@ function PosterWithDetails({ item, type }) {
         "/en/movie/" +
         item.id +
         "/" +
-        covertToLinkWords(type === "movie" ? item.title : item.name) +
+        covertToLinkWords(item.name) +
         "-" +
-        getYear(item.release_date)
+        getYear(item.year)
       );
     } else
       return (
         "/en/tv/" +
         item.id +
         "/" +
-        covertToLinkWords(type === "movie" ? item.title : item.name) +
+        covertToLinkWords(item.name) +
         "-" +
-        getYear(item.first_air_date)
+        getYear(item.year)
       );
   };
 
@@ -52,11 +52,11 @@ function PosterWithDetails({ item, type }) {
     
     return(
       <div className={styles.poster_info}>
-          <p className={styles.title}>{item.title}</p>
-          <p className={styles.overview}>{getYear(item.release_date)}</p>
+          <p className={styles.title}>{item.name}</p>
+          <p className={styles.overview}>{getYear(item.year)}</p>
           <p className={styles.overview}>{item.overview}</p>
           {
-            (new Date())>(new Date(item.release_date))?          
+            (new Date())>(new Date(item.year))?          
               <Link href={getLink()+"/watch"}>
                 <div className={styles.watch_now}>
                   <i className="bi bi-play-fill"></i>
@@ -74,10 +74,10 @@ function PosterWithDetails({ item, type }) {
     return(
       <div className={styles.poster_info}>
           <p className={styles.title}>{item.name}</p>
-          <p className={styles.overview}>{getYear(item.first_air_date)}</p>
+          <p className={styles.overview}>{getYear(item.year)}</p>
           <p className={styles.overview}>{item.overview}</p>
           {
-            (new Date())>(new Date(item.first_air_date))?          
+            (new Date())>(new Date(item.year))?          
               <Link href={getLink()+"/season/1/episode/1"}>
                 <div className={styles.watch_now}>
                   <i className="bi bi-play-fill"></i>
@@ -90,39 +90,17 @@ function PosterWithDetails({ item, type }) {
       </div>
     )
   }
-  function PersonPosterInfo({item}) {
-    return(
-      <div className={styles.poster_info}>
-          <p className={styles.title}>{item.name}</p>
-          <p className={styles.overview}>{item.known_for_department}</p>
-          <p className={styles.overview}>{item.overview}</p>
-          {
-            (new Date())>(new Date(item.first_air_date))?          
-              <Link href={getLink()+"/season/1/episode/1"}>
-                <a>
-                  <div className={styles.watch_now}>
-                    <i className="bi bi-play-fill"></i>
-                    Watch Now
-                  </div>
-                </a>
-              </Link>
-            :
-            null
-          }
-      </div>
-    )
-  }
 
   return (
     <>
       <Link href={getLink()} passHref> 
-        <a className={styles.d_poster_link+" "+styles.poster_link} >
+        <a className={styles.poster_link} >
         <motion.div 
           // whileTap={{ scale: 0.9 }}
           whileHover={{scale:1.075}}
-          className={styles.d_w_container}
+          className={styles.container}
         > 
-          <div className={styles.d_poster_container}>
+          <div className={styles.poster_container}>
             <Image
               src={"https://image.tmdb.org/t/p/w780" + item.poster_path}
               layout="fill"
@@ -141,5 +119,4 @@ function PosterWithDetails({ item, type }) {
   );
 }
 
-
-export default PosterWithDetails;
+export default WatchlistPoster;

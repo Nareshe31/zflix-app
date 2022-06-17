@@ -1,11 +1,8 @@
+import Watchlist from "../../components/Watchlist"
 
-function WatchlistPage({user}) {
+function WatchlistPage({}) {
 
-    return(
-        <div style={{"paddingTop":"100px"}}>
-            <h2>Watchlist Page</h2>
-        </div>
-    )
+    return <Watchlist  />
 }
 
 export async function getServerSideProps(context) {

@@ -236,8 +236,9 @@ function SmallDeviceNavbar({ }) {
                         ? styles.nav_sidebar + " " + styles.active
                         : styles.nav_sidebar
                 }
+                onClick={hamClose}
             >
-                <div className={styles.nav_side_container}>
+                <div className={styles.nav_side_container} onClick={(e)=>e.stopPropagation()}>
                     <div className={styles.nav_close} onClick={hamClose}>
                         <i className="bi bi-x"></i>
                     </div>

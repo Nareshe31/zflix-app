@@ -6,12 +6,7 @@ import styles from "../scss/components/search.module.scss";
 
 function SearchLayout({ children,total_results,active,link }) {
     const router = useRouter();
-    const [query, setquery] = useState('')
-    useEffect(() => {
-        setquery(router.query.q?router.query.q:'')
-        return () => {
-        }
-    }, [])
+    const [query, setquery] = useState(router.query.q?router.query.q:'')
 
     const handleChangeQuery=(e)=>{
         setquery(e.target.value)
