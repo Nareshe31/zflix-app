@@ -165,7 +165,7 @@ function SmallDeviceNavbar({ }) {
             >
                 <div className={styles.nav_row_2}>
                     <span className={styles.back_arrow} onClick={closeSearchBar}>
-                        <i class="bi bi-arrow-left"></i>
+                        <i className="bi bi-arrow-left"></i>
                     </span>
                     <form onSubmit={handleSubmit}>
                         <input
@@ -191,7 +191,7 @@ function SmallDeviceNavbar({ }) {
                         }
                         onClick={clearSearch}
                     >
-                        <i class="bi bi-x-lg"></i>
+                        <i className="bi bi-x-lg"></i>
                     </span>
                 </div>
                 {Object.keys(results).length ? (

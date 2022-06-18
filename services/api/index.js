@@ -37,4 +37,5 @@ export default {
     makePostRequest,
     makeGetRequestWithAuthorization,
     makePostRequestWithAuthorization,
+    BASE_URL
 };
