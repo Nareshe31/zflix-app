@@ -80,13 +80,13 @@
             margin-top: 14px;
             color: $text-lighter-color;
             text-align: center;
-            p{
-                margin-top: 2.5px;
-                &:nth-child(1){
-                    &:hover{
-                        color: $text-color;
-                    }
-                }
+            &>p{
+                margin-top: 5px;
+                // &:nth-child(1){
+                //     &:hover{
+                //         color: $text-color;
+                //     }
+                // }
             }
             
         }

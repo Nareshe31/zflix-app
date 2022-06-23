@@ -13,10 +13,10 @@ const reducer = (state = {}, action) => {
                 userData:action.payload
             };
 
-        case actionTypes.LOGIN_USER:
+        case actionTypes.LOGOUT_USER:
             return {
+                ...state,
                 userData:null,
-                ...state
             };
 
         case actionTypes.DATA_LOADED:

@@ -1,7 +1,8 @@
-import Profile from "../../components/Profile"
+import Watchlist from "../../../components/Watchlist"
 
-function LoginPage({}) {
-    return <Profile  />
+function WatchlistPage({}) {
+
+    return <Watchlist  />
 }
 
 export async function getServerSideProps(context) {
@@ -10,13 +11,13 @@ export async function getServerSideProps(context) {
             props:{
                 base_url: process.env.BASE_URL,
             }
-        }    
+        }
     } catch (error) {
-        console.log(error);
         return {
             notFound:true
         }
     }
 }
 
-export default LoginPage
+
+export default WatchlistPage

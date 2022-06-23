@@ -27,9 +27,9 @@ function Register({ }) {
             e.preventDefault();
             setsubmitLoading(true);
             const body={
-                name:loginForm.name,
-                email:loginForm.email,
-                password:loginForm.password
+                name:String(loginForm.name).trim(),
+                email:String(loginForm.email).trim(),
+                password:String(loginForm.password).trim()
             }
             const data = await API.makePostRequest("/signup", body);
             setsubmitLoading(false);
@@ -79,7 +79,7 @@ function Register({ }) {
             <>
                 <HeaderLayout title={"Login - Zflix"} />
                 <div className={styles.login_section}>
-                    <p>You've already logged in. Redirecting to home page, if not redirected
+                    <p style={{"maxWidth":"300px"}}>You've already logged in. Redirecting to home page, if not redirected
                     click <a href="/en" style={{"color":"blue"}}> here</a></p>
                 </div>
             </>
@@ -139,7 +139,7 @@ function Register({ }) {
                                         onChange={handleChange}
                                         id="password"
                                         placeholder="********"
-                                        title="1. A lowercase letter 2. A uppercase letter 3.Minimum 8 characters 4. Maximum 16 characters"
+                                        title="1. One lowercase character 2. One uppercase character 3. One Special Character (!@#$%^&*_=+_) 3.Minimum 8 characters 4. Maximum 16 characters"
                                     />
                                     <span title={loginForm.showPassword?"Hide password":"Show password"} onClick={()=>setloginForm(prev=>({...prev,showPassword:!prev.showPassword}))}>
                                         <i className={loginForm.showPassword?"bi bi-eye-slash":"bi bi-eye"}></i>
@@ -191,7 +191,7 @@ function Register({ }) {
                     </div>
                     <div className={styles.success_message}>
                         <h2>Thanks! Your account has been successfully created.</h2>
-                        <p>Please check your inbox, verification link is sent on your email. Verify your account and log in to enjoy all the features of ZFlix.</p>
+                        <p>Please check your inbox, verification link is sent on your email address. Verify your account and log in to enjoy all the features of ZFlix.</p>
                     </div>
                 </div>
             </div>

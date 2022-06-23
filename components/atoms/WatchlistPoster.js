@@ -94,13 +94,13 @@ function WatchlistPoster({ item, type }) {
   return (
     <>
       <Link href={getLink()} passHref> 
-        <a className={styles.poster_link} >
+        <a className={styles.d_poster_link+" "+styles.poster_no_margin+" "+styles.poster_link} >
         <motion.div 
           // whileTap={{ scale: 0.9 }}
           whileHover={{scale:1.075}}
-          className={styles.container}
+          className={styles.d_w_container}
         > 
-          <div className={styles.poster_container}>
+          <div className={styles.d_poster_container}>
             <Image
               src={"https://image.tmdb.org/t/p/w780" + item.poster_path}
               layout="fill"

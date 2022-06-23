@@ -17,7 +17,7 @@ function LoadingScreen({ }) {
     return (
         <section style={loadContainer}>
             <div>
-                <img style={imageStyle} src="/icons/apple-touch-icon.png" alt="ZFlix Logo " srcSet="" />
+                <img style={imageStyle} src="/assets/zflix-logo.png" alt="ZFlix Logo " srcSet="" />
             </div>
         </section>
     );

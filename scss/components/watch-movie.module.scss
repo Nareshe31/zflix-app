@@ -94,6 +94,20 @@
             height: calc(35vh - 60px);
             box-sizing: border-box;
         }
+        .login_container {
+            margin-top: 60px;
+            width: 100%;
+            height: calc(35vh - 60px);
+            .watch_bg_container{
+                height: calc(35vh - 60px);
+                .watch_bg{
+                height: calc(35vh - 60px);
+                }
+            }
+            .login_message{
+                height: calc(35vh - 60px);
+            }
+        }
         .w_details {
             padding: 20px 15px;
             h2{

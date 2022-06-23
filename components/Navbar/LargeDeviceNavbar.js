@@ -366,12 +366,20 @@ function LargeDeviceNavbar({ }) {
                     </ul>
                 </div>
                     {user && user.userData!==null?
-                        
-                        <Link href="/en/watchlist">
-                            <a>
-                                <li className={styles.nav_item}>Profile</li>
-                            </a>
-                        </Link>
+                        <li className={styles.nav_item}>Profile
+                            <ul className={styles.nav_list_child+ " " + styles.last}>
+                            <Link href="/en/u/watchlist">
+                                <a>
+                                <li className={styles.nav_item_child}>Watchlist</li>
+                                </a>
+                                </Link>
+                                <Link href="/en/u/profile">
+                                <a>
+                                <li className={styles.nav_item_child}>Account</li>
+                                </a>
+                                </Link>
+                            </ul>
+                        </li>
                         :<Link href={"/en/login?redirect_url="+encodeURIComponent(router.asPath)}>
                             <a>
                                 <li className={styles.nav_item}>Sign In</li>

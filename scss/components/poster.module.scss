@@ -117,6 +117,14 @@
     cursor: pointer;
 }
 
+//Watchlist
+.watchlist_container{
+    padding-top:90px;
+    margin:0 24px;
+    color:$text-color;
+    padding-bottom: 40px;
+}
+
 @media screen and (max-width:600px) {
     .poster_container{
         width: $p-sm-w;
@@ -133,6 +141,15 @@
         &:last-child{
             margin-right: 12px;
         }
+    }
+    .poster_no_margin{
+        &:nth-child(1){
+            margin-left: 12px;
+        }
+        &:last-child{
+            margin-right: 12px;
+        }
+        margin: 0 6px 8px !important;
     }
     .d_poster_container{
         width: 28vw;
@@ -157,6 +174,13 @@
         }
         &:last-child{
             margin-right: 18px;
+        }
+    }
+    .watchlist_container{
+        padding-top: 76px;
+        margin: 0 12px;
+        h2{
+            font-size: 1.2rem;
         }
     }
 }

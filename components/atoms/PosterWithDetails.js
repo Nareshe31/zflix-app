@@ -116,7 +116,7 @@ function PosterWithDetails({ item, type }) {
   return (
     <>
       <Link href={getLink()} passHref> 
-        <a className={styles.d_poster_link+" "+styles.poster_link} >
+        <a className={styles.d_poster_link+" "+styles.poster_link+" "+styles.poster_no_margin} >
         <motion.div 
           // whileTap={{ scale: 0.9 }}
           whileHover={{scale:1.075}}

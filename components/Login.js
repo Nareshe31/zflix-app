@@ -67,13 +67,13 @@ function Login({ }) {
         // router.push("/en");
         setTimeout(() => {
             router.push("/en");
-        }, 500);
+        }, 1000);
 
         return (
             <>
                 <HeaderLayout title={"Login - Zflix"} />
                 <div className={styles.login_section}>
-                    <p>You've already logged in. Redirecting to home page, if not redirected
+                    <p style={{"maxWidth":"300px"}}>You've already logged in. Redirecting to home page, if not redirected
                     click <a href="/en" style={{"color":"blue"}}> here</a></p>
                 </div>
             </>
@@ -141,12 +141,7 @@ function Login({ }) {
                         </form>
                     </div>
                     <div className={styles.login_info}>
-                        <Link href={"/en/forgot-password"}>
-                            <a>
-                                <p>Forgot password?</p>
-                            </a>
-                        </Link>
-                        <p>
+                    <p>
                             Don't have an account?{" "}
                             <Link href={redirect_url?`/en/register?redirect_url=${encodeURIComponent(redirect_url)}`:'/en/signup'}>
                                 <a>
@@ -154,6 +149,15 @@ function Login({ }) {
                                 </a>
                             </Link>
                         </p>
+                        {/* <Link href={"/en/forgot-password"}>
+                            <a> */}
+                            <p>
+                                <p>Forgot password?</p>
+                                <p>Contact &nbsp;<a className={styles.bold_text} href="mailto:zflix.contact@protonmail.com">zflix.contact@protonmail.com</a></p>
+                            </p>
+                            {/* </a>
+                        </Link> */}
+                       
                     </div>
                 </div>
             </section>
