@@ -18,20 +18,20 @@ import ImagePreview from "./atoms/ImagePreview";
 import VideoContainer from "./molecules/VideoContainer";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import API from '../services/api';
+import API from "../services/api";
 import { updateWatchlist } from "../store/actions";
 
 function Movie({ data, base_url }) {
     console.log(data);
     const router = useRouter();
-    let {id,name}=router.query
+    let { id, name } = router.query;
     const [torrents, settorrents] = useState({});
     const [selectedImage, setselectedImage] = useState(0);
     const [imagePreview, setimagePreview] = useState(false);
     const [loading, setloading] = useState(false);
 
-    const {userData}=useSelector(state=>state.user)
-    const dispatch=useDispatch()
+    const { userData } = useSelector((state) => state.user);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setloading(false);
@@ -88,36 +88,45 @@ function Movie({ data, base_url }) {
         return <div></div>;
     }
 
-    const isAddedToWatchlist= userData && userData.watchlist.filter((item)=>item.data.id==id)
-    
-    const addToWatchlist=async()=>{
-        try {
-            const body={
-                id,
-                type:"movie",
-                year:data.release_date,
-                name:data.title,
-                poster_path:data.poster_path,
-                overview:data.overview
-            }
-            const resdata=await API.makePostRequestWithAuthorization("/add-to-watchlist",body,userData.token)
-            dispatch(updateWatchlist(resdata.watchlist))
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    const isAddedToWatchlist =
+        userData && userData.watchlist.filter((item) => item.data.id == id);
 
-    const removeFromWatchlist=async()=>{
+    const addToWatchlist = async () => {
         try {
-            const body={
-                watchlistId:isAddedToWatchlist[0]._id
-            }
-            const data=await API.makePostRequestWithAuthorization("/remove-from-watchlist",body,userData.token)
-            dispatch(updateWatchlist(data.watchlist))
+            const body = {
+                id,
+                type: "movie",
+                year: data.release_date,
+                name: data.title,
+                poster_path: data.poster_path,
+                overview: data.overview,
+            };
+            const resdata = await API.makePostRequestWithAuthorization(
+                "/add-to-watchlist",
+                body,
+                userData.token
+            );
+            dispatch(updateWatchlist(resdata.watchlist));
         } catch (error) {
             console.log(error);
         }
-    }
+    };
+
+    const removeFromWatchlist = async () => {
+        try {
+            const body = {
+                watchlistId: isAddedToWatchlist[0]._id,
+            };
+            const data = await API.makePostRequestWithAuthorization(
+                "/remove-from-watchlist",
+                body,
+                userData.token
+            );
+            dispatch(updateWatchlist(data.watchlist));
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return (
         <>
             <Head>
@@ -156,9 +165,7 @@ function Movie({ data, base_url }) {
                         <div className={styles.content_hero}>
                             <div className={styles.content_info}>
                                 <div className={styles.content_poster}>
-                                    <div
-                                        className={styles.content_poster_image}
-                                    >
+                                    <div className={styles.content_poster_image}>
                                         <Image
                                             src={
                                                 data.poster_path
@@ -208,21 +215,19 @@ function Movie({ data, base_url }) {
                                         ))}
                                     </div>
                                     <p className={styles.content_overview}>{data.overview}</p>
-                                    {
-                                        (new Date())>(new Date(data.release_date))?
-                                            <div className={styles.show}>
-                                                <Link href={"/en/movie/"+id+"/"+name + "/watch"}>
-                                                    <a>
-                                                        <button className={styles.watch_now}>
-                                                            <i className="bi bi-play-fill"></i>
-                                                            Watch Now
-                                                        </button>
-                                                    </a>
-                                                </Link>
-                                                {
-                                                    userData!==null?
-                                                    <>
-                                                    {isAddedToWatchlist.length?
+                                    {new Date() > new Date(data.release_date) ? (
+                                        <div className={styles.show}>
+                                            <Link href={"/en/movie/" + id + "/" + name + "/watch"}>
+                                                <a>
+                                                    <button className={styles.watch_now}>
+                                                        <i className="bi bi-play-fill"></i>
+                                                        Watch Now
+                                                    </button>
+                                                </a>
+                                            </Link>
+                                            {userData !== null ? (
+                                                <>
+                                                    {isAddedToWatchlist.length ? (
                                                         <button
                                                             className={styles.watchlist}
                                                             onClick={removeFromWatchlist}
@@ -230,138 +235,172 @@ function Movie({ data, base_url }) {
                                                             <i className="bi bi-x-lg"></i>
                                                             Remove from watchlist
                                                         </button>
-                                                        :
+                                                    ) : (
                                                         <button
-                                                        className={styles.watchlist}
-                                                        onClick={addToWatchlist}
-                                                    >
-                                                        <i className="bi bi-plus-lg"></i>
-                                                        Add to watchlist
-                                                    </button>
-                                                    }
-                                                    </>
-                                                    :null
-                                                }
-                                            </div>
-                                        :null
-                                    }
+                                                            className={styles.watchlist}
+                                                            onClick={addToWatchlist}
+                                                        >
+                                                            <i className="bi bi-plus-lg"></i>
+                                                            Add to watchlist
+                                                        </button>
+                                                    )}
+                                                </>
+                                            ) : (
+                                                <button
+                                                    className={styles.watchlist}
+                                                    id="watchlist"
+                                                    onClick={(e)=>{
+                                                        e.stopPropagation()
+                                                        document.getElementById('watchlist').classList.toggle(styles.active)
+                                                        setTimeout(() => {
+                                                            document.getElementById('watchlist').classList.toggle(styles.active)
+                                                        }, 1000);
+                                                    }}
+                                                >
+                                                    <i className="bi bi-plus-lg"></i>
+                                                    Add to watchlist
+                                                    <span className={styles.tooltip}>Sign In to add to watchlist</span>
+                                                </button>
+                                            )}
+                                        </div>
+                                    ) : null}
                                 </div>
                             </div>
 
-                                <div className={styles.content_o_details}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td>Original Title</td>
-                                                <td>{data.original_title}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Status</td>
-                                                <td>{data.status}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Language</td>
-                                                <td>
-                                                    {" "}
-                                                    {data.spoken_languages.map((item, i) => (
-                                                        <span key={i}>
-                                                            {item.english_name}
-                                                            {i != data.spoken_languages.length - 1
-                                                                ? ","
-                                                                : ""}{" "}
-                                                        </span>
-                                                    ))}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Budget</td>
-                                                <td>{convertMoney(data.budget)}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Revenue</td>
-                                                <td>{convertMoney(data.revenue)}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Production</td>
-                                                <td>
-                                                    {" "}
-                                                    {data.production_companies.map((item, i) => (
-                                                        <span key={i}>
-                                                            {item.name}
-                                                            {i != data.production_companies.length - 1
-                                                                ? ","
-                                                                : ""}{" "}
-                                                        </span>
-                                                    ))}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Available in</td>
-                                                <td>
-                                                    {Object.keys(torrents).length ? (
-                                                        torrents?.results?.length ? null : (
-                                                            <span>Not available</span>
-                                                        )
-                                                    ) : (
-                                                        <span>Getting torrent files</span>
-                                                    )}
-                                                    {torrents?.results?.map((item) => {
-                                                        let hash = item.link.split("/")[5];
-                                                        let name = String(item.title).split(" ");
-                                                        return (
-                                                            <a
-                                                                title={item.title}
-                                                                className="magnet-file"
-                                                                href={
-                                                                    "magnet:?xt=urn:btih:" +
-                                                                    hash +
-                                                                    "&amp;dn=" +
-                                                                    item.title +
-                                                                    "&amp;tr=udp%3A%2F%2Fglotorrents.pw%3A6969%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&amp;tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&amp;tr=udp%3A%2F%2Fp4p.arenabg.ch%3A1337&amp;tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337"
-                                                                }
-                                                            >
-                                                                <img
-                                                                    src={"/assets/magnet.svg"}
-                                                                    alt={"Magnet"}
-                                                                ></img>{" "}
-                                                                <span>{name[name.length - 1]}</span>
-                                                            </a>
-                                                        );
-                                                    })}
-                                                    <br />
-                                                    {torrents?.results?.map((item) => {
-                                                        let hash = item.link.split("/")[5];
-                                                        let name = String(item.title).split(" ");
-                                                        return (
-                                                            <a
-                                                                title={item.title}
-                                                                className="torrent-file"
-                                                                href={
-                                                                    "https://torrents.yts.hn/torrent/download/" +
-                                                                    hash
-                                                                }
-                                                            >
-                                                                <i className="bi bi-download"></i>{" "}
-                                                                <span>{name[name.length - 1]}</span>
-                                                            </a>
-                                                        );
-                                                    })}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div className={styles.content_o_details}>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Original Title</td>
+                                            <td>{data.original_title}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td>{data.status}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Language</td>
+                                            <td>
+                                                {" "}
+                                                {data.spoken_languages.map((item, i) => (
+                                                    <span key={i}>
+                                                        {item.english_name}
+                                                        {i != data.spoken_languages.length - 1
+                                                            ? ","
+                                                            : ""}{" "}
+                                                    </span>
+                                                ))}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Budget</td>
+                                            <td>{convertMoney(data.budget)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Revenue</td>
+                                            <td>{convertMoney(data.revenue)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Production</td>
+                                            <td>
+                                                {" "}
+                                                {data.production_companies.map((item, i) => (
+                                                    <span key={i}>
+                                                        {item.name}
+                                                        {i != data.production_companies.length - 1
+                                                            ? ","
+                                                            : ""}{" "}
+                                                    </span>
+                                                ))}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Available in</td>
+                                            <td>
+                                                {Object.keys(torrents).length ? (
+                                                    torrents?.results?.length ? null : (
+                                                        <span>Not available</span>
+                                                    )
+                                                ) : (
+                                                    <span>Getting torrent files</span>
+                                                )}
+                                                {torrents?.results?.map((item) => {
+                                                    let hash = item.link.split("/")[5];
+                                                    let name = String(item.title).split(" ");
+                                                    return (
+                                                        <a
+                                                            title={item.title}
+                                                            className="magnet-file"
+                                                            href={
+                                                                "magnet:?xt=urn:btih:" +
+                                                                hash +
+                                                                "&amp;dn=" +
+                                                                item.title +
+                                                                "&amp;tr=udp%3A%2F%2Fglotorrents.pw%3A6969%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&amp;tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&amp;tr=udp%3A%2F%2Fp4p.arenabg.ch%3A1337&amp;tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337"
+                                                            }
+                                                        >
+                                                            <img
+                                                                src={"/assets/magnet.svg"}
+                                                                alt={"Magnet"}
+                                                            ></img>{" "}
+                                                            <span>{name[name.length - 1]}</span>
+                                                        </a>
+                                                    );
+                                                })}
+                                                <br />
+                                                {torrents?.results?.map((item) => {
+                                                    let hash = item.link.split("/")[5];
+                                                    let name = String(item.title).split(" ");
+                                                    return (
+                                                        <a
+                                                            title={item.title}
+                                                            className="torrent-file"
+                                                            href={
+                                                                "https://torrents.yts.hn/torrent/download/" +
+                                                                hash
+                                                            }
+                                                        >
+                                                            <i className="bi bi-download"></i>{" "}
+                                                            <span>{name[name.length - 1]}</span>
+                                                        </a>
+                                                    );
+                                                })}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <ImageListContainer data={data.images.backdrops} imageSelect={imageSelect} title="Images" />
-                        <VideoContainer data={data?.videos?.results} title="Trailers & Clips" />
+                        <ImageListContainer
+                            data={data.images.backdrops}
+                            imageSelect={imageSelect}
+                            title="Images"
+                        />
+                        <VideoContainer
+                            data={data?.videos?.results}
+                            title="Trailers & Clips"
+                        />
                         <CastContainer type="cast" data={data.credits.cast} title="Cast" />
                         <CastContainer type="crew" data={data.credits.crew} title="Crew" />
-                        <PosterListContainer type="movie" data={data.recommendations.results} title="More Like This" />
-                        <PosterListContainer type="movie" data={data.similar.results} title="Recommendations" />
+                        <PosterListContainer
+                            type="movie"
+                            data={data.recommendations.results}
+                            title="More Like This"
+                        />
+                        <PosterListContainer
+                            type="movie"
+                            data={data.similar.results}
+                            title="Recommendations"
+                        />
                     </div>
                 </div>
             </div>
-            <ImagePreview selectedImage={selectedImage} data={data.images.backdrops} previewClose={previewClose} imagePreview={imagePreview} />
+            <ImagePreview
+                selectedImage={selectedImage}
+                data={data.images.backdrops}
+                previewClose={previewClose}
+                imagePreview={imagePreview}
+            />
         </>
     );
 }

@@ -151,10 +151,10 @@ function Login({ }) {
                         </p>
                         {/* <Link href={"/en/forgot-password"}>
                             <a> */}
-                            <p>
+                            <div>
                                 <p>Forgot password?</p>
                                 <p>Contact &nbsp;<a className={styles.bold_text} href="mailto:zflix.contact@protonmail.com">zflix.contact@protonmail.com</a></p>
-                            </p>
+                            </div>
                             {/* </a>
                         </Link> */}
                        

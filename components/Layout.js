@@ -7,7 +7,7 @@ export default function Layout({ children }) {
     <>
       <Navbar />
       <main >{children}</main>
-      {router.pathname != "/404" && router.pathname != "/offline" && router.pathname != "/en/login" && router.pathname != "/en/register" && router.pathname != "/en/u/verify"  && router.pathname!="/en/u/profile" && <Footer />}
+      {router.pathname != "/404" && router.pathname != "/offline" && router.pathname != "/en/login" && router.pathname != "/en/register" && router.pathname != "/en/u/verify"  && router.pathname!="/en/u/profile" && router.pathname!="/en/u/watchlist" && <Footer />}
     </>
   )
 }

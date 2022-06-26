@@ -18,6 +18,14 @@
     }
 }
 
+@keyframes tooltip {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
 .dot {
     font-weight: bolder;
     margin: 0px 10px;
@@ -103,7 +111,7 @@
                 }
 
                 .content_plot {
-                    padding: 10px 0px 0px 30px;
+                    padding: 10px 0px 0px 20px;
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-end;
@@ -170,6 +178,22 @@
                             background-color: #090909;
                             color: $text-color;
                             cursor: pointer;
+                            position: relative;
+                            .tooltip{
+                                padding: 12px 12px;
+                                border-radius: 5px;
+                                position: absolute;
+                                width: 100%;
+                                background-color: $nav-color;
+                                bottom: 130%;
+                                left: 0%;
+                                display: none;
+                            }
+                        }
+                        .watchlist.active{
+                            .tooltip{
+                                display: block;
+                            }
                         }
 
                         .watch_now {

@@ -56,12 +56,12 @@ function LargeDeviceNavbar({ }) {
                 navbarRef.current.classList.remove(styles.scroll);
             }
             var currentScrollPos = window.pageYOffset;
-            if (prevScrollpos > currentScrollPos) {
-                navbarRef.current.classList.remove(styles.hide);
+            // if (prevScrollpos > currentScrollPos) {
+            //     navbarRef.current.classList.remove(styles.hide);
 
-            } else {
-                navbarRef.current.classList.add(styles.hide);
-            }
+            // } else {
+            //     navbarRef.current.classList.add(styles.hide);
+            // }
             prevScrollpos = currentScrollPos;
         };
 
@@ -366,7 +366,7 @@ function LargeDeviceNavbar({ }) {
                     </ul>
                 </div>
                     {user && user.userData!==null?
-                        <li className={styles.nav_item}>Profile
+                        <li style={{"marginLeft":"28px"}} className={styles.nav_item}>Profile
                             <ul className={styles.nav_list_child+ " " + styles.last}>
                             <Link href="/en/u/watchlist">
                                 <a>

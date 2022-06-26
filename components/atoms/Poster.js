@@ -97,6 +97,7 @@ function Poster({ item, type }) {
     )
   }
   function PersonPosterInfo({item}) {
+    console.log(item);
     return(
       <div className={styles.poster_info}>
           <p className={styles.title}>{item.name}</p>
@@ -118,6 +119,8 @@ function Poster({ item, type }) {
       </div>
     )
   }
+
+  const imageURL=(type==="movie" || type==="tv"?item.poster_path:item.profile_path)
   return (
     <>
       <Link href={getLink()} passHref> 
@@ -128,10 +131,11 @@ function Poster({ item, type }) {
         > 
           <div className={styles.poster_container}>
             <Image
-              src={"https://image.tmdb.org/t/p/w780" + (type==="movie"|| type==="tv"?item.poster_path:item.profile_path)}
+              src={ imageURL?"https://image.tmdb.org/t/p/w780"+imageURL:'/assets/image-not-found.png'}
               layout="fill"
               placeholder="blur"
-              objectFit="cover"
+              objectFit={imageURL ? "cover" : "contain"}
+              objectPosition={imageURL ? "top" : "center"}
               blurDataURL={"https://image.tmdb.org/t/p/w780" + (type==="movie"|| type==="tv"?item.poster_path:item.profile_path)}
               alt={(type==="movie"?item.title:item.name)}
             />
