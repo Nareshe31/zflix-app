@@ -65,7 +65,7 @@ function WatchMovie({ data, base_url }) {
                         webkitallowfullscreen=""
                         mozallowfullscreen=""
                         allowfullscreen=""
-                        src={"https://www.2embed.ru/embed/tmdb/movie?id=" + id}
+                        src={"https://www.2embed.to/embed/tmdb/movie?id=" + id}
                         title={id}
                     ></iframe>
                 ) : (

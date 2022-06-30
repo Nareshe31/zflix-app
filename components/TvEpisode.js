@@ -60,7 +60,7 @@ function TvEpisode({ data, seasondata, seasonsdata, base_url }) {
                         webkitallowfullscreen=""
                         mozallowfullscreen=""
                         allowfullscreen=""
-                        src={`https://www.2embed.ru/embed/tmdb/tv?id=${id}&s=${snumber}&e=${enumber}`}
+                        src={`https://www.2embed.to/embed/tmdb/tv?id=${id}&s=${snumber}&e=${enumber}`}
                         title={id}
                     ></iframe>
                 ) : (
