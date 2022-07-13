@@ -22,7 +22,6 @@ import API from "../services/api";
 import { updateWatchlist } from "../store/actions";
 
 function Movie({ data, base_url }) {
-    console.log(data);
     const router = useRouter();
     let { id, name } = router.query;
     const [torrents, settorrents] = useState({});
