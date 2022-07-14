@@ -8,6 +8,10 @@ function LoadingScreen({ }) {
         justifyContent: "center",
         alignItems: "center",
         background: "#000",
+        position:"fixed",
+        top:"0",
+        zIndex:"10000",
+        overflow:"hidden"
     };
     const imageStyle = {
         width: "80px",

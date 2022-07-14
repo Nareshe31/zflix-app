@@ -1,8 +1,9 @@
 import Footer from './Footer'
 import Navbar from './Navbar'
-import router from 'next/router';
+import {useRouter} from 'next/router';
 
 export default function Layout({ children }) {
+  const router=useRouter()
   return (
     <>
       <Navbar />

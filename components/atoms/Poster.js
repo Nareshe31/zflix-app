@@ -97,7 +97,6 @@ function Poster({ item, type }) {
     )
   }
   function PersonPosterInfo({item}) {
-    console.log(item);
     return(
       <div className={styles.poster_info}>
           <p className={styles.title}>{item.name}</p>

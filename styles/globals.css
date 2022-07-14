@@ -14,6 +14,7 @@ body {
     background: #060606;
     scroll-behavior: smooth;
     height: 100vh;
+    overflow: hidden;
 }
 html:focus-within{
   scroll-behavior: smooth;

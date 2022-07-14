@@ -112,18 +112,25 @@ function MyApp({ Component, pageProps, router }) {
   }, [])
 
   // const Layout = Component.Layout || EmptyLayout;
- 
+    console.log('====================================');
+    console.log(user.userDataLoaded);
+    console.log('====================================');
+    if (user.userDataLoaded) {
+      document.querySelector('body').style.overflow="auto"
+    }
     return (
-      <>{!user.userDataLoaded?
-        <LoadingScreen  />
-        :
+      <>
         <Provider store={store}>
           <NextNProgress color="#c50510" height={2} />
           <Layout1>
             <Component {...pageProps} key={router.asPath} />
+            {!user.userDataLoaded?
+              <LoadingScreen  />
+              :
+              null
+            }
           </Layout1>
         </Provider>
-  }
       </>
     );
 }
