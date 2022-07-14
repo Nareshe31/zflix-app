@@ -71,7 +71,7 @@
                 width: 100%;
                 min-height: 100vh;
                 // background-color: rgba($color: #000, $alpha: 0.55);
-                background: linear-gradient(360deg, #0d0d0d 30%, transparent);
+                background: linear-gradient(360deg, $bg-color 30%, transparent);
                 display: flex;
                 // justify-content: space-between;
                 padding: 0px 50px 50px 50px;
