@@ -112,9 +112,6 @@ function MyApp({ Component, pageProps, router }) {
   }, [])
 
   // const Layout = Component.Layout || EmptyLayout;
-    console.log('====================================');
-    console.log(user.userDataLoaded);
-    console.log('====================================');
     if (user.userDataLoaded) {
       document.querySelector('body').style.overflow="auto"
     }

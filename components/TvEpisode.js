@@ -15,8 +15,6 @@ function TvEpisode({ data, seasondata, seasonsdata, base_url }) {
     const router = useRouter();
     let { id, name, snumber, enumber } = router.query;
 
-    console.log(data);
-
     const { userData } = useSelector((state) => state.user);
 
     const getTitle = () => {

@@ -8,7 +8,6 @@ function ListPage({data,base_url}) {
 
 export async function getServerSideProps(context) {
     try {
-        console.log(context.query.id);
         const res = await fetch(
             `https://zflix-backend.herokuapp.com/api/v2/get-list`,
             {
@@ -20,7 +19,6 @@ export async function getServerSideProps(context) {
             }
         );
         const data=await res.json()
-        // console.log(data);
         if (!data.hasOwnProperty("response")) {
             return {
                 props: {

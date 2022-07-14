@@ -9,7 +9,7 @@ function NavSearchPerson({
     index,
     handleResultHover,
 }) {
-    console.log(item);
+    
     return (
         <Link
             href={

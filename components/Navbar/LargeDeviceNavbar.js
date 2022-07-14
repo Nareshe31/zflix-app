@@ -13,7 +13,6 @@ function LargeDeviceNavbar({ }) {
     const inputRef = useRef();
 
     const {user}=useSelector(state=>state)
-    // console.log(state);
 
     const [moviesDropdown, setmoviesDropdown] = useState(false);
     const [tvshowsDropdown, settvshowsDropdown] = useState(false);
