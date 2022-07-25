@@ -7,6 +7,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="manifest" href="/manifest.json" />
+          <meta name="google-site-verification" content="Y18D4bzANlD1TP1aLl21MutvmIAcf8QIIwnmjhVfZ1o" />
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-8FMMTY6M6W"
