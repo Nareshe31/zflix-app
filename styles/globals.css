@@ -11,10 +11,10 @@ body {
     width: 100%;
     position: relative;
     /* overflow-x: hidden !important; */
-    background: #060606;
+    background: #080808;
     scroll-behavior: smooth;
     height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 html:focus-within{
   scroll-behavior: smooth;
