@@ -126,6 +126,21 @@ function Movie({ data, base_url }) {
             console.log(error);
         }
     };
+
+    const addTorrentMagnet=(name)=>{
+        window.gtag('event', 'torrent_magnet_click', {
+            'event_label': name,
+            'event_category': 'torrent_magent',
+            'non_interaction': true
+          });
+    }
+    const addTorrentFile=(name)=>{
+        window.gtag('event', 'torrent_file_click', {
+            'event_label': name,
+            'event_category': 'torrent_file',
+            'non_interaction': true
+          });
+    }
     return (
         <>
             <Head>
@@ -328,6 +343,7 @@ function Movie({ data, base_url }) {
                                                     let name = String(item.title).split(" ");
                                                     return (
                                                         <a
+                                                            onClick={()=>addTorrentMagnet(item.title)}
                                                             title={item.title}
                                                             className="magnet-file"
                                                             href={
@@ -352,6 +368,7 @@ function Movie({ data, base_url }) {
                                                     let name = String(item.title).split(" ");
                                                     return (
                                                         <a
+                                                            onClick={()=>addTorrentFile(item.title)}
                                                             title={item.title}
                                                             className="torrent-file"
                                                             href={
