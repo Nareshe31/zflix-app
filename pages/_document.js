@@ -27,7 +27,7 @@ export default class MyDocument extends Document {
             }}
           />
           {/* <!-- Google Tag Manager --> */}
-          <script
+          {/* <script
             dangerouslySetInnerHTML={{
               __html: `
               (function(w,d,s,l,i){
@@ -39,7 +39,7 @@ export default class MyDocument extends Document {
                 f.parentNode.insertBefore(j,f);
               })(window,document,'script','dataLayer','GTM-N4N8H7V');`,
             }}
-          />
+          /> */}
           {/* <!-- End Google Tag Manager --> */}
         </Head>
         <Main />

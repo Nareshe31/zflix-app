@@ -7,14 +7,14 @@ export default function Layout({ children }) {
   return (
     <>
       {/* <!-- Google Tag Manager (noscript) --> */}
-      <noscript>
+      {/* <noscript>
         <iframe
           src="https://www.googletagmanager.com/ns.html?id=GTM-N4N8H7V"
           height="0"
           width="0"
           style={{"display":"none","visibility":"hidden"}}
         ></iframe>
-      </noscript>
+      </noscript> */}
       {/* <!-- End Google Tag Manager (noscript) --> */}
       <Navbar />
       <main>{children}</main>
