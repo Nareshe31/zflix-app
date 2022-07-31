@@ -76,6 +76,11 @@ function MyApp({ Component, pageProps, router }) {
       data.user["token"]=token
       dispatch(loginUser(data.user))
       dispatch(dataLoaded())
+      window.gtag('event', 'token_verified',{
+        'event_label': 'verify_token',
+        'event_category': 'token',
+        'non_interaction': true
+      });
     } catch (error) {
       localStorage.removeItem('token')
       dispatch(dataLoaded())
@@ -100,7 +105,6 @@ function MyApp({ Component, pageProps, router }) {
         "https://zflix-backend.herokuapp.com/api/v2/add-page-request",
         { url: router.asPath, requested_at: new Date() }
       );
-
     } catch (error) { 
       console.log(error);
     }

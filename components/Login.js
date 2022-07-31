@@ -33,6 +33,7 @@ function Login({ }) {
             setsubmitLoading(false);
             handleRedirect();
             setloginForm(prev=>({...prev,success:true,submitError:false,errorMessage:""}))
+            addLoginEvent(data.user)
         } catch (error) {
             setloginForm((prev) => ({
                 ...prev,
@@ -41,6 +42,7 @@ function Login({ }) {
                 success:false
             }));
             setsubmitLoading(false);
+            window.gtag('event', 'login_error');
         }
     };
 
@@ -62,6 +64,10 @@ function Login({ }) {
         }
         window.location.href = window.location.origin + "/en";
     };
+
+    const addLoginEvent=(data)=>{
+        window.gtag('event', 'login',{user_data:data});
+    }
 
     if (userData) {
         // router.push("/en");

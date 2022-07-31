@@ -35,6 +35,7 @@ function Register({ }) {
             setsubmitLoading(false);
             // handleRedirect();
             setloginForm(prev=>({...prev,name:"",email:"",password:"",success:true,submitError:false,errorMessage:""}))
+            addSignUpEvent()
         } catch (error) {
             setloginForm((prev) => ({
                 ...prev,
@@ -43,6 +44,7 @@ function Register({ }) {
                 success:false
             }));
             setsubmitLoading(false);
+            window.gtag('event', 'sign_up_error');
         }
     };
 
@@ -68,6 +70,11 @@ function Register({ }) {
     const closePopup=()=>{
         setloginForm(prev=>({...prev,success:false}))
     }
+
+    const addSignUpEvent=()=>{
+        window.gtag('event', 'sign_up');
+    }
+
 
     if (userData) {
         // router.push("/en");
