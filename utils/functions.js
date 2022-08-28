@@ -62,3 +62,5 @@ export function convertMoney(labelValue) {
               ? Number(Math.abs(Number(labelValue) / 1.0e3).toFixed(2)) + " thousand"
               : Math.abs(Number(labelValue));
 }
+
+export const overview ="ZFlix is the largest free streaming platform for movies and tv shows. Collaborative media and info service featuring high quality content for a huge selection of titles and new releases! Available in all countries.";

@@ -2,7 +2,7 @@ import axios from "axios";
 import { responseHandler, errorHandler } from "./response";
 
 // const BASE_URL = "http://192.168.29.62:5000/api/v3";
-const BASE_URL = "https://zflix-backend.herokuapp.com/api/v3";
+const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URI_V3;
 
 function setHeaders(token) {
     return {

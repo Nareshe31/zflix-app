@@ -6,11 +6,13 @@ import styles from "../../scss/components/navbar.module.scss";
 import NavSearchTv from "../atoms/NavSearchTv";
 import NavSearchMovie from "../atoms/NavSearchMovie";
 import NavSearchPerson from "../atoms/NavSearchPerson";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { logoutUser } from "../../store/actions";
 
 function LargeDeviceNavbar({ }) {
     const navbarRef = useRef();
     const inputRef = useRef();
+    const dispatch = useDispatch();
 
     const {user}=useSelector(state=>state)
 
@@ -138,7 +140,7 @@ function LargeDeviceNavbar({ }) {
                     setsuggestionLoading(true);
                     var response = await axios.get(
                         `
-                        https://api.themoviedb.org/3/search/multi?api_key=dfc43a605d906f9da6982495ad7bb34e&language=en-US&query=${query}&page=1&include_adult=false`
+                        /api/v2/search?query=${query}&page=1`
                     );
                     setresults(response.data);
                     setsuggestionLoading(false);
@@ -158,6 +160,13 @@ function LargeDeviceNavbar({ }) {
         var index = Array.prototype.indexOf.call(parent.children, child);
         setcurrentSearchResult(index);
     };
+
+    const logout = () => {
+        localStorage.removeItem("token");
+        window.location.reload()
+        dispatch(logoutUser());
+    };
+
     return (
         <nav className={styles.navbar} ref={navbarRef} id="navbar">
             <div className={styles.nav_left_part}>
@@ -377,6 +386,8 @@ function LargeDeviceNavbar({ }) {
                                 <li className={styles.nav_item_child}>Account</li>
                                 </a>
                                 </Link>
+                                <li onClick={logout} className={styles.nav_item_child}>Logout</li>
+
                             </ul>
                         </li>
                         :<Link href={"/en/login?redirect_url="+encodeURIComponent(router.asPath)}>

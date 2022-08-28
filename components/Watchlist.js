@@ -2,17 +2,10 @@ import { useSelector } from "react-redux";
 import HeaderLayout from '../layouts/HeaderLayout'
 import WatchlistPoster from "./atoms/WatchlistPoster";
 import styles from '../scss/components/poster.module.scss';
-import { useRouter } from "next/router";
 
 function Watchlist({}) {
 
     const {userData}=useSelector(state=>state.user)
-    const router=useRouter()
-
-    if (userData==null) {
-        router.push('/en')
-        return <></>
-    }
 
     return(
         <>
@@ -22,7 +15,7 @@ function Watchlist({}) {
                     <h2>Watchlist</h2>
                 </div>
                 <div style={{"minHeight":"70vh","position":"relative"}}>
-                    {userData.watchlist.length?
+                    {userData?.watchlist?.length?
                         <div style={{"display":"flex","flexWrap":"wrap"}}>
                             {userData.watchlist?.map((item, i) => (
                                 <WatchlistPoster key={i} item={item.data} type={item.data.type} />

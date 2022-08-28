@@ -16,6 +16,11 @@ body {
     height: 100vh;
     /* overflow: hidden; */
 }
+body.no-scroll{
+  max-height: 100vh;
+  overflow: hidden !important;
+}
+
 html:focus-within{
   scroll-behavior: smooth;
 }

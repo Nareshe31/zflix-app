@@ -114,7 +114,7 @@ function Footer({ }) {
                                 className={styles.app_logo}
                                 src="/assets/zflix-logo.png"
                                 alt=""
-                                srcset=""
+                                srcSet=""
                             />
                         </div>
                         <div className={styles.app_name}>ZFlix</div>

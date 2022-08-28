@@ -1,4 +1,5 @@
-const { Fragment } = require("react");
+import { useEffect } from "react";
+
 
 function LoadingScreen({ }) {
     const loadContainer = {
@@ -18,6 +19,15 @@ function LoadingScreen({ }) {
         height: "80px",
         objectFit: "cover",
     };
+
+    useEffect(() => {
+      const body=document.body
+      body.classList.add('no-scroll')
+      return () => {
+        body.classList.remove('no-scroll')
+      }
+    }, [])
+    
     return (
         <section style={loadContainer}>
             <div>

@@ -65,7 +65,6 @@ export async function getServerSideProps(context) {
         const token = context.query.token || "";
         const res = await fetch(API.BASE_URL + "/verify-email?token=" + token);
         const resData = await res.json();
-        console.log(resData);
         return {
             props: {
                 base_url: process.env.BASE_URL,
