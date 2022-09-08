@@ -51,7 +51,7 @@ function Movie({ data, base_url }) {
         try {
             var res = await fetch(
                 `
-                /api/v2/torrent/movie/${data.title} ${getYear(
+                /api/v2/torrent/movie/${data.imdb_id} ${getYear(
                     data.release_date
                 )}`
             );
