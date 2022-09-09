@@ -22,7 +22,7 @@ module.exports = withPWA({
               "source": "/api/(.*)",
               "headers": [
                 { "key": "Access-Control-Allow-Credentials", "value": "true" },
-                { "key": "Access-Control-Allow-Origin", "value": "https://zflix-app.netlify.app/" }, // Change this to specific domain for better security
+                { "key": "Access-Control-Allow-Origin", "value": "https://zflix-app.netlify.app" }, // Change this to specific domain for better security
                 {
                   "key": "Access-Control-Allow-Methods",
                   "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT"
