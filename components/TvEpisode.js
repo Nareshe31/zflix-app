@@ -51,6 +51,7 @@ function TvEpisode({ data, seasondata, seasonsdata, base_url }) {
                 ></meta>
             </Head>
             <div className={styles.watch_section}>
+
                 {userData ? (
                     <iframe
                         id="watch-iframe"
@@ -90,6 +91,8 @@ function TvEpisode({ data, seasondata, seasonsdata, base_url }) {
                         </div>
                     </div>
                 )}
+
+        
                 <div className={styles.w_details}>
                     <Link href={"/en/tv/" + id + "/" + name}>
                         <a>
