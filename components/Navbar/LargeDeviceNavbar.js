@@ -6,10 +6,15 @@ import styles from "../../scss/components/navbar.module.scss";
 import NavSearchTv from "../atoms/NavSearchTv";
 import NavSearchMovie from "../atoms/NavSearchMovie";
 import NavSearchPerson from "../atoms/NavSearchPerson";
+import { useSelector,useDispatch } from "react-redux";
+import { logoutUser } from "../../store/actions";
 
 function LargeDeviceNavbar({ }) {
     const navbarRef = useRef();
     const inputRef = useRef();
+    const dispatch = useDispatch();
+
+    const {user}=useSelector(state=>state)
 
     const [moviesDropdown, setmoviesDropdown] = useState(false);
     const [tvshowsDropdown, settvshowsDropdown] = useState(false);
@@ -52,12 +57,12 @@ function LargeDeviceNavbar({ }) {
                 navbarRef.current.classList.remove(styles.scroll);
             }
             var currentScrollPos = window.pageYOffset;
-            if (prevScrollpos > currentScrollPos) {
-                navbarRef.current.classList.remove(styles.hide);
+            // if (prevScrollpos > currentScrollPos) {
+            //     navbarRef.current.classList.remove(styles.hide);
 
-            } else {
-                navbarRef.current.classList.add(styles.hide);
-            }
+            // } else {
+            //     navbarRef.current.classList.add(styles.hide);
+            // }
             prevScrollpos = currentScrollPos;
         };
 
@@ -135,7 +140,7 @@ function LargeDeviceNavbar({ }) {
                     setsuggestionLoading(true);
                     var response = await axios.get(
                         `
-                        https://api.themoviedb.org/3/search/multi?api_key=dfc43a605d906f9da6982495ad7bb34e&language=en-US&query=${query}&page=1&include_adult=false`
+                        /api/v2/search?query=${query}&page=1`
                     );
                     setresults(response.data);
                     setsuggestionLoading(false);
@@ -155,13 +160,20 @@ function LargeDeviceNavbar({ }) {
         var index = Array.prototype.indexOf.call(parent.children, child);
         setcurrentSearchResult(index);
     };
+
+    const logout = () => {
+        localStorage.removeItem("token");
+        window.location.reload()
+        dispatch(logoutUser());
+    };
+
     return (
         <nav className={styles.navbar} ref={navbarRef} id="navbar">
             <div className={styles.nav_left_part}>
                 <Link href="/en" passHref>
                     <a>
                         <div className={styles.nav_header}>
-                            <img src="/assets/apple-touch-icon.png" alt="" srcSet="" />
+                            <img src="/assets/zflix-logo.png" alt="" srcSet="" />
                         </div>
                     </a>
                 </Link>
@@ -361,16 +373,32 @@ function LargeDeviceNavbar({ }) {
                         ) : null}
                     </ul>
                 </div>
-                {/* <Link href="/en/login">
-                        <a>
-                            <li className={styles.nav_item}>Login</li>
-                        </a>
-                    </Link>
-                    <Link href="/en/login">
-                        <a>
-                            <li className={styles.nav_item}>Sign Up</li>
-                        </a>
-                    </Link> */}
+                    {user && user.userData!==null?
+                        <li style={{"marginLeft":"28px"}} className={styles.nav_item}>Profile
+                            <ul className={styles.nav_list_child+ " " + styles.last}>
+                            <Link href="/en/u/watchlist">
+                                <a>
+                                <li className={styles.nav_item_child}>Watchlist</li>
+                                </a>
+                                </Link>
+                                <Link href="/en/u/profile">
+                                <a>
+                                <li className={styles.nav_item_child}>Account</li>
+                                </a>
+                                </Link>
+                                <li onClick={logout} className={styles.nav_item_child}>Logout</li>
+
+                            </ul>
+                        </li>
+                        :<Link href={"/en/login?redirect_url="+encodeURIComponent(router.asPath)}>
+                            <a>
+                                <li className={styles.nav_item}>Sign In</li>
+                            </a>
+                        </Link>
+                    
+                    }
+                
+                    
             </ul>
         </nav>
     );

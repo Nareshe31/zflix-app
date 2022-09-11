@@ -4,8 +4,8 @@ import Image from "next/image";
 import ContainerHeader from "../atoms/ContainerHeader";
 
 function VideoContainer({ data,title }) {
-
-    if (!data)  return null
+    
+    if (!data || (data && data.length==0))  return null
 
     return (
         <div className={styles.videos_container}>
@@ -25,7 +25,7 @@ function VideoContainer({ data,title }) {
                                     />
                                     <div className={styles.yt_logo}>
                                         <span>
-                                            <i class="bi bi-youtube"></i>
+                                            <i className="bi bi-youtube"></i>
                                         </span>
                                     </div>
                                     <span className={styles.yt_bg}>

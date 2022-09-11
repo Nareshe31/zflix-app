@@ -1,12 +1,17 @@
 import "../styles/globals.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-// import Layout1 from '../components/Layout'
-import { useEffect } from "react";
-import axios from "axios";
+import Layout1 from '../components/Layout'
+import { useEffect, useState } from "react";
 import NextNProgress from "nextjs-progressbar";
 import { loadProgressBar } from 'axios-progress-bar'
+import axios from "axios";
+
+//Store imports
+import {store,wrapper} from '../store/index';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { dataLoaded, loginUser } from "../store/actions";
+import LoadingScreen from "../components/screens/LoadingScreen";
+import API from "../services/api";
 
 loadProgressBar()
 
@@ -48,6 +53,40 @@ function MyApp({ Component, pageProps, router }) {
     )
   );
  
+  const [mounted, setMounted] = useState(false)
+  const {user}=useSelector(state=>state)
+
+  const dispatch=useDispatch()
+
+  if(!mounted){
+    if (typeof(window)!== "undefined") {
+      const token=window.localStorage.getItem('token') ? localStorage.getItem('token'): null
+      if(token!==null){
+        getUserDetails(token)
+      }
+      else{
+        dispatch(dataLoaded())
+      }
+    }
+  }
+
+  async function getUserDetails(token){
+    try {
+      const data=await API.makeGetRequestWithAuthorization('/user-details',token)
+      data.user["token"]=token
+      dispatch(loginUser(data.user))
+      dispatch(dataLoaded())
+      window.gtag('event', 'token_verified',{
+        'event_label': 'verify_token',
+        'event_category': 'token',
+        'non_interaction': true
+      });
+    } catch (error) {
+      console.log({error});
+      localStorage.removeItem('token')
+      dispatch(dataLoaded())
+    }
+  }
   const handleRouteChange = (url) => {
     window.gtag("config", "G-8FMMTY6M6W", {
       page_path: url,
@@ -64,7 +103,7 @@ function MyApp({ Component, pageProps, router }) {
   useEffect(() => {
     try {
       axios.post(
-        "https://zflix-backend.herokuapp.com/api/v2/add-page-request",
+        (process.env.NEXT_PUBLIC_BACKEND_URI_V2+"/add-page-request"),
         { url: router.asPath, requested_at: new Date() }
       );
     } catch (error) { 
@@ -73,22 +112,35 @@ function MyApp({ Component, pageProps, router }) {
     return () => { };
   }, [router.asPath,router.events]);
 
-  const Layout = Component.Layout || EmptyLayout;
-  return (
-    <>
-      <NextNProgress color="#c50510" height={2} />
-      <Navbar />
-      <Layout>
-        <Component {...pageProps} key={router.asPath} />
-      </Layout>
-      <Footer />
-    </>
-  );
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // const Layout = Component.Layout || EmptyLayout;
+    if (user.userDataLoaded) {
+      document.querySelector('body').style.overflow="auto"
+    }
+    return (
+      <>
+        <Provider store={store}>
+          <NextNProgress color="#c50510" height={2} />
+          <Layout1>
+            <Component {...pageProps} key={router.asPath} />
+            {!user.userDataLoaded?
+              <LoadingScreen  />
+              :
+              null
+            }
+          </Layout1>
+        </Provider>
+      </>
+    );
 }
 
 const EmptyLayout = ({ children }) => <>{children}</>;
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
+
 
 //   (function () {
 //     (function a() {

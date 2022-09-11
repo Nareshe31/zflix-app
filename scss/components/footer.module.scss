@@ -2,32 +2,30 @@
 @use "../abstracts/fonts"as *;
 
 .footer {
+    margin-top: 40px;
     color: $text-lighter-color;
-    padding: 1.5rem 0rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-direction: column;
-
+    padding: 4rem 3rem 4rem;
+    // border-top: 0.5px solid rgba($color: #333, $alpha: 1.0);
+    background-color: $footer-color;
     .copyrights_container {
         padding: 6px;
         margin-top: 14px;
 
-        .copyrights {
-            font-size: 0.8rem;
-        }
+    }
+    
+    .copyrights {
+        font-size: 0.9rem;
+        margin-top: 10px;
     }
 
     .contact_us {
         padding: 4px 12px;
-        border-left: 1px solid #555;
-
         .contact_us_list {
             display: flex;
 
             .c_container {
                 padding: 6px 8.5px;
-                margin: 6px;
+                margin: 6px 6px 6px 6px;
                 border-radius: 50%;
                 background: $nav-color;
                 cursor: pointer;
@@ -52,8 +50,10 @@
         border-radius: 10px;
         padding: 8px 8px;
         background-color: $nav-color;
-        margin-right: 24px;
-
+        border: none;
+        outline: none;
+        color: $text-lighter-color;
+        cursor: pointer;
         .text {
             display: flex;
             flex-direction: column;
@@ -84,12 +84,90 @@
         display: flex;
         justify-content: space-evenly;
     }
+    .container{
+        display: flex;
+        .app_extra_container{
+            min-width: 400px;
+        }
+        .app_info{
+            margin-right: 20px;
+            align-items: center;
+            display: flex;
+            .app_logo_container{
+                width: 50px;
+                position: relative;
+                display: inline-block;
+                .app_logo{
+                    width: 100%;
+                    height: auto;
+                }
+            }
+            .app_name{
+                margin-left: 4px;
+                font-size: 1.4rem;
+                font-weight: 600;
+            }
+        }
+        .links_whole_container{
+            flex: 1;
+            display: flex;
+            justify-content: space-around;
+        }
+        .links_container{
+            h3{
+                font-size: 1.1rem;
+            }
+            .link_list{
+                display: flex;
+                flex-direction: column;
+                list-style-type: none;
+                margin-top: 4px;
+                
+                li{
+                    font-size: 0.9rem;
+                    margin: 2px 0;
+                    &:hover{
+                        color: $text-color;
+                    }
+                }
+            }
+        }
+    }
+    .rights_container{
+        padding: 1rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .copy_container{
+        margin-top: 14px;
+    }
+    .contact_us_container{
+        display: flex;
+        align-items: center;
+    }
+    .download_container{
+        display: flex;
+        align-items: center;
+        margin: 5px 0;
+        p{
+            font-size: 0.9rem; 
+            font-weight: 600;
+            margin-right: 10px;
+        }
+    }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
+   
+}
+@media screen and (max-width: 700px) {
     .footer {
-        padding-bottom: 2rem;
-
+        padding: 4rem 0.5rem 4rem;
+        .container{
+            flex-direction: column;
+           
+        }
         .row_1 {
             flex-direction: column;
             justify-content: center;
@@ -105,9 +183,32 @@
                 margin-right: 0;
             }
         }
-
+        .links_whole_container{
+            justify-content: space-evenly;
+        }
         .copyrights_container {
             margin-top: 4px;
+        }
+        
+        .rights_container{
+            flex-direction: column;
+            .copyrights{
+                margin-bottom: 16px;
+            }
+        }
+        .app_extra_container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+            min-width: 0 !important;
+        }
+        .copy_container{
+            margin-top: 14px;
+        }
+        .app_info{
+            margin-right: 0px !important;
+            width: max-content;
         }
     }
 }

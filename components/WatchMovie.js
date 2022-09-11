@@ -4,10 +4,14 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "../scss/components/watch-movie.module.scss";
 import styles2 from "../scss/components/movie.module.scss";
+import { useSelector } from "react-redux";
 
 function WatchMovie({ data, base_url }) {
     const router = useRouter();
     let { id, name, source } = router.query;
+
+    const { userData } = useSelector((state) => state.user);
+
     const getTitle = () => {
         let title = data.title ? data.title : "";
         let year = data.release_date ? " (" + getYear(data.release_date) + ")" : "";
@@ -26,7 +30,6 @@ function WatchMovie({ data, base_url }) {
             elem.msRequestFullscreen();
         }
     }
-    
 
     return (
         <>
@@ -55,23 +58,49 @@ function WatchMovie({ data, base_url }) {
                 ></meta>
             </Head>
             <div className={styles.watch_section}>
-                <iframe
-                    id="watch-iframe"
-                    frameBorder={0}
-                    webkitallowfullscreen=""
-                    mozallowfullscreen=""
-                    allowfullscreen=""
-                    src={
-                        "https://www.2embed.to/embed/tmdb/movie?id="+id
-                    }
-                    title={id}
-                ></iframe>
+                {userData ? (
+                    <iframe
+                        id="watch-iframe"
+                        frameBorder={0}
+                        webkitallowfullscreen=""
+                        mozallowfullscreen=""
+                        allowfullscreen=""
+                        src={"https://www.2embed.to/embed/tmdb/movie?id=" + id}
+                        title={id}
+                    ></iframe>
+                ) : (
+                    <div className={styles.login_container}>
+                        <div className={styles.watch_bg_container}>
+                            {data.backdrop_path ? (
+                                <img
+                                    className={styles.watch_bg}
+                                    src={"https://image.tmdb.org/t/p/w780" + data.backdrop_path}
+                                    alt="Log in to watch for free"
+                                    srcset=""
+                                />
+                            ) : null}
+                        </div>
+                        <div className={styles.login_message}>
+                            <div>
+                                <p>Please Sign in to watch for free</p>
+                                <Link
+                                    href={
+                                        "/en/login?redirect_url=" +
+                                        encodeURIComponent(router.asPath)
+                                    }
+                                >
+                                    <a>
+                                        <button className={styles.login_button}>Sign in</button>
+                                    </a>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 <div className={styles.w_details}>
                     <Link href={"/en/movie/" + id + "/" + name}>
                         <a>
-                            <h2 className={styles.title}>
-                                {data.title}
-                            </h2>
+                            <h2 className={styles.title}>{data.title}</h2>
                         </a>
                     </Link>
                     <div className={styles.w_info}>

@@ -60,26 +60,29 @@ function SearchResultMovie({ item }) {
                     {getDate(item.release_date)}
                 </p>
                 <p className={styles.result_overview}>{item.overview}</p>
-                <Link
-                    href={
-                        "/en/movie/" +
-                        item.id +
-                        "/" +
-                        covertToLinkWords(item.title) +
-                        "-" +
-                        getYear(item.release_date) +
-                        "/watch"
+                {(new Date())>(new Date(item.release_date))?
+                    <Link
+                        href={
+                            "/en/movie/" +
+                            item.id +
+                            "/" +
+                            covertToLinkWords(item.title) +
+                            "-" +
+                            getYear(item.release_date) +
+                            "/watch"
+                        }
+                    >
+                        <a>
+                            <div className={styles.watch_now}>
+                                <span>
+                                    <i className="bi bi-play-fill"></i>
+                                </span>
+                                Watch Now
+                            </div>
+                        </a>
+                    </Link>
+                    :null
                     }
-                >
-                    <a>
-                        <div className={styles.watch_now}>
-                            <span>
-                                <i className="bi bi-play-fill"></i>
-                            </span>
-                            Watch Now
-                        </div>
-                    </a>
-                </Link>
                 <p className={styles.result_type}>Movie</p>
             </div>
         </div>

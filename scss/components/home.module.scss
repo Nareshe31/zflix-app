@@ -14,7 +14,7 @@
 
         .section_header {
             text-align: center;
-            margin: 10px 10px 20px 10px;
+            margin: 10px;
             p {
                 font-size: 0.85rem;
                 font-weight: 300;
@@ -136,8 +136,9 @@
     .main_content {
         margin: 0;
         width: calc(100% - 0px);
-        padding: 50px 0rem 1.5rem;
+        padding: 70px 0rem 1.5rem;
         .section_main {
+            margin: 1.8rem auto 0rem;
             .section_header {
                 margin:5px 12px;
 

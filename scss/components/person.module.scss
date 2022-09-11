@@ -5,21 +5,25 @@
     padding-top: 90px;
     color: $text-color;
     .person_info_container{
-        display: flex;
-        padding: 26px $container-padding;
+        // display: flex;
+        padding: 20px $container-padding 18px;
+        min-height: 320px;
         .person_poster{
             align-self: flex-end;
+            padding-right: 14px;
+            padding-bottom: 8px;
+            float: left;
         }
         .poster_container{
-            width: 240px;
-            height: 340px;
+            width: 210px;
+            height: 280px;
             border-radius: 10px;
             overflow: hidden;
             position: relative;
             background-color: $p-bg;
         }
         .person_info{
-            padding: 4px 20px;
+            padding: 4px 0px;
             .name{
                 margin-bottom: 0px;
             }
@@ -28,6 +32,7 @@
                 font-size: 0.95rem;
                 line-height: 1.3rem;
                 word-spacing: 1.3px;
+                text-align: justify;
             }
             .department{
                 font-size: 1rem;
@@ -41,8 +46,9 @@
 
 @media screen and (max-width:600px) {
     .w_container{
-        padding-top: 70px;
+        padding-top: 80px;
         .person_info_container{
+            display: flex;
             flex-direction: column;
             padding: 10px 14px;
             max-width: max-content;
@@ -50,14 +56,15 @@
             align-items: center;
             .person_poster{
                 align-self: center;
+                float: none;
             }
             .poster_container{
-                width: 180px;
-                height: 240px;
+                width: 160px;
+                height: 200px;
             }
             .person_info{
-                padding: 4px 0px;
-                margin-top: 10px;
+                padding: 0px 6px 4px;
+                // margin-top: 10px;
                 .name{
                     text-align: center;
                 }

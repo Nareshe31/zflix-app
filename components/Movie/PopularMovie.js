@@ -109,11 +109,11 @@ function PopularMovie({ data ,base_url,filter_type,media_type,title}) {
                                 <p>Sort</p>
                                 {sortBoxOpen ? (
                                     <span>
-                                        <i class="bi bi-chevron-down"></i>
+                                        <i className="bi bi-chevron-down"></i>
                                     </span>
                                 ) : (
                                     <span>
-                                        <i class="bi bi-chevron-right"></i>
+                                        <i className="bi bi-chevron-right"></i>
                                     </span>
                                 )}
                             </div>
@@ -134,11 +134,11 @@ function PopularMovie({ data ,base_url,filter_type,media_type,title}) {
                                         <p id="drop-header">{sortOptions[currentSortOption].name}</p>
                                         {sortDropOpen ? (
                                             <span id="drop-header">
-                                                <i class="bi bi-chevron-down"></i>
+                                                <i className="bi bi-chevron-down"></i>
                                             </span>
                                         ) : (
                                             <span id="drop-header">
-                                                <i class="bi bi-chevron-right"></i>
+                                                <i className="bi bi-chevron-right"></i>
                                             </span>
                                         )}
                                     </div>
@@ -150,7 +150,7 @@ function PopularMovie({ data ,base_url,filter_type,media_type,title}) {
                                         }
                                     >
                                         {sortOptions.map((item,i)=>
-                                            <div className={styles.option} id="drop-option" onClick={()=>selectSortOption(i)}>{item.name}</div>
+                                            <div key={i} className={styles.option} id="drop-option" onClick={()=>selectSortOption(i)}>{item.name}</div>
                                         )}
                                     </div>
                                 </div>
@@ -160,7 +160,7 @@ function PopularMovie({ data ,base_url,filter_type,media_type,title}) {
                     <div className={styles.w_p_container}>
                         <div className={styles.poster_container}>
                             {popularData?.map((item, i) => (
-                                <PosterWithDetails item={item} type={media_type} />
+                                <PosterWithDetails key={i} item={item} type={media_type} />
                             ))}
                         </div>
                         <div className={styles.load_more_container} onClick={getData}>

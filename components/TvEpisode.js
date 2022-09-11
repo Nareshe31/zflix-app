@@ -3,16 +3,19 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../scss/components/tv-episode.module.scss";
-import styles1 from "../scss/components/tv-season.module.scss";
+import styles1 from "../scss/components/watch-movie.module.scss";
 import { getMinute, getYear, getHour, getMonth } from "../utils/functions";
 import styles2 from "../scss/components/movie.module.scss";
 import ScrollContainer from "react-indiana-drag-scroll";
 import SeasonContainer from "./molecules/SeasonContainer";
 import EpisodeContainer from "./molecules/EpisodeContainer";
+import { useSelector } from "react-redux";
 
-function TvEpisode({ data, seasondata,seasonsdata, base_url }) {
+function TvEpisode({ data, seasondata, seasonsdata, base_url }) {
     const router = useRouter();
     let { id, name, snumber, enumber } = router.query;
+
+    const { userData } = useSelector((state) => state.user);
 
     const getTitle = () => {
         let title = seasondata.name ? seasondata.name : "";
@@ -48,15 +51,48 @@ function TvEpisode({ data, seasondata,seasonsdata, base_url }) {
                 ></meta>
             </Head>
             <div className={styles.watch_section}>
-                <iframe
-                    id="watch-iframe"
-                    frameBorder={0}
-                    webkitallowfullscreen=""
-                    mozallowfullscreen=""
-                    allowfullscreen=""
-                    src={`https://www.2embed.to/embed/tmdb/tv?id=${id}&s=${snumber}&e=${enumber}`}
-                    title={id}
-                ></iframe>
+
+                {userData ? (
+                    <iframe
+                        id="watch-iframe"
+                        frameBorder={0}
+                        webkitallowfullscreen=""
+                        mozallowfullscreen=""
+                        allowfullscreen=""
+                        src={`https://www.2embed.to/embed/tmdb/tv?id=${id}&s=${snumber}&e=${enumber}`}
+                        title={id}
+                    ></iframe>
+                ) : (
+                    <div className={styles.login_container}>
+                        <div className={styles.watch_bg_container}>
+                            {data.still_path ? (
+                                <img
+                                    className={styles.watch_bg}
+                                    src={"https://image.tmdb.org/t/p/w780" + data.still_path}
+                                    alt="Log in to watch for free"
+                                    srcset=""
+                                />
+                            ) : null}
+                        </div>
+                        <div className={styles.login_message}>
+                            <div>
+                                <p>Please Sign in to watch for free</p>
+                                <Link
+                                    href={
+                                        "/en/login?redirect_url=" +
+                                        encodeURIComponent(router.asPath)
+                                    }
+                                >
+                                    <a>
+                                        <button className={styles.login_button}>Sign in</button>
+                                    </a>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+        
                 <div className={styles.w_details}>
                     <Link href={"/en/tv/" + id + "/" + name}>
                         <a>
@@ -64,9 +100,9 @@ function TvEpisode({ data, seasondata,seasonsdata, base_url }) {
                         </a>
                     </Link>
                     <h4 className={styles.episode_title}>
-                        <Link href={"/en/tv/" + id + "/" + name+"/season/"+snumber}>
+                        <Link href={"/en/tv/" + id + "/" + name + "/season/" + snumber}>
                             <a>
-                                <span >S{data.season_number}</span>
+                                <span>S{data.season_number}</span>
                             </a>
                         </Link>
                         <span> E{data.episode_number}</span>
@@ -83,23 +119,35 @@ function TvEpisode({ data, seasondata,seasonsdata, base_url }) {
                         <i className="bi bi-star-fill"></i> {data.vote_average}/10
                         <span className={styles2.dot}></span>
                         <i className="bi bi-clock"></i>{" "}
-                        {(data.episode_runtime > 60 ? getHour(data.episode_runtime) + "hr " : "") +
+                        {(data.episode_runtime > 60
+                            ? getHour(data.episode_runtime) + "hr "
+                            : "") +
                             (getMinute(data.episode_runtime)
                                 ? getMinute(data.episode_runtime) + " min"
                                 : "")}{" "}
                     </div>
-                    {data?.genres?.length?
+                    {data?.genres?.length ? (
                         <div className={styles2.genres}>
                             {data?.genres?.map((item, i) => (
                                 <span className={styles2.genre}>{item.name}</span>
                             ))}
                         </div>
-                        :null
-                        }
+                    ) : null}
                     <p className={styles.overview}>{data.overview}</p>
                 </div>
-                <EpisodeContainer data={seasonsdata} title="Episodes" id={id} name={name} snumber={snumber} />
-                <SeasonContainer data={seasondata.seasons} id={id} name={name} title="Seasons"  />
+                <EpisodeContainer
+                    data={seasonsdata}
+                    title="Episodes"
+                    id={id}
+                    name={name}
+                    snumber={snumber}
+                />
+                <SeasonContainer
+                    data={seasondata.seasons}
+                    id={id}
+                    name={name}
+                    title="Seasons"
+                />
             </div>
         </>
     );

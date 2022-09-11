@@ -1,22 +1,9 @@
 import Home from '../../components/Home';
-import { motion } from "framer-motion";
 
-function HomePage({movieData,tvData,personData,base_url,ip}) {
-    const config = {
-        type: "spring",
-        damping: 20,
-        stiffness: 100
-      };
+function HomePage({movieData,tvData,personData,base_url}) {
 
     return (
-        <motion.main
-            transition={config}
-            initial={{ scale: 1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ x: 0, opacity: 0 }} 
-        >
-            <Home movieData={movieData} tvData={tvData} personData={personData} base_url={base_url} />
-        </motion.main>
+        <Home movieData={movieData} tvData={tvData} personData={personData} base_url={base_url} />
     );
 }
 

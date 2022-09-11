@@ -13,6 +13,57 @@
         height: calc(90vh - 80px);
         box-sizing: border-box;
     }
+    .login_container {
+        margin-top: 70px;
+        width: 100%;
+        height: calc(90vh - 80px);
+        box-sizing: border-box;
+        position: relative;
+        .watch_bg_container{
+            width: 100%;
+            height: calc(90vh - 80px);
+            position: absolute;
+            top: 0;
+            left: 0;
+            .watch_bg{
+                width: 100%;
+                height: calc(90vh - 80px);
+                object-fit: cover;
+            }
+        }
+        .login_message{
+            width: 100%;
+            height: calc(90vh - 80px);
+            z-index: 10;
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            background-color: #111b;
+            justify-content: center;
+
+            &>div{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                p{
+                    font-size: 1.1rem;
+                }
+            }
+            .login_button{
+                border: none;
+                outline: none;
+                padding: 6px 14px;
+                border-radius: 2px;
+                font-weight: 600;
+                font-size: 0.95rem;
+                margin-top: 6px;
+                width: max-content;
+                background: #bbb3;
+                cursor: pointer;
+                color: $text-color;
+            }
+        }
+    }
 
     .w_details {
         padding: 10px $container-padding 10px;
@@ -49,6 +100,20 @@
             width: 100%;
             height: calc(35vh - 60px);
             box-sizing: border-box;
+        }
+        .login_container {
+            margin-top: 60px;
+            width: 100%;
+            height: calc(35vh - 60px);
+            .watch_bg_container{
+                height: calc(35vh - 60px);
+                .watch_bg{
+                height: calc(35vh - 60px);
+                }
+            }
+            .login_message{
+                height: calc(35vh - 60px);
+            }
         }
         .w_details {
             padding: 20px 15px;

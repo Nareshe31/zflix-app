@@ -11,7 +11,7 @@ export async function getServerSideProps() {
   return {
     redirect:{
       destination:'/en',
-      permanent:true
+      permanent:false
     }
   }
 }

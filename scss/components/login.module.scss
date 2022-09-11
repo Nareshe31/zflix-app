@@ -1,0 +1,166 @@
+@use  "../abstracts/colors" as *;
+@use  "../abstracts/fonts" as *;
+
+.login_section{
+    // margin-top: 110px;
+    color: $text-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    
+    .login_container{
+
+        .login_header{
+            text-align: center;
+        }
+        .login_form{
+            position: relative;
+            width: 380px;
+            .input_group{
+                margin: 14px 0 0;
+                label{
+                    display: block;
+                    margin-bottom: 4px;
+                    color: $text-light-color;
+                }
+                .input{
+                    background-color: $nav-color;
+                    border-radius: 6px;
+                    display: flex;
+                    align-items: center;
+                    width: 380px;
+                    button{
+                        outline: none;
+                        border: none;
+                        background: transparent;
+                    }
+                    input{
+                        flex: 1;
+                        height: 30px;
+                        color: $text-light-color;
+                        background: transparent;
+                        border: none;
+                        outline: none;
+                        padding: 20px 0px 20px 16px;
+                    }
+                    span{
+                        cursor: pointer;
+                        padding: 4px 12px 4px 14px;
+                    }
+                }
+            }
+            .submit_button{
+                margin-top: 14px;
+                button{
+                    cursor: pointer;
+                    outline: none;
+                    border: none;
+                    width: 100%;
+                    padding: 10px 0px;
+                    border-radius: 4px;
+                    font-size: 1rem;
+                    font-weight: 700;
+                }
+            }
+            .message_container{
+                margin-top: 10px;
+                .error_text{
+                    color: rgba($color:#eb7734,$alpha:1);
+                    font-size: 0.9rem;
+                }
+                .success_text{
+                    color: rgba($color:#11a349,$alpha:1);
+                    font-size: 0.9rem;
+                }
+            }
+        }
+        .login_info{
+            margin-top: 14px;
+            color: $text-lighter-color;
+            text-align: center;
+            &>div{
+                margin-top: 5px;
+                // &:nth-child(1){
+                //     &:hover{
+                //         color: $text-color;
+                //     }
+                // }
+            }
+            
+        }
+    }
+    .bold_text{
+        color: $text-color;
+        font-weight: 600;
+    }
+}
+
+
+.success_container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    color: $text-lighter-color;
+    .s_container{
+        max-width: 40vw;
+        background-color: $nav-color;
+        padding: 20px 30px 60px; 
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        h2{
+            text-align: center;
+            color: green;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .close{
+            align-self: flex-end;
+            button{
+                cursor: pointer;
+                outline: none;
+                border: none;
+                background: transparent;
+                color: $text-color;
+                i{
+                    font-size: 1.1rem;
+                }
+            }
+        }
+        .success_message{
+            padding-top: 20px;
+        }
+    }
+}
+
+@media  screen and (max-width:600px) {
+    .login_container{
+        width: 78% !important;
+        .login_form{
+            width: 100% !important;
+            position: relative;
+            form{
+                width:100% !important;
+                .input_group{
+                    width:100% !important;
+                    .input{
+                        width:100% !important;
+                    }
+                }
+            }
+        }
+    }
+    .success_container{
+        .s_container{
+            max-width: 75vw;    
+        }
+    }
+}

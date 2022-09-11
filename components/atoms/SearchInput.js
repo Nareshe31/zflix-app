@@ -2,7 +2,8 @@ import styles from "../../scss/components/search.module.scss";
 import {useRouter} from 'next/router'
 function SearchInput({link,handleChangeQuery,query,clearQuery}) {
     const router=useRouter()
-    const handleSubmit=()=>{
+    const handleSubmit=(e)=>{
+        e.preventDefault()
         router.push(link+`?q=${query}`)
     }
 

@@ -6,6 +6,7 @@ import styles from "../../scss/components/navbar.module.scss";
 import NavSearchMovie from "../atoms/NavSearchMovie";
 import NavSearchTv from "../atoms/NavSearchTv";
 import NavSearchPerson from "../atoms/NavSearchPerson";
+import { useSelector } from "react-redux";
 
 function SmallDeviceNavbar({ }) {
     const navbarRef = useRef();
@@ -19,6 +20,9 @@ function SmallDeviceNavbar({ }) {
     const [suggestionLoading, setsuggestionLoading] = useState(false);
     const [searchBarActive, setsearchBarActive] = useState(false);
     const [navSide, setnavSide] = useState(false);
+
+    //user
+    const { userData } = useSelector((state) => state.user);
 
     const router = useRouter();
     const { pathname } = router;
@@ -165,7 +169,7 @@ function SmallDeviceNavbar({ }) {
             >
                 <div className={styles.nav_row_2}>
                     <span className={styles.back_arrow} onClick={closeSearchBar}>
-                        <i class="bi bi-arrow-left"></i>
+                        <i className="bi bi-arrow-left"></i>
                     </span>
                     <form onSubmit={handleSubmit}>
                         <input
@@ -191,7 +195,7 @@ function SmallDeviceNavbar({ }) {
                         }
                         onClick={clearSearch}
                     >
-                        <i class="bi bi-x-lg"></i>
+                        <i className="bi bi-x-lg"></i>
                     </span>
                 </div>
                 {Object.keys(results).length ? (
@@ -236,12 +240,55 @@ function SmallDeviceNavbar({ }) {
                         ? styles.nav_sidebar + " " + styles.active
                         : styles.nav_sidebar
                 }
+                onClick={hamClose}
             >
-                <div className={styles.nav_side_container}>
+                <div
+                    className={styles.nav_side_container}
+                    onClick={(e) => e.stopPropagation()}
+                >
                     <div className={styles.nav_close} onClick={hamClose}>
                         <i className="bi bi-x"></i>
                     </div>
                     <ul className={styles.nav_list}>
+                        {userData ? (
+                            <Link href="/en/u/profile">
+                                <a>
+                                    <li className={styles.nav_item}>
+                                        <div className={styles.profile_container}>
+                                            <div>
+                                                {/* <i class="bi bi-person-circle"></i> */}
+                                                <img src="/assets/avatar.png" alt="" srcset="" />
+                                            </div>
+                                            <div className={styles.info}>
+                                                <p>{userData.name}</p>
+                                                <p className={styles.login_info}>Logged In via phone</p>
+                                            </div>
+                                            <div>
+                                                <i class="bi bi-chevron-right"></i>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                            </Link>
+                        ) : (
+                            <Link href="/en/login">
+                                <a>
+                                    <li className={styles.nav_item_with_info}>
+                                        Sign In
+                                        <span className={styles.nav_info}>
+                                            For better experience
+                                        </span>
+                                    </li>
+                                </a>
+                            </Link>
+                        )}
+                        {userData ? (
+                            <Link href="/en/u/watchlist">
+                                <a>
+                                    <li className={styles.nav_item}>Watchlist</li>
+                                </a>
+                            </Link>
+                        ) : null}
                         <li
                             className={styles.nav_item + " " + styles.dropdown}
                             onClick={() => setmoviesDropdown((prev) => !prev)}

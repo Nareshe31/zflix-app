@@ -5,7 +5,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 40px 10px 60px;
+    padding: 10px 50px 10px 50px;
     top: 0;
     left: 0;
     position: fixed;
@@ -28,15 +28,15 @@
         align-items: center;
         
         .nav_list {
-            margin-left: 15px;
+            margin-left: 14px;
 
-            .nav_item{
-                margin-left: 45px;
+            &>.nav_item{
+                margin-left: 38px;
             }
             a {
-                margin-left: 45px;
+                margin-left: 38px;
                 .nav_item{
-                    margin-left: 0;
+                    margin-left: 0px;
                 }
                 &:first-child,
                 &:nth-child(2) {
@@ -87,6 +87,7 @@
             z-index: 20;
             letter-spacing: 1.25px;
             border-bottom: 1px solid transparent;
+            // margin-left: 28px;
 
             &:hover {
 
@@ -501,10 +502,10 @@
     transition: left 0.3s ease-in-out;
     .nav_side_container{
         height: 100vh;
-        width: 60vw;
+        width: 70vw;
         background-color: $nav-color;
         color: $text-color;
-        padding: 15px;
+        padding: 15px 10px 15px 0px;
         display: flex;
         flex-direction: column;
         .nav_close{
@@ -518,10 +519,36 @@
         ul{
             list-style: none;
             li{
-                padding: 18px 15px;
+                padding: 18px 20px;
                 font-weight: 600;
                 display: flex;
                 justify-content: space-between;
+                .profile_container{
+                    display: flex;
+                    align-items: center;
+                    div{
+                        img{
+                            width: 50px;
+                            height: 50px;
+                        }
+                    }
+                    .info{
+                        margin-left: 14px;
+                        margin-right: 14px;
+                        .login_info{
+                            color: $text-lighter-color;
+                            font-size: 0.85rem;
+                        }
+                    }
+                }
+            }
+            .nav_item_with_info{
+                display: flex;
+                flex-direction: column;
+                span{
+                    font-size: 0.85rem;
+                    color: $text-lighter-color;
+                }
             }
             .nav_list_child{
                 // height: 0;
@@ -548,7 +575,7 @@
 .navbar.scroll {
     position: fixed;
     background-color: rgba($color: #181818, $alpha: 0.6);
-    padding: 10px 40px 10px 60px;
+    padding: 10px 50px 10px 50px;
     backdrop-filter: blur(10px);
 }
 .navbar_sm.scroll {

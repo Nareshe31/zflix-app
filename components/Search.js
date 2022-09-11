@@ -12,7 +12,6 @@ function Search({ results, total_pages,total_results, base_url }) {
     let overview =
         "ZFlix is the largest free streaming platform for movies and tv shows. Collaborative media and info service featuring high quality content for a huge selection of titles and new releases! Available in all countries.";
 
-    console.log(total_pages);
     return (
         <SearchLayout total_results={total_results} active={0} link="/en/search">
             <Head>
