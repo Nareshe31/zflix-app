@@ -8,6 +8,7 @@ function NavSearchMovie({
     currentSearchResult,
     index,
     handleResultHover,
+    hover
 }) {
     return (
         <Link
@@ -22,7 +23,7 @@ function NavSearchMovie({
             <a id={"result_"+index}>
                 <li
                     className={styles.result}
-                    onMouseEnter={() => handleResultHover(index)}
+                    onMouseEnter={() => hover?handleResultHover(index):null}
                 >
                     <div className={styles.r_left}>
                         {item.poster_path ? (

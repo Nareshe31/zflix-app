@@ -336,6 +336,7 @@ function LargeDeviceNavbar({ }) {
                                     <NavSearchMovie
                                         handleResultHover={handleResultHover}
                                         index={i}
+                                        hover={true}
                                         currentSearchResult={currentSearchResult}
                                         key={item.id}
                                         item={item}
@@ -344,6 +345,7 @@ function LargeDeviceNavbar({ }) {
                                     <NavSearchTv
                                         handleResultHover={handleResultHover}
                                         index={i}
+                                        hover={true}
                                         currentSearchResult={currentSearchResult}
                                         key={item.id}
                                         item={item}
@@ -353,6 +355,7 @@ function LargeDeviceNavbar({ }) {
                                     <NavSearchPerson  
                                         handleResultHover={handleResultHover}
                                         index={i}
+                                        hover={true}
                                         currentSearchResult={currentSearchResult}
                                         key={item.id}
                                         item={item}

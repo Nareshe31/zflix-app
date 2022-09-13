@@ -204,11 +204,11 @@ function SmallDeviceNavbar({ }) {
                             ?.slice(0, 6)
                             ?.map((item, i) =>
                                 item.media_type === "movie" ? (
-                                    <NavSearchMovie key={item.id} item={item} />
+                                    <NavSearchMovie key={item.id} hover={false} item={item} />
                                 ) : item.media_type === "tv" ? (
-                                    <NavSearchTv key={item.id} item={item} />
+                                    <NavSearchTv key={item.id} hover={false} item={item} />
                                 ) : (
-                                    <NavSearchPerson key={item.id} item={item} />
+                                    <NavSearchPerson key={item.id} item={item} hover={false} />
                                 )
                             )}
                         {results?.results?.length > 4 ? (

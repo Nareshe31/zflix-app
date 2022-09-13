@@ -8,6 +8,7 @@ function NavSearchPerson({
     currentSearchResult,
     index,
     handleResultHover,
+    hover
 }) {
     
     return (
@@ -22,7 +23,7 @@ function NavSearchPerson({
             <a id={"result_"+index}>
                 <li
                     className={styles.result}
-                    onMouseEnter={() => handleResultHover(index)}
+                    onMouseEnter={() => hover?handleResultHover(index):null}
                 >
                     <div className={styles.r_left}>
                         {item.profile_path ? (

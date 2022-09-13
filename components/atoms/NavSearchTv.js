@@ -3,7 +3,7 @@ import Image from "next/image";
 import { covertToLinkWords, getYear, getDate } from "../../utils/functions";
 import styles from "../../scss/components/navbar.module.scss";
 
-function NavSearchTv({ item, currentSearchResult, index, handleResultHover }) {
+function NavSearchTv({ item, currentSearchResult, index,hover, handleResultHover }) {
     return (
         <Link
             href={
@@ -17,7 +17,7 @@ function NavSearchTv({ item, currentSearchResult, index, handleResultHover }) {
             <a id={"result_"+index}>
                 <li
                     className={styles.result}
-                    onMouseEnter={() => handleResultHover(index)}
+                    onMouseEnter={() => hover?handleResultHover(index):null}
                 >
                     <div className={styles.r_left}>
                         {item.poster_path ? (

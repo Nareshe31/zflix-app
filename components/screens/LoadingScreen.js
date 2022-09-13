@@ -1,7 +1,9 @@
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 
 function LoadingScreen({ }) {
+    const {user}=useSelector(state=>state)
     const loadContainer = {
         width: "100vw",
         height: "100vh",
@@ -22,17 +24,24 @@ function LoadingScreen({ }) {
 
     useEffect(() => {
       const body=document.body
-      body.classList.add('no-scroll')
+    //   body.classList.add('no-scroll')
+      setTimeout(() => {
+        if (!user.userDataLoaded) {
+            document.querySelector(".loading-image-container")?.style.display="none"
+            document.querySelector(".lds-ring")?.style.display="inline-block"
+        }
+      }, 750);
       return () => {
-        body.classList.remove('no-scroll')
+        // body.classList.remove('no-scroll')
       }
     }, [])
     
     return (
         <section style={loadContainer}>
-            <div>
+            <div className="loading-image-container">
                 <img style={imageStyle} src="/assets/zflix-logo.png" alt="ZFlix Logo " srcSet="" />
             </div>
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
         </section>
     );
 }

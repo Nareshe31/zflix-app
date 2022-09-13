@@ -13,7 +13,7 @@ import { dataLoaded, loginUser } from "../store/actions";
 import LoadingScreen from "../components/screens/LoadingScreen";
 import API from "../services/api";
 
-loadProgressBar()
+// loadProgressBar()
 
 function MyApp({ Component, pageProps, router }) {
   eval(

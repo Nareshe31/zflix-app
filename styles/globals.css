@@ -2,6 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,200;1,300&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
+:root{
+  --primary-color:#c50510;
+}
 html,
 body {
   padding: 0;
@@ -14,7 +17,7 @@ body {
     background: #080808;
     scroll-behavior: smooth;
     height: 100vh;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 body.no-scroll{
   max-height: 100vh;
@@ -62,4 +65,53 @@ a {
 /* Handle on hover */
 *::-webkit-scrollbar-thumb:hover {
   background: rgba(120, 120, 120,0.6);
+}
+
+
+/* Loading circle */
+.lds-ring {
+  display: none;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  margin: 8px;
+  border: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: var(--primary-color) transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-image-container{
+  animation: hide-logo 1s linear;
+}
+
+@keyframes hide-logo {
+  100% {
+    opacity: 0;
+    display: none;
+  }
 }
