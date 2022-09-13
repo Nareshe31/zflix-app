@@ -57,12 +57,12 @@ function LargeDeviceNavbar({ }) {
                 navbarRef.current.classList.remove(styles.scroll);
             }
             var currentScrollPos = window.pageYOffset;
-            // if (prevScrollpos > currentScrollPos) {
-            //     navbarRef.current.classList.remove(styles.hide);
+            if (prevScrollpos > currentScrollPos) {
+                navbarRef.current.classList.remove(styles.hide);
 
-            // } else {
-            //     navbarRef.current.classList.add(styles.hide);
-            // }
+            } else {
+                navbarRef.current.classList.add(styles.hide);
+            }
             prevScrollpos = currentScrollPos;
         };
 
@@ -282,7 +282,7 @@ function LargeDeviceNavbar({ }) {
                         />
                     </form>
 
-                    {suggestionLoading ? (
+                    {/* {suggestionLoading ? (
                         <li
                             className={styles.nav_item + " " + styles.s + " " + styles.load}
                         >
@@ -309,16 +309,17 @@ function LargeDeviceNavbar({ }) {
                                         styles.s
                                     }
                                 >
-                                    <span>/</span>
+                                    
                                 </li>
                             )}
                         </>
-                    )}
+                    )} */}
 
                     <li
                         className={styles.nav_item + " " + styles.search + " " + styles.s}
                     >
-                        <i className="bi bi-search"></i>
+                        {suggestionLoading ? <i className="bi bi-arrow-repeat"></i>:
+                        <i className="bi bi-search"></i>}
                     </li>
 
                     <ul

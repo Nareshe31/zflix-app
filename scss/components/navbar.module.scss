@@ -11,15 +11,16 @@
     position: fixed;
     width: 100%;
     z-index: 100;
+    background-color: rgba($color: #121212, $alpha: 0.9);
     // background-color: rgba($color: $color-3, $alpha:0.6);
-    background: linear-gradient(360deg, transparent,$nav-color);
+    // background: linear-gradient(360deg, transparent,$nav-color);
     // background: transparent;
     transition: all 0.2s ease-in-out;
     // backdrop-filter: blur(3px);
     color: $text-color;
     &:hover {
-        background-color: rgba($color: $color-3, $alpha:0.8);
-        backdrop-filter: blur(5px);
+        // background-color: rgba($color: $color-3, $alpha:0.8);
+        // backdrop-filter: blur(5px);
     }
 
     .nav_left_part {
@@ -187,20 +188,20 @@
     .search_container {
         transition: opacity 0.3s ease-in-out;
         display: flex;
-        background-color: #080808;
+        background-color: #32323299;
         justify-content: center;
         align-items: center;
         border-radius: 2px;
         width: max-content;
         height: 42px;
-        border: 1px solid #1f1f1f;
+        // border: 1px solid #1f1f1f;
         position: relative;
         form {
             input {
                 width: 320px;
                 outline: none;
                 border: none;
-                color: #dadada;
+                color: #fafafa;
                 background-color: transparent;
                 font-size: 0.85rem;
                 padding: 10px 15px;
@@ -208,7 +209,7 @@
 
                 &::placeholder {
                     font-weight: 400;
-                    color: #8d8d8d;
+                    color: #ffffff66;
                 }
             }
         }
@@ -217,7 +218,7 @@
             left: 0;
             top: 45px;
             width: 100%;
-            background-color: #0d0d0d;
+            background-color: #0e0e0e;
             border-radius: 5px;
             box-shadow: 0px 0px 10px -2px #444;
             max-height: 0px;
@@ -288,12 +289,16 @@
             max-height: 550px;
         }
         .nav_item.search {
-            background-color: #1f1f1f;
+            // background-color: #1f1f1f;
             height: 42px;
             padding: 0px 20px;
             display: flex;
             justify-content: center;
             align-items: center;
+            font-size: 0.8rem;
+            i{
+                font-size: inherit;
+            }
         }
         .nav_item.shortcut_icon{
             font-size: 1rem;
@@ -574,7 +579,7 @@
 }
 .navbar.scroll {
     position: fixed;
-    background-color: rgba($color: #181818, $alpha: 0.6);
+    background-color: rgba($color: #121212, $alpha: 0.9);
     padding: 10px 50px 10px 50px;
     backdrop-filter: blur(10px);
 }

@@ -11,7 +11,7 @@ body {
     width: 100%;
     position: relative;
     /* overflow-x: hidden !important; */
-    background: #080808;
+    background: #0d0d0d;
     scroll-behavior: smooth;
     height: 100vh;
     /* overflow: hidden; */
@@ -63,3 +63,13 @@ a {
 *::-webkit-scrollbar-thumb:hover {
   background: rgba(120, 120, 120,0.6);
 }
+
+
+button{
+  outline: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.cls-1{fill:none;stroke:#083b43;stroke-linecap:round;stroke-linejoin:round;stroke-width:20px;}

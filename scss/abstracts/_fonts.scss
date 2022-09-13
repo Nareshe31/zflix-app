@@ -1,8 +1,12 @@
 $p-lg-w:140px;
 $p-lg-h:190px;
-$p-sm-w:125px;
+$p-sm-w:115px;
 $p-sm-h:165px;
-$p-c-lg-w:820px;
+$p-c-lg-w:calc(7 * 160px);
+$p-c-lg-6-w:calc(6 * 160px);
+$p-c-lg-5-w:calc(5 * 160px);
+$p-c-lg-4-w:calc(4 * 160px);
+$p-c-lg-3-w:calc(3 * 160px);
 
 $r-lg-w:130px;
 $r-lg-h:180px;
