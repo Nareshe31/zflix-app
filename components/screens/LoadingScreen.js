@@ -27,8 +27,15 @@ function LoadingScreen({ }) {
     //   body.classList.add('no-scroll')
       setTimeout(() => {
         if (!user.userDataLoaded) {
-            document.querySelector(".loading-image-container")?.style.display="none"
-            document.querySelector(".lds-ring")?.style.display="inline-block"
+          try {
+            document.querySelector(".loading-image-container").style.display="none"
+            document.querySelector(".lds-ring").style.display="inline-block"
+
+          } catch (error) {
+            console.log('====================================');
+            console.log(error);
+            console.log('====================================');
+          }
         }
       }, 750);
       return () => {
