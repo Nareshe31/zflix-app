@@ -17,7 +17,7 @@ body {
     background: #080808;
     scroll-behavior: smooth;
     height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 body.no-scroll{
   max-height: 100vh;

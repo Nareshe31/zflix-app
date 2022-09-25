@@ -25,6 +25,7 @@ function LoadingScreen({ }) {
     useEffect(() => {
       const body=document.body
     //   body.classList.add('no-scroll')
+    document.querySelector('body').style.overflow="hidden"
       setTimeout(() => {
         if (!user.userDataLoaded) {
           try {

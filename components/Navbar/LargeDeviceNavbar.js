@@ -57,12 +57,12 @@ function LargeDeviceNavbar({ }) {
                 navbarRef.current.classList.remove(styles.scroll);
             }
             var currentScrollPos = window.pageYOffset;
-            // if (prevScrollpos > currentScrollPos) {
-            //     navbarRef.current.classList.remove(styles.hide);
+            if (prevScrollpos > currentScrollPos) {
+                navbarRef.current.classList.remove(styles.hide);
 
-            // } else {
-            //     navbarRef.current.classList.add(styles.hide);
-            // }
+            } else {
+                navbarRef.current.classList.add(styles.hide);
+            }
             prevScrollpos = currentScrollPos;
         };
 
@@ -168,7 +168,7 @@ function LargeDeviceNavbar({ }) {
     };
 
     return (
-        <nav className={styles.navbar} ref={navbarRef} id="navbar">
+        <nav className={`${styles.navbar} ${pathname==="/en"?styles.nav_home:""}`} ref={navbarRef} id="navbar">
             <div className={styles.nav_left_part}>
                 <Link href="/en" passHref>
                     <a>

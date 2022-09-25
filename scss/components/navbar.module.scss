@@ -5,20 +5,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 50px 10px 50px;
+    padding: 12px 50px 12px 50px;
     top: 0;
     left: 0;
     position: fixed;
     width: 100%;
     z-index: 100;
-    // background-color: rgba($color: $color-3, $alpha:0.6);
-    background: linear-gradient(360deg, transparent,$nav-color);
+    background-color: rgba($color: #0f0f0f, $alpha:0.75);
+    // background: linear-gradient(360deg, transparent,$nav-color);
     // background: transparent;
     transition: all 0.2s ease-in-out;
-    // backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
     color: $text-color;
     &:hover {
-        background-color: rgba($color: $color-3, $alpha:0.8);
+        background-color: rgba($color: #0f0f0f, $alpha:0.8);
         backdrop-filter: blur(5px);
     }
 
@@ -593,6 +593,14 @@
     top: 0px;
 }
 
+.nav_home{
+    background-color: transparent;
+    backdrop-filter: none;
+    &:hover{
+        background-color: transparent;
+        backdrop-filter: none;
+    }
+}
 // @media screen and (max-width:600px) {
 //     .navbar {
         

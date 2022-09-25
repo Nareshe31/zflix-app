@@ -145,8 +145,8 @@ function Footer({ }) {
                     <div className={styles.download_container}>
                         <p>Download ZFlix app on</p>
                         <a
-                            href="https://zflix-backend.herokuapp.com/api/v2/zflix/latest-version"
-                            target={"_blank"}
+                            href="/apk/ZFlix-v4.0.2.apk"
+                            download
                         >
                             <button className={styles.app_container}>
                                 <span className={styles.text}>
