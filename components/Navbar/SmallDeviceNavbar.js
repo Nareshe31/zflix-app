@@ -142,11 +142,11 @@ function SmallDeviceNavbar({ }) {
     return (
         <nav className={styles.navbar_sm} id="navbar" ref={navbarRef}>
             <div className={styles.nav_row_1}>
-                <div className={styles.nav_ham_container} onClick={hamOpen}>
+                <button className={styles.nav_ham_container} onClick={hamOpen}>
                     <div className={styles.ham_line}></div>
                     <div className={styles.ham_line}></div>
                     <div className={styles.ham_line}></div>
-                </div>
+                </button>
                 <div className={styles.nav_header}>
                     <Link href="/en" passHref>
                         <a>
@@ -246,9 +246,9 @@ function SmallDeviceNavbar({ }) {
                     className={styles.nav_side_container}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <div className={styles.nav_close} onClick={hamClose}>
+                    <button className={styles.nav_close} onClick={hamClose}>
                         <i className="bi bi-x"></i>
-                    </div>
+                    </button>
                     <ul className={styles.nav_list}>
                         {userData ? (
                             <Link href="/en/u/profile">

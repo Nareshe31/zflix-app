@@ -1,5 +1,6 @@
 import axios from "axios";
 import Tv from "../../../../../components/Tv";
+import { checkBothTitle } from "../../../../../utils/functions";
 
 function TvPage({data,base_url}) {
     
@@ -8,11 +9,23 @@ function TvPage({data,base_url}) {
 
 export async function getServerSideProps(context) {
     try {
-        
+        const {id,name}=context.query
         const res = await fetch(
-            `https://api.themoviedb.org/3/tv/${context.query.id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=images,videos,credits,recommendations,similar`
+            `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=images,videos,credits,recommendations,similar`
         );
         const data = await res.json();
+
+        const [isTitleSame,actualTitle]=checkBothTitle({title:data?.name,release_date:data?.first_air_date},name)
+
+        const destinationLink="/en/tv/"+data.id+"/"+actualTitle
+
+        if(isTitleSame)  return {
+            redirect:{
+              destination:destinationLink,
+              permanent:false
+            }
+          }
+
         if (!data.hasOwnProperty("success")) {
             return {
                 props: {

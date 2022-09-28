@@ -67,6 +67,11 @@ a {
   background: rgba(120, 120, 120,0.6);
 }
 
+button{
+  outline: none;
+  border: none;
+  background: none;
+}
 
 /* Loading circle */
 .lds-ring {

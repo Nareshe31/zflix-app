@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../scss/components/tv-episode.module.scss";
 import styles1 from "../scss/components/watch-movie.module.scss";
-import { getMinute, getYear, getHour, getMonth } from "../utils/functions";
+import { getMinute, getYear, getHour, getMonth, getLink } from "../utils/functions";
 import styles2 from "../scss/components/movie.module.scss";
 import ScrollContainer from "react-indiana-drag-scroll";
 import SeasonContainer from "./molecules/SeasonContainer";
@@ -53,6 +53,7 @@ function TvEpisode({ data, seasondata, seasonsdata, base_url }) {
             <div className={styles.watch_section}>
 
                 {userData ? (
+                    <>
                     <iframe
                         id="watch-iframe"
                         frameBorder={0}
@@ -62,6 +63,8 @@ function TvEpisode({ data, seasondata, seasonsdata, base_url }) {
                         src={`https://www.2embed.to/embed/tmdb/tv?id=${id}&s=${snumber}&e=${enumber}`}
                         title={id}
                     ></iframe>
+                    <p style={{"color":"#999","fontSize":"0.85rem","textAlign":"center","padding":"0.25rem 0.5rem"}}><i>This site does not store any files on our server, we only linked to the media which is hosted on 3rd party services.</i></p>
+                    </>
                 ) : (
                     <div className={styles.login_container}>
                         <div className={styles.watch_bg_container}>
@@ -94,13 +97,13 @@ function TvEpisode({ data, seasondata, seasonsdata, base_url }) {
 
         
                 <div className={styles.w_details}>
-                    <Link href={"/en/tv/" + id + "/" + name}>
+                    <Link href={getLink(seasondata,"tv")}>
                         <a>
                             <h2 className={styles.title}>{seasondata.name}</h2>
                         </a>
                     </Link>
                     <h4 className={styles.episode_title}>
-                        <Link href={"/en/tv/" + id + "/" + name + "/season/" + snumber}>
+                        <Link href={getLink(seasondata,"tv")+"/season/" + snumber}>
                             <a>
                                 <span>S{data.season_number}</span>
                             </a>

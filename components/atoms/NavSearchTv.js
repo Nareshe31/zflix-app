@@ -1,18 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { covertToLinkWords, getYear, getDate } from "../../utils/functions";
+import {getDate,getLink } from "../../utils/functions";
 import styles from "../../scss/components/navbar.module.scss";
 
 function NavSearchTv({ item, currentSearchResult, index,hover, handleResultHover }) {
     return (
         <Link
-            href={
-                "/en/tv/" +
-                item.id +
-                "/" +
-                covertToLinkWords(item.name) +
-                (item.first_air_date ? "-" + getYear(item.first_air_date) : "")
-            }
+            href={getLink(item,"tv")}
         >
             <a id={"result_"+index}>
                 <li

@@ -2,20 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from '../../scss/components/poster.module.scss';
 import { motion } from "framer-motion";
-import { getDate } from '../../utils/functions';
+import { getDate,getYear,getLink } from '../../utils/functions';
 
 function PosterWithDetails({ item, type }) {
-  const getYear = (date) => {
-    return date?.slice(0, 4);
-  };
-  const removeSpecialCharacters = (title) => {
-    return title.replace(/[&#,+()$~%'.":!*?<>{}]/g, "");
-  };
-
-  const covertToLinkWords = (title) => {
-    var s = removeSpecialCharacters(title);
-    return s.replace(/\s+/g, "-").toLowerCase();
-  };
 
   const getHref=()=>{
     if (type === "movie") {
@@ -27,27 +16,6 @@ function PosterWithDetails({ item, type }) {
         "/en/tv/[id]/[name]")
   }
 
-  const getLink = () => {
-    if (type === "movie") {
-      return (
-        "/en/movie/" +
-        item.id +
-        "/" +
-        covertToLinkWords(type === "movie" ? item.title : item.name) +
-        "-" +
-        getYear(item.release_date)
-      );
-    } else
-      return (
-        "/en/tv/" +
-        item.id +
-        "/" +
-        covertToLinkWords(type === "movie" ? item.title : item.name) +
-        "-" +
-        getYear(item.first_air_date)
-      );
-  };
-
   function MoviePosterInfo({item}) {
     
     return(
@@ -57,7 +25,7 @@ function PosterWithDetails({ item, type }) {
           <p className={styles.overview}>{item.overview}</p>
           {
             (new Date())>(new Date(item.release_date))?          
-              <Link href={getLink()+"/watch"}>
+              <Link href={getLink(item,type)+"/watch"}>
                 <div className={styles.watch_now}>
                   <i className="bi bi-play-fill"></i>
                   Watch Now
@@ -78,7 +46,7 @@ function PosterWithDetails({ item, type }) {
           <p className={styles.overview}>{item.overview}</p>
           {
             (new Date())>(new Date(item.first_air_date))?          
-              <Link href={getLink()+"/season/1/episode/1"}>
+              <Link href={getLink(item,type)+"/season/1/episode/1"}>
                 <div className={styles.watch_now}>
                   <i className="bi bi-play-fill"></i>
                   Watch Now
@@ -98,7 +66,7 @@ function PosterWithDetails({ item, type }) {
           <p className={styles.overview}>{item.overview}</p>
           {
             (new Date())>(new Date(item.first_air_date))?          
-              <Link href={getLink()+"/season/1/episode/1"}>
+              <Link href={getLink(item,type)+"/season/1/episode/1"}>
                 <a>
                   <div className={styles.watch_now}>
                     <i className="bi bi-play-fill"></i>
@@ -117,7 +85,7 @@ function PosterWithDetails({ item, type }) {
 
   return (
     <>
-      <Link href={getLink()} passHref> 
+      <Link href={getLink(item,type)} passHref> 
         <a className={styles.d_poster_link+" "+styles.poster_link+" "+styles.poster_no_margin} >
         <motion.div 
           // whileTap={{ scale: 0.9 }}

@@ -344,6 +344,9 @@
                 margin-bottom: 5px;
                 background-color: #c5c5c5;
             }
+            &:focus{
+                background-color: #444;
+            }
         }
         .nav_header{
             .nav_header_image {
@@ -511,9 +514,19 @@
         .nav_close{
             align-self: flex-end;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // background-color: red;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
             i{
                 font-size: 2rem;
                 font-weight: 400;
+                color: $text-color;
+                box-shadow: none;
+                background: none;
             }
         }
         ul{

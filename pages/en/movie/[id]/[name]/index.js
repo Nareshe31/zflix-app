@@ -1,17 +1,6 @@
 import Movie from "../../../../../components/Movie";
 import { motion } from "framer-motion";
-
-const getYear = (date) => {
-    return date?.slice(0, 4);
-  };
-  const removeSpecialCharacters = (title) => {
-    return title.replace(/[&#,+()$~%'.":!*?<>{}]/g, "");
-  };
-
-  const covertToLinkWords = (title) => {
-    var s = removeSpecialCharacters(title);
-    return s.replace(/\s+/g, "-").toLowerCase();
-  };
+import { covertToLinkWords,getYear, checkBothTitle } from '../../../../../utils/functions';
 
 function MoviePage({ data, base_url }) {
     const config = {
@@ -30,15 +19,20 @@ function MoviePage({ data, base_url }) {
 
 export async function getServerSideProps(context) {
     try {
-        
+        const {id,name}=context.query
+
+        //get movie details from TMDB API
         const res = await fetch(
-            `https://api.themoviedb.org/3/movie/${context.query.id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=images,videos,credits,recommendations,similar`
+            `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=images,videos,credits,recommendations,similar`
         );
         const data = await res.json();
-        const realTitle=covertToLinkWords(data.title ) +( data.release_date?("-" +getYear(data.release_date)):"")
-        const urlTitle=context.query.name
-        const destinationLink="/en/movie/"+data.id+"/"+realTitle
-        if(realTitle!==urlTitle)  return {
+
+        //Check if actual and expected titles are same
+        const [isTitleSame,actualTitle]=checkBothTitle({title:data?.title,release_date:data?.release_date},name)
+
+        const destinationLink="/en/movie/"+data.id+"/"+actualTitle
+
+        if(isTitleSame)  return {
             redirect:{
               destination:destinationLink,
               permanent:false

@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import { getYear, getMonth, getDate } from "../utils/functions";
+import { getYear, getMonth, getDate, getLink } from "../utils/functions";
 import styles from "../scss/components/tv-season.module.scss";
 import ScrollContainer from "react-indiana-drag-scroll";
 import styles2 from '../scss/components/movie.module.scss';
@@ -65,7 +65,7 @@ function TvSeason({ data, seasondata, base_url }) {
                         />
                     </div>
                     <div className={styles.s_detail}>
-                        <Link href={"/en/tv/" + id + "/" + name}>
+                        <Link href={getLink(seasondata,"tv")}>
                             <a>
                                 <h2 className={styles.title}>{seasondata.name}</h2>
                             </a>

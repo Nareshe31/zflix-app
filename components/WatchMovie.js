@@ -1,4 +1,4 @@
-import { getMinute, getYear, getHour, getMonth } from "../utils/functions";
+import { getMinute, getYear, getHour, getMonth, getLink } from "../utils/functions";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
@@ -59,6 +59,7 @@ function WatchMovie({ data, base_url }) {
             </Head>
             <div className={styles.watch_section}>
                 {userData ? (
+                    <>
                     <iframe
                         id="watch-iframe"
                         frameBorder={0}
@@ -68,6 +69,8 @@ function WatchMovie({ data, base_url }) {
                         src={"https://www.2embed.to/embed/tmdb/movie?id=" + id}
                         title={id}
                     ></iframe>
+                    <p style={{"color":"#999","fontSize":"0.85rem","textAlign":"center","padding":"0.25rem 0.5rem"}}><i>This site does not store any files on our server, we only linked to the media which is hosted on 3rd party services.</i></p>
+                    </>
                 ) : (
                     <div className={styles.login_container}>
                         <div className={styles.watch_bg_container}>
@@ -98,7 +101,7 @@ function WatchMovie({ data, base_url }) {
                     </div>
                 )}
                 <div className={styles.w_details}>
-                    <Link href={"/en/movie/" + id + "/" + name}>
+                    <Link href={getLink(data,"movie")}>
                         <a>
                             <h2 className={styles.title}>{data.title}</h2>
                         </a>

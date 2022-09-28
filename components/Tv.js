@@ -155,11 +155,11 @@ function Tv({ data, base_url }) {
                                         {getYear(data.first_air_date)}
                                         <span className={styles2.dot}></span>
                                         <span>
-                                            <i className="bi bi-star-fill"></i> {data.vote_average}
+                                            <i className="bi bi-star-fill"></i> {Number(data.vote_average).toFixed(1)}
                                         </span>
                                         <span className={styles2.dot}></span>
                                         <span className={styles2.runtime}>
-                                            <i className="bi bi-clock"></i> {data.runtime} mins
+                                            <i className="bi bi-clock"></i> {data.episode_run_time[0]} mins
                                         </span>
                                     </p>
                                     <div className={styles2.genres}>

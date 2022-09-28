@@ -13,8 +13,8 @@ function CastContainer({data,title,type}) {
             <ContainerHeader  title={title} />
             <ScrollContainer className="scroll-container" horizontal>
                 <div className={styles2.c_container}>
-                    {data.map((item, i) => (
-                        <CastPoster type={type} item={item} key={i} />
+                    {data.map((item) => (
+                        item?<CastPoster type={type} item={item} key={item.id} />:null
                     ))}
                 </div>
             </ScrollContainer>
