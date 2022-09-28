@@ -6,7 +6,7 @@ function LoadingScreen({ }) {
     const {user}=useSelector(state=>state)
     const loadContainer = {
         width: "100vw",
-        height: "100vh",
+        height: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

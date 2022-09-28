@@ -70,7 +70,7 @@ a {
 button{
   outline: none;
   border: none;
-  background: none;
+  /* background: transparent; */
 }
 
 /* Loading circle */
