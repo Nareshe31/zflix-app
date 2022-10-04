@@ -1,6 +1,6 @@
 [{
         "relation": ["delegate_permission/common.handle_all_urls"],
         "target" : { "namespace": "android_app", "package_name": "app.netlify.zflix_app.twa",
-                     "sha256_cert_fingerprints": ["F8:07:87:82:18:04:F3:EA:9C:C8:29:26:9B:CB:8E:25:62:82:23:47:B0:3C:75:DA:CF:0A:62:31:CD:B3:86:2D"] }
+                     "sha256_cert_fingerprints": ["54:DE:18:7A:C7:E2:A7:4F:35:7D:F5:48:05:BB:25:3E:63:1C:60:4F:1D:70:4A:DD:00:4F:D1:74:70:91:70:BA"] }
       }
 ]
