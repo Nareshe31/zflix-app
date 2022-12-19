@@ -145,7 +145,7 @@ function Footer({ }) {
                     <div className={styles.download_container}>
                         <p>Download ZFlix app on</p>
                         <a
-                            href="https://zflix-backend.herokuapp.com/api/v2/zflix/latest-version"
+                            href="https://zflix-backend.cyclic.app/api/v3/zflix/latest-version"
                             target={"_blank"}
                         >
                             <button className={styles.app_container}>
@@ -192,7 +192,7 @@ export default Footer;
 {
     /*<div className={styles.row_1}>
                           <a
-                              href="https://zflix-backend.herokuapp.com/api/v2/zflix/latest-version"
+                              href="https://zflix-backend.cyclic.app/api/v2/zflix/latest-version"
                               target={"_blank"}
                           >
                               <button className={styles.app_container}>
