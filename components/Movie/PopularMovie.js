@@ -14,11 +14,11 @@ const sortOptions = [
     { name: "Title (Z-A)" },
 ];
 
-function PopularMovie({ data ,base_url,filter_type,media_type,title}) {
+function PopularMovie({ data ,base_url,filter_type,media_type,title,api_url,params}) {
     const [sortBoxOpen, setsortBoxOpen] = useState(true);
     const [sortDropOpen, setsortDropOpen] = useState(false);
     const [currentSortOption, setcurrentSortOption] = useState(0);
-    const [popularData, setpopularData] = useState([])
+    const [popularData, setpopularData] = useState(data.results)
     const [popularTotalPages, setpopularTotalPages] = useState(0)
     const [currentPage, setcurrentPage] = useState(1)
     const [loading, setloading] = useState(false)
@@ -52,7 +52,7 @@ function PopularMovie({ data ,base_url,filter_type,media_type,title}) {
         try {
             setloading(true)
             const {data} = await axios.get(
-                `https://api.themoviedb.org/3/${media_type}/${filter_type}?api_key=dfc43a605d906f9da6982495ad7bb34e&page=${currentPage+1}`
+                `https://api.themoviedb.org/3${api_url}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&page=${currentPage+1}${params??''}`
             );
             setloading(false)
             setpopularData(prev=>[...prev,...data.results])

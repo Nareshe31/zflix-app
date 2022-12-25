@@ -1,9 +1,17 @@
-import axios from "axios"
+import axios from "axios";
 import PopularMovie from "../../../components/Movie/PopularMovie";
 
-function RecentMoviePage({data,base_url}) {
-    return <PopularMovie  data={data} base_url={base_url} media_type="movie" filter_type="top_rated" title="Top Rated" />
-         
+function RecentMoviePage({ data, base_url }) {
+    return (
+        <PopularMovie
+            data={data}
+            base_url={base_url}
+            media_type="movie"
+            filter_type="top_rated"
+            title="Top Rated"
+            api_url={"/movie/top_rated"}
+        />
+    );
 }
 
 export async function getServerSideProps(context) {
@@ -11,7 +19,7 @@ export async function getServerSideProps(context) {
         const res = await fetch(
             `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_API_KEY}&page=1`
         );
-        const data=await res.json()
+        const data = await res.json();
         if (!data.hasOwnProperty("success")) {
             return {
                 props: {
@@ -25,9 +33,9 @@ export async function getServerSideProps(context) {
         };
     } catch (error) {
         return {
-            notFound:true
-        }
+            notFound: true,
+        };
     }
 }
 
-export default RecentMoviePage
+export default RecentMoviePage;

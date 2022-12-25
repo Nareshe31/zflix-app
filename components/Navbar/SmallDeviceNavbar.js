@@ -7,6 +7,7 @@ import NavSearchMovie from "../atoms/NavSearchMovie";
 import NavSearchTv from "../atoms/NavSearchTv";
 import NavSearchPerson from "../atoms/NavSearchPerson";
 import { useSelector } from "react-redux";
+import { MOVIE_GENRES } from "../../utils/functions";
 
 function SmallDeviceNavbar({ }) {
     const navbarRef = useRef();
@@ -14,6 +15,7 @@ function SmallDeviceNavbar({ }) {
 
     const [moviesDropdown, setmoviesDropdown] = useState(false);
     const [tvshowsDropdown, settvshowsDropdown] = useState(false);
+    const [genresDropdown, setgenresDropdown] = useState(false);
     const [results, setresults] = useState({});
     // const [searchContainerVisible, setsearchContainerVisible] = useState(false);
     const [query, setquery] = useState("");
@@ -66,12 +68,15 @@ function SmallDeviceNavbar({ }) {
     useEffect(() => {
         setsearchBarActive(false);
         setnavSide(false);
+        setmoviesDropdown(false);
+        settvshowsDropdown(false);
+        setgenresDropdown(false)
         document.body.classList.remove("no_scroll");
         return () => {
             setsearchBarActive(false);
             setnavSide(false);
         };
-    }, [router.route]);
+    }, [router]);
 
     let timer;
 
@@ -123,6 +128,7 @@ function SmallDeviceNavbar({ }) {
         document.body.classList.remove("no_scroll");
         setmoviesDropdown(false);
         settvshowsDropdown(false);
+        setgenresDropdown(false)
         setnavSide(false);
     }
 
@@ -348,6 +354,31 @@ function SmallDeviceNavbar({ }) {
                             <Link href={"/en/tv/top-rated"}>
                                 <p>Top Rated</p>
                             </Link>
+                        </div>
+                        <li
+                            className={styles.nav_item + " " + styles.dropdown}
+                            onClick={() => setgenresDropdown((prev) => !prev)}
+                        >
+                            Genres
+                            <span>
+                                <i
+                                    className={
+                                        moviesDropdown ? "bi bi-chevron-up" : "bi bi-chevron-down"
+                                    }
+                                ></i>
+                            </span>
+                        </li>
+                        <div
+                            className={
+                                genresDropdown
+                                    ? styles.nav_list_child + " " + styles.active
+                                    : styles.nav_list_child
+                            }
+                        >
+                            {MOVIE_GENRES.map((genre,index)=>
+                                <Link href={`/en/genre/${String(genre.name).toLowerCase()}`}>
+                                    <p>{genre.name}</p>
+                                </Link>)}
                         </div>
                         <Link href="/en/torrent">
                             <a>

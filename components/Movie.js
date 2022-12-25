@@ -223,9 +223,13 @@ function Movie({ data, base_url }) {
                                     </p>
                                     <div className={styles.genres}>
                                         {data?.genres?.map((item, i) => (
-                                            <span key={i} className={styles.genre}>
-                                                {item.name}
-                                            </span>
+                                            <Link key={i} href={`/en/genre/${String(item.name).toLowerCase()}`}>
+                                                <a>
+                                                    <span className={styles.genre}>
+                                                        {item.name}
+                                                    </span>
+                                                </a>
+                                            </Link>
                                         ))}
                                     </div>
                                     <p className={styles.content_overview}>{data.overview}</p>

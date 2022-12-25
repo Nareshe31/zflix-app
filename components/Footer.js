@@ -1,5 +1,6 @@
 import styles from "../scss/components/footer.module.scss";
 import Link from "next/link";
+import { MOVIE_GENRES } from "../utils/functions";
 
 function Footer({ }) {
     return (
@@ -39,36 +40,9 @@ function Footer({ }) {
                     <div className={styles.links_container}>
                         <h3>Genres</h3>
                         <ul className={styles.link_list}>
-                            <li>
-                                <Link href="#action">
-                                    <a>Action</a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#adventure">
-                                    <a>Adventure</a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#animation">
-                                    <a>Animation</a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#crime">
-                                    <a>Crime</a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#family">
-                                    <a>Family</a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#horror">
-                                    <a>Horror</a>
-                                </Link>
-                            </li>
+                            {MOVIE_GENRES.slice(0,6).map(genre=><Link href={`/en/genre/${String(genre.name).toLowerCase()}`}>
+                                <a>{genre.name}</a>
+                            </Link>)}
                             <li>
                                 <Link href="#see-more">
                                     <a>See more</a>

@@ -8,6 +8,7 @@ import NavSearchMovie from "../atoms/NavSearchMovie";
 import NavSearchPerson from "../atoms/NavSearchPerson";
 import { useSelector,useDispatch } from "react-redux";
 import { logoutUser } from "../../store/actions";
+import { MOVIE_GENRES } from "../../utils/functions";
 
 function LargeDeviceNavbar({ }) {
     const navbarRef = useRef();
@@ -246,6 +247,30 @@ function LargeDeviceNavbar({ }) {
                                     </li>
                                 </a>
                             </Link>
+                        </ul>
+                    </li>
+                    <li
+                        className={styles.nav_item + " " + styles.dropdown}
+                        onMouseEnter={() => setmoviesDropdown(true)}
+                        onMouseLeave={() => setmoviesDropdown(false)}
+                    >
+                        Genres
+                        <span>
+                            <i
+                                className={
+                                    moviesDropdown ? "bi bi-chevron-up" : "bi bi-chevron-down"
+                                }
+                            ></i>
+                        </span>
+                        <ul className={styles.nav_list_child + " " + styles.first}>
+                            {MOVIE_GENRES.map((genre,index)=>
+                                <Link href={`/en/genre/${String(genre.name).toLowerCase()}`}>
+                                    <a>
+                                        <li className={`${styles.nav_item_child}${index===0?' '+styles.first:''}`}>
+                                            {genre.name}
+                                        </li>
+                                    </a>
+                                </Link>)}
                         </ul>
                     </li>
                     <Link href="/en/torrent">

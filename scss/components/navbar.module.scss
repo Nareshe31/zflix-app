@@ -116,10 +116,9 @@
 
             .nav_list_child {
                 list-style: none;
-                align-items: center;
-                background-color: rgba($color: #101010, $alpha: 1);
+                // align-items: center;
+                // background-color: rgba($color: #101010, $alpha: 1);
                 position: absolute;
-                width: max-content;
                 z-index: 10;
                 top: 60px;
                 opacity: 0;
@@ -128,17 +127,22 @@
                 border-radius: 5px;
                 border: 0.2px solid #222;
                 box-shadow: 0px 0px 8px -5px #444;
-
+                display: flex;
+                flex-direction: column;
+                max-height: 270px;
+                flex-wrap: wrap;
                 a {
                     margin: 0 !important;
+                    display: inline-block;
                 }
 
                 .nav_item_child {
-                    padding: 16px 65px 16px 25px;
+                    padding: 14px 24px 14px 16px;
                     text-transform: none;
-
+                    width: 150px;
+                    background-color: rgba($color: #101010, $alpha: 1);
                     &:hover {
-                        background-color: rgba($color: #222222, $alpha: 0.5);
+                        background-color: rgba($color: #222222, $alpha: 1);
                     }
                 }
 
@@ -502,6 +506,7 @@
     transition: left 0.3s ease-in-out;
     .nav_side_container{
         height: 100vh;
+        overflow-y: auto;
         width: 70vw;
         background-color: $nav-color;
         color: $text-color;

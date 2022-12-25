@@ -9,10 +9,15 @@
     display: flex;
     flex-wrap: wrap;
 
-    .genre {
-        padding: 8px 12px;
+    a{
         margin-right: 10px;
         margin-bottom: 5px;
+        display: inline-block;
+        width: max-content;
+        height: max-content;
+    }
+    .genre {
+        padding: 8px 12px;
         border-radius: 5px;
         background-color: rgba($color: #ccc, $alpha: 0.1);
     }
