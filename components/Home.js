@@ -80,6 +80,7 @@ function Home({ movieData, tvData,personData, base_url }) {
             {/* <Script src="https://cdn.jsdelivr.net/npm/@webtor/embed-sdk-js/dist/index.min.js" charset="utf-8" async></Script> */}
             <Head>
                 <title>ZFlix - Watch Movies & TV Shows</title>
+                <link rel="canonical" href={base_url} />
                 <meta name="title" content={"ZFlix - Watch Movies & TV Shows"} />
                 <meta name="description" content={overview} />
                 <meta
