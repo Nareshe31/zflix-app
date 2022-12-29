@@ -19,7 +19,10 @@
     .genre {
         padding: 8px 12px;
         border-radius: 5px;
-        background-color: rgba($color: #ccc, $alpha: 0.1);
+        background-color: rgba($color: #aaa, $alpha: 0.1);
+        &:hover{
+            background-color: rgba($color: #ccc, $alpha: 0.15);
+        }
     }
 }
 
