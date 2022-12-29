@@ -54,29 +54,19 @@ function Footer({ }) {
                         <h3>Company</h3>
                         <ul className={styles.link_list}>
                             <li>
-                                <Link href="#about-us">
-                                    <a>About us</a>
-                                </Link>
+                                About us
                             </li>
                             <li>
-                                <Link href="mailto:zflix.contact@protonmail.com">
-                                    <a>Contact</a>
-                                </Link>
+                                Contact
                             </li>
                             <li>
-                                <Link href="#feedback">
-                                    <a>Feedback</a>
-                                </Link>
+                                Feedback
                             </li>
                             <li>
-                                <Link href="#faqs">
-                                    <a>FAQs</a>
-                                </Link>
+                                FAQs
                             </li>
                             <li>
-                                <Link href="#terms-and-conditions">
-                                    <a>Terms and conditions</a>
-                                </Link>
+                                Terms and conditions
                             </li>
                         </ul>
                     </div>
