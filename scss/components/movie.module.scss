@@ -9,16 +9,12 @@
     display: flex;
     flex-wrap: wrap;
 
-    a{
-        margin-right: 10px;
-        margin-bottom: 5px;
-        display: inline-block;
-        width: max-content;
-        height: max-content;
-    }
     .genre {
         padding: 8px 12px;
         border-radius: 5px;
+        margin-right: 10px;
+        margin-bottom: 5px;
+        cursor: pointer;
         background-color: rgba($color: #aaa, $alpha: 0.1);
         &:hover{
             background-color: rgba($color: #ccc, $alpha: 0.15);
@@ -153,7 +149,7 @@
                     .content_overview {
                         color: #cfcfcf;
                         text-align: justify;
-                        margin-top: 10px;
+                        margin-top: 4px;
                         font-family: "Poppins", sans-serif;
                     }
 

@@ -224,8 +224,8 @@ function Movie({ data, base_url }) {
                                     <div className={styles.genres}>
                                         {data?.genres?.map((item, i) => (
                                             <Link key={i} href={`/en/genre/${String(item.name).toLowerCase()}`}>
-                                                <a>
-                                                    <span className={styles.genre}>
+                                                <a className={styles.genre}>
+                                                    <span>
                                                         {item.name}
                                                     </span>
                                                 </a>

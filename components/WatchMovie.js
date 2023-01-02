@@ -120,7 +120,11 @@ function WatchMovie({ data, base_url }) {
                     </div>
                     <div className={styles2.genres}>
                         {data?.genres?.map((item, i) => (
-                            <span className={styles2.genre}>{item.name}</span>
+                            <Link key={i} href={`/en/genre/${String(item.name).toLowerCase()}`}>
+                                <a className={styles2.genre}>
+                                    <span >{item.name}</span>
+                                </a>
+                            </Link>
                         ))}
                     </div>
                     <p className={styles.overview}>{data.overview}</p>
